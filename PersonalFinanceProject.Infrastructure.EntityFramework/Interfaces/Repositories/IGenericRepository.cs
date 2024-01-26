@@ -1,6 +1,6 @@
-﻿namespace PersonalFinanceProject.Infrastructure.EntityFramework.Interfaces
+﻿namespace PersonalFinanceProject.Infrastructure.EntityFramework.Interfaces.Repositories
 {
-    public interface IBaseRepository<T> where T : class
+    public interface IGenericRepository<T>
     {
         Task Add(T entity);
 

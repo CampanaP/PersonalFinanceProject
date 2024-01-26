@@ -1,13 +1,15 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using PersonalFinanceProject.Infrastructure.EntityFramework.Interfaces;
+using PersonalFinanceProject.Infrastructure.EntityFramework.ExtensionMethods;
+using PersonalFinanceProject.Infrastructure.EntityFramework.Interfaces.Repositories;
+using PersonalFinanceProject.Infrastructure.EntityFramework.Interfaces.Specifications;
 
 namespace PersonalFinanceProject.Infrastructure.EntityFramework.Repositories
 {
-    public class BaseRepository<T> : IBaseRepository<T> where T : class
+    public class GenericRepository<T> : IGenericRepository<T> where T : class
     {
         protected readonly CustomDbContext _dbContext;
 
-        public BaseRepository(CustomDbContext dbContext)
+        public GenericRepository(CustomDbContext dbContext)
         {
             _dbContext = dbContext;
         }
@@ -35,6 +37,11 @@ namespace PersonalFinanceProject.Infrastructure.EntityFramework.Repositories
         public virtual void RemoveRange(IEnumerable<T> entities)
         {
             _dbContext.Set<T>().RemoveRange(entities);
+        }
+
+        public virtual IEnumerable<T> Search(ISpecification<T> specification)
+        {
+            return _dbContext.Set<T>().Search(specification);
         }
 
         public virtual void Update(T entity)
