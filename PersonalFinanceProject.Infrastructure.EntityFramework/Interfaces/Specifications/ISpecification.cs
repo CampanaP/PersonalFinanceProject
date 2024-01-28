@@ -4,12 +4,16 @@ namespace PersonalFinanceProject.Infrastructure.EntityFramework.Interfaces.Speci
 {
     public interface ISpecification<T>
     {
-        Expression<Func<T, bool>> Criteria { get; }
+        Expression<Func<T, bool>>? Criteria { get; }
 
-        List<Expression<Func<T, object>>> Includes { get; }
+        List<Expression<Func<T, object>>>? Includes { get; }
 
-        Expression<Func<T, object>> OrderBy { get; }
+        int? Skip { get; }
 
-        Expression<Func<T, object>> OrderByDescending { get; }
+        int? Take { get; }
+        
+        Expression<Func<T, object>>? OrderBy { get; }
+
+        Expression<Func<T, object>>? OrderByDescending { get; }
     }
 }

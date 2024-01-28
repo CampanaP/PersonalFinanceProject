@@ -17,23 +17,23 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebApp", "WebApp", "{EBE69E
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalFinanceProject.WebApp", "PersonalFinanceProject.WebApp\PersonalFinanceProject.WebApp.csproj", "{B0182596-55C5-4DBD-A670-3C0282972C87}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalFinanceProject.Api", "PersonalFinanceProject.Api\PersonalFinanceProject.Api.csproj", "{14BE8973-8702-4D4F-AC3C-F63FCD79C5CC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalFinanceProject.WebApi", "PersonalFinanceProject.Api\PersonalFinanceProject.WebApi.csproj", "{14BE8973-8702-4D4F-AC3C-F63FCD79C5CC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersonalFinanceProject.Business.Identities", "PersonalFinanceProject.Business.Identities\PersonalFinanceProject.Business.Identities.csproj", "{B69A21CD-0E2E-4D8C-8335-DB863D542374}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalFinanceProject.Business.Identities", "PersonalFinanceProject.Business.Identities\PersonalFinanceProject.Business.Identities.csproj", "{B69A21CD-0E2E-4D8C-8335-DB863D542374}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersonalFinanceProject.Business.Transactions", "PersonalFinanceProject.Business.Transactions\PersonalFinanceProject.Business.Transactions.csproj", "{DC738127-8CB2-462E-9192-51B7838CEE1A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalFinanceProject.Business.Transactions", "PersonalFinanceProject.Business.Transactions\PersonalFinanceProject.Business.Transactions.csproj", "{DC738127-8CB2-462E-9192-51B7838CEE1A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersonalFinanceProject.Business.Wallets", "PersonalFinanceProject.Business.Wallets\PersonalFinanceProject.Business.Wallets.csproj", "{84263F35-849E-4F8E-88D5-3384052B2B24}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalFinanceProject.Business.Wallets", "PersonalFinanceProject.Business.Wallets\PersonalFinanceProject.Business.Wallets.csproj", "{84263F35-849E-4F8E-88D5-3384052B2B24}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersonalFinanceProject.Infrastructure.Api", "PersonalFinanceProject.Infrastructure.Api\PersonalFinanceProject.Infrastructure.Api.csproj", "{C435E9F0-2A37-4DF7-9DE6-B08B594E28CE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalFinanceProject.Infrastructure.Api", "PersonalFinanceProject.Infrastructure.Api\PersonalFinanceProject.Infrastructure.Api.csproj", "{C435E9F0-2A37-4DF7-9DE6-B08B594E28CE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersonalFinanceProject.Infrastructure.Communications", "PersonalFinanceProject.Infrastructure.Communications\PersonalFinanceProject.Infrastructure.Communications.csproj", "{A1639A6C-EFF6-423C-AB10-24289CA2834B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalFinanceProject.Infrastructure.Communications", "PersonalFinanceProject.Infrastructure.Communications\PersonalFinanceProject.Infrastructure.Communications.csproj", "{A1639A6C-EFF6-423C-AB10-24289CA2834B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersonalFinanceProject.Infrastructure.Loggings", "PersonalFinanceProject.Infrastructure.Loggings\PersonalFinanceProject.Infrastructure.Loggings.csproj", "{0E1C671E-8C92-437C-9631-C90EF7641A2A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalFinanceProject.Infrastructure.Loggings", "PersonalFinanceProject.Infrastructure.Loggings\PersonalFinanceProject.Infrastructure.Loggings.csproj", "{0E1C671E-8C92-437C-9631-C90EF7641A2A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersonalFinanceProject.Infrastructure.Notifications", "PersonalFinanceProject.Infrastructure.Notifications\PersonalFinanceProject.Infrastructure.Notifications.csproj", "{6BD674DF-F0CE-4BC5-8D87-B30434EA18CB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalFinanceProject.Infrastructure.Notifications", "PersonalFinanceProject.Infrastructure.Notifications\PersonalFinanceProject.Infrastructure.Notifications.csproj", "{6BD674DF-F0CE-4BC5-8D87-B30434EA18CB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersonalFinanceProject.Infrastructure.EntityFramework", "PersonalFinanceProject.Infrastructure.EntityFramework\PersonalFinanceProject.Infrastructure.EntityFramework.csproj", "{548D65A3-69B6-42DB-B85F-220BD5A070BB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalFinanceProject.Infrastructure.EntityFramework", "PersonalFinanceProject.Infrastructure.EntityFramework\PersonalFinanceProject.Infrastructure.EntityFramework.csproj", "{548D65A3-69B6-42DB-B85F-220BD5A070BB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

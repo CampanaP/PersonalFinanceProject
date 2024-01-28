@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
 using PersonalFinanceProject.Infrastructure.EntityFramework.ExtensionMethods;
 using PersonalFinanceProject.Infrastructure.EntityFramework.Interfaces.Repositories;
 using PersonalFinanceProject.Infrastructure.EntityFramework.Interfaces.Specifications;
@@ -14,19 +15,19 @@ namespace PersonalFinanceProject.Infrastructure.EntityFramework.Repositories
             _dbContext = dbContext;
         }
 
-        public virtual async Task<IEnumerable<T>> GetItems()
+        public virtual async Task Add(T entity, CancellationToken cancellationToken = default)
         {
-            return await _dbContext.Set<T>().ToListAsync();
+            await _dbContext.Set<T>().AddAsync(entity, cancellationToken);
         }
 
-        public virtual async Task Add(T entity)
+        public virtual async Task AddRange(IEnumerable<T> entities, CancellationToken cancellationToken = default)
         {
-            await _dbContext.Set<T>().AddAsync(entity);
+            await _dbContext.Set<T>().AddRangeAsync(entities, cancellationToken);
         }
 
-        public virtual async Task AddRange(IEnumerable<T> entities)
+        public virtual async Task<IEnumerable<T>> GetItems(CancellationToken cancellationToken = default)
         {
-            await _dbContext.Set<T>().AddRangeAsync(entities);
+            return await _dbContext.Set<T>().ToListAsync(cancellationToken);
         }
 
         public virtual void Remove(T entity)
@@ -37,6 +38,11 @@ namespace PersonalFinanceProject.Infrastructure.EntityFramework.Repositories
         public virtual void RemoveRange(IEnumerable<T> entities)
         {
             _dbContext.Set<T>().RemoveRange(entities);
+        }
+
+        public virtual async Task SaveChanges(CancellationToken cancellationToken = default)
+        {
+            await _dbContext.SaveChangesAsync(cancellationToken);
         }
 
         public virtual IEnumerable<T> Search(ISpecification<T> specification)
