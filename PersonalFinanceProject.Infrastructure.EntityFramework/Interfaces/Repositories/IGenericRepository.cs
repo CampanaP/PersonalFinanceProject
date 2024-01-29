@@ -16,7 +16,7 @@ namespace PersonalFinanceProject.Infrastructure.EntityFramework.Interfaces.Repos
 
         Task SaveChanges(CancellationToken cancellationToken = default);
 
-        IEnumerable<T> Search(ISpecification<T> specification)
+        IEnumerable<T> Search(ISpecification<T> specification);
 
         void Update(T entity);
 
