@@ -21,7 +21,25 @@ namespace PersonalFinanceProject.Infrastructure.Notifications.Services
         {
             MimeMessage? mimeMessage = null;
 
-            MailboxAddress sender = new MailboxAddress(_configuration.GetValue<string>("Smtp:SenderDisplayName"), _configuration.GetValue<string>("Smtp:SenderAddress"));
+            string? defaultSenderAddress = _configuration.GetValue<string>("Smtp:SenderAddress");
+            string? defaultSenderDisplayName = _configuration.GetValue<string>("Smtp:SenderDisplayName");
+
+            if (defaultSenderAddress is null)
+            {
+                return mimeMessage;
+            }
+
+            if (defaultSenderDisplayName is null && string.IsNullOrWhiteSpace(message.SenderDisplayName))
+            {
+                message.SenderDisplayName = defaultSenderAddress.Split("@")?[0] ?? string.Empty;
+                
+                if (!string.IsNullOrWhiteSpace(message.SenderAddress))
+                {
+                    message.SenderDisplayName = message.SenderAddress.Split("@")?[0] ?? string.Empty;
+                }
+            }
+
+            MailboxAddress sender = new MailboxAddress(defaultSenderDisplayName, defaultSenderAddress);
 
             if (!string.IsNullOrWhiteSpace(message.SenderAddress))
             {
