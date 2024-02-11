@@ -4,60 +4,43 @@ using Microsoft.Extensions.DependencyInjection;
 using PersonalFinanceProject.Infrastructure.Loggings.Interfaces.Services;
 using Serilog;
 using Serilog.Core;
-using Serilog.Events;
 
 namespace PersonalFinanceProject.Infrastructure.Loggings.Services
 {
     public class LogService : ILogService
     {
-        private IConfiguration _configuration;
-
-        public LogService(IConfiguration configuration)
+        public LogService()
         {
-            _configuration = configuration;
         }
 
-        public IServiceCollection Configure(WebApplicationBuilder builder)
+        public void Debug(string message, object[]? messageObjectValues = null, Exception? exception = null)
         {
-            string? loggerFilePath = _configuration.GetValue<string>("Logger:FilePath");
-            string? loggerRollingInterval = _configuration.GetValue<string>("Logger:RollingInterval");
-            string? loggerOutputTemplate = _configuration.GetValue<string>("Logger:OutputTemplate");
-
-            if (string.IsNullOrWhiteSpace(loggerFilePath) || string.IsNullOrWhiteSpace(loggerRollingInterval) || string.IsNullOrWhiteSpace(loggerOutputTemplate))
-            {
-                throw new Exception("Logger is not correct configurated");
-            }
-
-            bool parseResult = Enum.TryParse(loggerRollingInterval, out RollingInterval loggerRollingIntervalValue);
-            if (!parseResult)
-            {
-                throw new Exception("Logger is not correct configurated");
-            }
-
-            Logger? logger = new LoggerConfiguration()
-                .WriteTo.File(loggerFilePath,
-                    rollingInterval: loggerRollingIntervalValue,
-                    outputTemplate: loggerOutputTemplate)
-                .CreateLogger();
-
-            builder.Logging.AddSerilog(logger);
-
-            return builder.Services;
+            Log.Debug(message, messageObjectValues, exception);
         }
 
-        public void Write(LogEventLevel level, string message, Exception? exception = null)
+        public void Error(string message, object[]? messageObjectValues = null, Exception? exception = null)
         {
-            Dictionary<LogEventLevel, Action> logEventLevels = new Dictionary<LogEventLevel, Action>
-            {
-                { LogEventLevel.Verbose, () => Log.Verbose(exception, message) },
-                { LogEventLevel.Debug, () => Log.Debug(message, exception) },
-                { LogEventLevel.Information, () => Log.Information(message, exception) },
-                { LogEventLevel.Warning, () => Log.Warning(message, exception) },
-                { LogEventLevel.Error, () => Log.Error(message, exception) },
-                { LogEventLevel.Fatal, () => Log.Fatal(message, exception) }
-            };
+            Log.Error(message, messageObjectValues, exception);
+        }
 
-            logEventLevels[level]();
+        public void Fatal(string message, object[]? messageObjectValues = null, Exception? exception = null)
+        {
+            Log.Fatal(message, messageObjectValues, exception);
+        }
+
+        public void Information(string message, object[]? messageObjectValues = null, Exception? exception = null)
+        {
+            Log.Information(message, messageObjectValues, exception);
+        }
+
+        public void Verbose(string message, object[]? messageObjectValues = null, Exception? exception = null)
+        {
+            Log.Verbose(message, messageObjectValues, exception);
+        }
+
+        public void Warning(string message, object[]? messageObjectValues = null, Exception? exception = null)
+        {
+            Log.Warning(message, messageObjectValues, exception);
         }
     }
 }

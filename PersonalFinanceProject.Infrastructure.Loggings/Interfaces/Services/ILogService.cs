@@ -1,12 +1,17 @@
-﻿using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.DependencyInjection;
-using Serilog.Events;
-
-namespace PersonalFinanceProject.Infrastructure.Loggings.Interfaces.Services
+﻿namespace PersonalFinanceProject.Infrastructure.Loggings.Interfaces.Services
 {
     public interface ILogService
     {
-        IServiceCollection Configure(WebApplicationBuilder builder);
-        void Write(LogEventLevel level, string message, Exception? exception = null);
+        void Debug(string message, object[]? messageObjectValues = null, Exception? exception = null);
+
+        void Error(string message, object[]? messageObjectValues = null, Exception? exception = null);
+
+        void Fatal(string message, object[]? messageObjectValues = null, Exception? exception = null);
+
+        void Information(string message, object[]? messageObjectValues = null, Exception? exception = null);
+
+        void Verbose(string message, object[]? messageObjectValues = null, Exception? exception = null);
+
+        void Warning(string message, object[]? messageObjectValues = null, Exception? exception = null);
     }
 }

@@ -5,6 +5,7 @@ using MimeKit;
 using PersonalFinanceProject.Infrastructure.Notifications.Entities;
 using PersonalFinanceProject.Infrastructure.Notifications.Enums;
 using PersonalFinanceProject.Infrastructure.Notifications.Interfaces.Services;
+using PersonalFinanceProject.Infrastructure.Notifications.Settings;
 
 namespace PersonalFinanceProject.Infrastructure.Notifications.Services
 {
@@ -21,25 +22,24 @@ namespace PersonalFinanceProject.Infrastructure.Notifications.Services
         {
             MimeMessage? mimeMessage = null;
 
-            string? defaultSenderAddress = _configuration.GetValue<string>("Smtp:SenderAddress");
-            string? defaultSenderDisplayName = _configuration.GetValue<string>("Smtp:SenderDisplayName");
+            EmailSettings? settings = _configuration.Get<EmailSettings>();
 
-            if (defaultSenderAddress is null)
+            if (settings is null || settings.SenderAddress is null)
             {
                 return mimeMessage;
             }
 
-            if (defaultSenderDisplayName is null && string.IsNullOrWhiteSpace(message.SenderDisplayName))
+            if (settings.SenderDisplayName is null && string.IsNullOrWhiteSpace(message.SenderDisplayName))
             {
-                message.SenderDisplayName = defaultSenderAddress.Split("@")?[0] ?? string.Empty;
-                
+                message.SenderDisplayName = settings.SenderAddress.Split("@")?[0] ?? string.Empty;
+
                 if (!string.IsNullOrWhiteSpace(message.SenderAddress))
                 {
                     message.SenderDisplayName = message.SenderAddress.Split("@")?[0] ?? string.Empty;
                 }
             }
 
-            MailboxAddress sender = new MailboxAddress(defaultSenderDisplayName, defaultSenderAddress);
+            MailboxAddress sender = new MailboxAddress(settings.SenderDisplayName, settings.SenderAddress);
 
             if (!string.IsNullOrWhiteSpace(message.SenderAddress))
             {
@@ -101,11 +101,9 @@ namespace PersonalFinanceProject.Infrastructure.Notifications.Services
 
         private async Task send(MimeMessage message, CancellationToken cancellationToken = default)
         {
-            string? host = _configuration.GetValue<string>("Smtp:Host");
-            string? username = _configuration.GetValue<string>("Smtp:Username");
-            string? password = _configuration.GetValue<string>("Smtp:Password");
+            EmailSettings? settings = _configuration.Get<EmailSettings>();
 
-            if (string.IsNullOrWhiteSpace(host) || string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
+            if (settings is null || string.IsNullOrWhiteSpace(settings.Host) || string.IsNullOrWhiteSpace(settings.Username) || string.IsNullOrWhiteSpace(settings.Password))
             {
                 //TODO LOG
                 //Log.Error($"{nameof(EmailService)} - {nameof(SendEmail)} - ERROR Send email - Configurations are not valid");
@@ -117,9 +115,9 @@ namespace PersonalFinanceProject.Infrastructure.Notifications.Services
             {
                 using (SmtpClient smtpClient = new SmtpClient())
                 {
-                    await smtpClient.ConnectAsync(host, 587, true, cancellationToken);
+                    await smtpClient.ConnectAsync(settings.Host, 587, true, cancellationToken);
 
-                    await smtpClient.AuthenticateAsync(username, password, cancellationToken);
+                    await smtpClient.AuthenticateAsync(settings.Username, settings.Password, cancellationToken);
 
                     await smtpClient.SendAsync(message, cancellationToken);
 
