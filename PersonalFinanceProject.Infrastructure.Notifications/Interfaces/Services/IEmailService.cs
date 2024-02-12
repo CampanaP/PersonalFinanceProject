@@ -1,6 +1,6 @@
-﻿using PersonalFinanceProject.Infrastructure.Notifications.Entities;
+﻿using PersonalFinanceProject.Infrastructure.Notification.Entities;
 
-namespace PersonalFinanceProject.Infrastructure.Notifications.Interfaces.Services
+namespace PersonalFinanceProject.Infrastructure.Notification.Interfaces.Services
 {
     public interface IEmailService
     {

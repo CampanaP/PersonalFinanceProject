@@ -1,4 +1,4 @@
-﻿namespace PersonalFinanceProject.Infrastructure.Notifications.Enums
+﻿namespace PersonalFinanceProject.Infrastructure.Notification.Enums
 {
     public enum EmailBodyFormats
     {

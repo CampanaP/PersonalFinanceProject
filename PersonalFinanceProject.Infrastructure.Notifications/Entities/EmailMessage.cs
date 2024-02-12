@@ -1,6 +1,6 @@
-﻿using PersonalFinanceProject.Infrastructure.Notifications.Enums;
+﻿using PersonalFinanceProject.Infrastructure.Notification.Enums;
 
-namespace PersonalFinanceProject.Infrastructure.Notifications.Entities
+namespace PersonalFinanceProject.Infrastructure.Notification.Entities
 {
     public class EmailMessage
     {
@@ -11,7 +11,7 @@ namespace PersonalFinanceProject.Infrastructure.Notifications.Entities
         public IEnumerable<string>? Recipients { get; set; }
 
         public IEnumerable<string>? CarbonCopyRecipients { get; set; }
-        
+
         public IEnumerable<string>? BlindCarbonCopyRecipients { get; set; }
 
         public IEnumerable<System.Net.Mail.Attachment>? Attachments { get; set; }

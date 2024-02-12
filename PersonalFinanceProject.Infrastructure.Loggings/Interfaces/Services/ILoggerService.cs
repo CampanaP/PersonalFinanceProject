@@ -1,6 +1,6 @@
-﻿namespace PersonalFinanceProject.Infrastructure.Loggings.Interfaces.Services
+﻿namespace PersonalFinanceProject.Infrastructure.Logger.Interfaces.Services
 {
-    public interface ILogService
+    public interface ILoggerService
     {
         void Debug(string message, object[]? messageObjectValues = null, Exception? exception = null);
 

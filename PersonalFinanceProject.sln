@@ -23,11 +23,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalFinanceProject.Busi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalFinanceProject.Infrastructure.Api", "PersonalFinanceProject.Infrastructure.Api\PersonalFinanceProject.Infrastructure.Api.csproj", "{C435E9F0-2A37-4DF7-9DE6-B08B594E28CE}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalFinanceProject.Infrastructure.Communications", "PersonalFinanceProject.Infrastructure.Communications\PersonalFinanceProject.Infrastructure.Communications.csproj", "{A1639A6C-EFF6-423C-AB10-24289CA2834B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalFinanceProject.Infrastructure.Communication", "PersonalFinanceProject.Infrastructure.Communications\PersonalFinanceProject.Infrastructure.Communication.csproj", "{A1639A6C-EFF6-423C-AB10-24289CA2834B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalFinanceProject.Infrastructure.Loggings", "PersonalFinanceProject.Infrastructure.Loggings\PersonalFinanceProject.Infrastructure.Loggings.csproj", "{0E1C671E-8C92-437C-9631-C90EF7641A2A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalFinanceProject.Infrastructure.Logger", "PersonalFinanceProject.Infrastructure.Loggings\PersonalFinanceProject.Infrastructure.Logger.csproj", "{0E1C671E-8C92-437C-9631-C90EF7641A2A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalFinanceProject.Infrastructure.Notifications", "PersonalFinanceProject.Infrastructure.Notifications\PersonalFinanceProject.Infrastructure.Notifications.csproj", "{6BD674DF-F0CE-4BC5-8D87-B30434EA18CB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalFinanceProject.Infrastructure.Notification", "PersonalFinanceProject.Infrastructure.Notifications\PersonalFinanceProject.Infrastructure.Notification.csproj", "{6BD674DF-F0CE-4BC5-8D87-B30434EA18CB}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalFinanceProject.Infrastructure.EntityFramework", "PersonalFinanceProject.Infrastructure.EntityFramework\PersonalFinanceProject.Infrastructure.EntityFramework.csproj", "{548D65A3-69B6-42DB-B85F-220BD5A070BB}"
 EndProject

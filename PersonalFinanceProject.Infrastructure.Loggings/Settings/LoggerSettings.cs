@@ -1,4 +1,4 @@
-﻿namespace PersonalFinanceProject.Infrastructure.Loggings.Settings
+﻿namespace PersonalFinanceProject.Infrastructure.Logger.Settings
 {
     internal class LoggerSettings
     {

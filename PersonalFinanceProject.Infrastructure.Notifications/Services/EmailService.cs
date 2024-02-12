@@ -2,12 +2,12 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using MimeKit;
-using PersonalFinanceProject.Infrastructure.Notifications.Entities;
-using PersonalFinanceProject.Infrastructure.Notifications.Enums;
-using PersonalFinanceProject.Infrastructure.Notifications.Interfaces.Services;
-using PersonalFinanceProject.Infrastructure.Notifications.Settings;
+using PersonalFinanceProject.Infrastructure.Notification.Entities;
+using PersonalFinanceProject.Infrastructure.Notification.Enums;
+using PersonalFinanceProject.Infrastructure.Notification.Interfaces.Services;
+using PersonalFinanceProject.Infrastructure.Notification.Settings;
 
-namespace PersonalFinanceProject.Infrastructure.Notifications.Services
+namespace PersonalFinanceProject.Infrastructure.Notification.Services
 {
     public class EmailService : IEmailService
     {

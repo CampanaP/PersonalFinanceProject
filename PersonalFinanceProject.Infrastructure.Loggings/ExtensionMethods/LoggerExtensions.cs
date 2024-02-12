@@ -1,10 +1,9 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
-using PersonalFinanceProject.Infrastructure.Loggings.Settings;
+using PersonalFinanceProject.Infrastructure.Logger.Settings;
 using Serilog;
-using Serilog.Core;
 
-namespace PersonalFinanceProject.Infrastructure.Loggings.ExtensionMethods
+namespace PersonalFinanceProject.Infrastructure.Logger.ExtensionMethods
 {
     public static class LoggerExtensions
     {
@@ -23,7 +22,7 @@ namespace PersonalFinanceProject.Infrastructure.Loggings.ExtensionMethods
                 throw new Exception("Logger is not correct configurated");
             }
 
-            Logger? logger = new LoggerConfiguration()
+            Serilog.Core.Logger? logger = new LoggerConfiguration()
                 .WriteTo.File(settings.FilePath,
                     rollingInterval: rollingIntervalValue,
                     outputTemplate: settings.OutputTemplate)
