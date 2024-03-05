@@ -6,16 +6,19 @@ using PersonalFinanceProject.Infrastructure.Notification.Entities;
 using PersonalFinanceProject.Infrastructure.Notification.Enums;
 using PersonalFinanceProject.Infrastructure.Notification.Interfaces.Services;
 using PersonalFinanceProject.Infrastructure.Notification.Settings;
+using Wolverine;
 
 namespace PersonalFinanceProject.Infrastructure.Notification.Services
 {
     public class EmailService : IEmailService
     {
-        private IConfiguration _configuration;
+        private readonly IConfiguration _configuration;
+        private readonly IMessageBus _messageBus;
 
-        public EmailService(IConfiguration configuration)
+        public EmailService(IConfiguration configuration, IMessageBus messageBus)
         {
             _configuration = configuration;
+            _messageBus = messageBus;
         }
 
         private MimeMessage? getMimeMessage(EmailMessage message)
@@ -107,6 +110,8 @@ namespace PersonalFinanceProject.Infrastructure.Notification.Services
             {
                 //TODO LOG
                 //Log.Error($"{nameof(EmailService)} - {nameof(SendEmail)} - ERROR Send email - Configurations are not valid");
+
+                //await _messageBus.InvokeAsync(Log)
 
                 throw new Exception("Send email - Configurations are not valid");
             }

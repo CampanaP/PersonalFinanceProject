@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34408.163
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{255AAF7D-3B15-47D3-9DB7-A347EC6A6D53}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "04 - Test", "04 - Test", "{255AAF7D-3B15-47D3-9DB7-A347EC6A6D53}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{9973B0E6-B765-4135-A74C-661A109B9A1C}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01 - Infrastructure", "01 - Infrastructure", "{9973B0E6-B765-4135-A74C-661A109B9A1C}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Business", "Business", "{ED3F44E3-C2B4-49C9-ACAE-A0C5656CFCF3}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02 - Business", "02 - Business", "{ED3F44E3-C2B4-49C9-ACAE-A0C5656CFCF3}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{EBE69ED9-2B0C-4C21-AA4D-A1160A4266BB}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03 - Web", "03 - Web", "{EBE69ED9-2B0C-4C21-AA4D-A1160A4266BB}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalFinanceProject.Web.App", "PersonalFinanceProject.WebApp\PersonalFinanceProject.Web.App.csproj", "{B0182596-55C5-4DBD-A670-3C0282972C87}"
 EndProject
@@ -23,13 +23,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalFinanceProject.Busi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalFinanceProject.Infrastructure.Api", "PersonalFinanceProject.Infrastructure.Api\PersonalFinanceProject.Infrastructure.Api.csproj", "{C435E9F0-2A37-4DF7-9DE6-B08B594E28CE}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalFinanceProject.Infrastructure.Communication", "PersonalFinanceProject.Infrastructure.Communications\PersonalFinanceProject.Infrastructure.Communication.csproj", "{A1639A6C-EFF6-423C-AB10-24289CA2834B}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalFinanceProject.Infrastructure.Logger", "PersonalFinanceProject.Infrastructure.Loggings\PersonalFinanceProject.Infrastructure.Logger.csproj", "{0E1C671E-8C92-437C-9631-C90EF7641A2A}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalFinanceProject.Infrastructure.Notification", "PersonalFinanceProject.Infrastructure.Notifications\PersonalFinanceProject.Infrastructure.Notification.csproj", "{6BD674DF-F0CE-4BC5-8D87-B30434EA18CB}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalFinanceProject.Infrastructure.EntityFramework", "PersonalFinanceProject.Infrastructure.EntityFramework\PersonalFinanceProject.Infrastructure.EntityFramework.csproj", "{548D65A3-69B6-42DB-B85F-220BD5A070BB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersonalFinanceProject.Infrastructure.Communication", "PersonalFinanceProject.Infrastructure.Communication\PersonalFinanceProject.Infrastructure.Communication.csproj", "{D8CBCD64-7BE6-43E7-B303-90B90A5EEC9C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -61,10 +61,6 @@ Global
 		{C435E9F0-2A37-4DF7-9DE6-B08B594E28CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C435E9F0-2A37-4DF7-9DE6-B08B594E28CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C435E9F0-2A37-4DF7-9DE6-B08B594E28CE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A1639A6C-EFF6-423C-AB10-24289CA2834B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A1639A6C-EFF6-423C-AB10-24289CA2834B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A1639A6C-EFF6-423C-AB10-24289CA2834B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A1639A6C-EFF6-423C-AB10-24289CA2834B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0E1C671E-8C92-437C-9631-C90EF7641A2A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0E1C671E-8C92-437C-9631-C90EF7641A2A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0E1C671E-8C92-437C-9631-C90EF7641A2A}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -77,6 +73,10 @@ Global
 		{548D65A3-69B6-42DB-B85F-220BD5A070BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{548D65A3-69B6-42DB-B85F-220BD5A070BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{548D65A3-69B6-42DB-B85F-220BD5A070BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D8CBCD64-7BE6-43E7-B303-90B90A5EEC9C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D8CBCD64-7BE6-43E7-B303-90B90A5EEC9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D8CBCD64-7BE6-43E7-B303-90B90A5EEC9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D8CBCD64-7BE6-43E7-B303-90B90A5EEC9C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -88,10 +88,10 @@ Global
 		{DC738127-8CB2-462E-9192-51B7838CEE1A} = {ED3F44E3-C2B4-49C9-ACAE-A0C5656CFCF3}
 		{84263F35-849E-4F8E-88D5-3384052B2B24} = {ED3F44E3-C2B4-49C9-ACAE-A0C5656CFCF3}
 		{C435E9F0-2A37-4DF7-9DE6-B08B594E28CE} = {9973B0E6-B765-4135-A74C-661A109B9A1C}
-		{A1639A6C-EFF6-423C-AB10-24289CA2834B} = {9973B0E6-B765-4135-A74C-661A109B9A1C}
 		{0E1C671E-8C92-437C-9631-C90EF7641A2A} = {9973B0E6-B765-4135-A74C-661A109B9A1C}
 		{6BD674DF-F0CE-4BC5-8D87-B30434EA18CB} = {9973B0E6-B765-4135-A74C-661A109B9A1C}
 		{548D65A3-69B6-42DB-B85F-220BD5A070BB} = {9973B0E6-B765-4135-A74C-661A109B9A1C}
+		{D8CBCD64-7BE6-43E7-B303-90B90A5EEC9C} = {9973B0E6-B765-4135-A74C-661A109B9A1C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B2E8D5C3-DC0C-4DCB-A44A-4AE732B9A8E0}

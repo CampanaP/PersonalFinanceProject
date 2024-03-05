@@ -5,7 +5,7 @@ using Serilog;
 
 namespace PersonalFinanceProject.Infrastructure.Logger.ExtensionMethods
 {
-    public static class LoggerExtensions
+    public static class LoggerExtension
     {
         public static WebApplicationBuilder ConfigureLogger(this WebApplicationBuilder builder, IConfiguration configuration)
         {
