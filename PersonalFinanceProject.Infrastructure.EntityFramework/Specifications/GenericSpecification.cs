@@ -3,7 +3,7 @@ using System.Linq.Expressions;
 
 namespace PersonalFinanceProject.Infrastructure.EntityFramework.Specifications
 {
-    public class GenericSpecification<T> : ISpecification<T> where T : class
+    internal class GenericSpecification<T> : ISpecification<T> where T : class
     {
         public Expression<Func<T, bool>>? Criteria { get; set; }
 

@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using MimeKit;
+using PersonalFinanceProject.Infrastructure.Logger.Interfaces.Services;
 using PersonalFinanceProject.Infrastructure.Notification.Entities;
 using PersonalFinanceProject.Infrastructure.Notification.Enums;
 using PersonalFinanceProject.Infrastructure.Notification.Interfaces.Services;
@@ -10,15 +11,15 @@ using Wolverine;
 
 namespace PersonalFinanceProject.Infrastructure.Notification.Services
 {
-    public class EmailService : IEmailService
+    internal class EmailService : IEmailService
     {
         private readonly IConfiguration _configuration;
-        private readonly IMessageBus _messageBus;
+        private readonly ILoggerService _loggerService;
 
-        public EmailService(IConfiguration configuration, IMessageBus messageBus)
+        public EmailService(IConfiguration configuration, ILoggerService loggerService)
         {
             _configuration = configuration;
-            _messageBus = messageBus;
+            _loggerService = loggerService;
         }
 
         private MimeMessage? getMimeMessage(EmailMessage message)
@@ -108,10 +109,7 @@ namespace PersonalFinanceProject.Infrastructure.Notification.Services
 
             if (settings is null || string.IsNullOrWhiteSpace(settings.Host) || string.IsNullOrWhiteSpace(settings.Username) || string.IsNullOrWhiteSpace(settings.Password))
             {
-                //TODO LOG
-                //Log.Error($"{nameof(EmailService)} - {nameof(SendEmail)} - ERROR Send email - Configurations are not valid");
-
-                //await _messageBus.InvokeAsync(Log)
+                _loggerService.Error("{emailService} - {sendEmail} - ERROR: Send email - Configurations are not valid", new object[] { nameof(EmailService), nameof(SendEmail) }, null);
 
                 throw new Exception("Send email - Configurations are not valid");
             }
@@ -131,8 +129,7 @@ namespace PersonalFinanceProject.Infrastructure.Notification.Services
             }
             catch (Exception ex)
             {
-                //TODO LOG
-                //Log.Error($"{nameof(EmailService)} - {nameof(SendEmail)} - ERROR Send email: {JsonSerializer.Serialize(ex)}");
+                _loggerService.Error("{emailService} - {sendEmail} - ERROR: Send email - {exceptionMessage}", new object[] { nameof(EmailService), nameof(SendEmail), ex.Message }, ex);
 
                 throw;
             }
@@ -143,8 +140,7 @@ namespace PersonalFinanceProject.Infrastructure.Notification.Services
             MimeMessage? mimeMessage = getMimeMessage(message);
             if (mimeMessage is null)
             {
-                //TODO LOG
-                //Log.Error($"{nameof(EmailService)} - {nameof(SendEmail)} - ERROR Sender is null");
+                _loggerService.Error("{emailService} - {sendEmail} - ERROR: MimeMessage is null", new object[] { nameof(EmailService), nameof(SendEmail) }, null);
 
                 throw new Exception("MimeMessage is null");
             }

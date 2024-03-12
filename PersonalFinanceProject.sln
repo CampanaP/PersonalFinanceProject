@@ -22,14 +22,20 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalFinanceProject.Business.Wallets", "PersonalFinanceProject.Business.Wallets\PersonalFinanceProject.Business.Wallets.csproj", "{84263F35-849E-4F8E-88D5-3384052B2B24}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalFinanceProject.Infrastructure.Api", "PersonalFinanceProject.Infrastructure.Api\PersonalFinanceProject.Infrastructure.Api.csproj", "{C435E9F0-2A37-4DF7-9DE6-B08B594E28CE}"
+	ProjectSection(ProjectDependencies) = postProject
+		{0E1C671E-8C92-437C-9631-C90EF7641A2A} = {0E1C671E-8C92-437C-9631-C90EF7641A2A}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalFinanceProject.Infrastructure.Logger", "PersonalFinanceProject.Infrastructure.Loggings\PersonalFinanceProject.Infrastructure.Logger.csproj", "{0E1C671E-8C92-437C-9631-C90EF7641A2A}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalFinanceProject.Infrastructure.Notification", "PersonalFinanceProject.Infrastructure.Notifications\PersonalFinanceProject.Infrastructure.Notification.csproj", "{6BD674DF-F0CE-4BC5-8D87-B30434EA18CB}"
+	ProjectSection(ProjectDependencies) = postProject
+		{0E1C671E-8C92-437C-9631-C90EF7641A2A} = {0E1C671E-8C92-437C-9631-C90EF7641A2A}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalFinanceProject.Infrastructure.EntityFramework", "PersonalFinanceProject.Infrastructure.EntityFramework\PersonalFinanceProject.Infrastructure.EntityFramework.csproj", "{548D65A3-69B6-42DB-B85F-220BD5A070BB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersonalFinanceProject.Infrastructure.Communication", "PersonalFinanceProject.Infrastructure.Communication\PersonalFinanceProject.Infrastructure.Communication.csproj", "{D8CBCD64-7BE6-43E7-B303-90B90A5EEC9C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalFinanceProject.Infrastructure.Communication", "PersonalFinanceProject.Infrastructure.Communication\PersonalFinanceProject.Infrastructure.Communication.csproj", "{D8CBCD64-7BE6-43E7-B303-90B90A5EEC9C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

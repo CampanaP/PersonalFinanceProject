@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\PersonalFinanceProject.Infrastructure.Loggings\PersonalFinanceProject.Infrastructure.Logger.csproj" />
+  </ItemGroup>
+
 </Project>

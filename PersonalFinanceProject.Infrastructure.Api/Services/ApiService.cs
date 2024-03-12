@@ -1,16 +1,19 @@
 ﻿using PersonalFinanceProject.Infrastructure.Api.Entities;
 using PersonalFinanceProject.Infrastructure.Api.Interfaces.Services;
+using PersonalFinanceProject.Infrastructure.Logger.Interfaces.Services;
 using System.Text;
 using System.Text.Json;
-using System.Threading;
 using System.Xml.Serialization;
 
 namespace PersonalFinanceProject.Infrastructure.Api.Services
 {
-    public class ApiService : IApiService
+    internal class ApiService : IApiService
     {
-        public ApiService()
+        private readonly ILoggerService _loggerService;
+
+        public ApiService(ILoggerService loggerService)
         {
+            _loggerService = loggerService;
         }
 
         private async Task<TReturn?> sendRequest<TReturn, TParameter>(string endpointUrl, HttpMethod httpMethod, TParameter? requestContent = null, List<RequestHeader>? headers = null, bool isResponseXml = false, CancellationToken cancellationToken = default) where TParameter : class
@@ -45,8 +48,7 @@ namespace PersonalFinanceProject.Infrastructure.Api.Services
                         {
                             if (!response.IsSuccessStatusCode)
                             {
-                                //TODO LOG
-                                //Log.Error($"{nameof(ApiService)} - {httpMethod.Method}: {endpointUrl} - {JsonSerializer.Serialize(requestContent)} - {response.StatusCode}");
+                                _loggerService.Error("{apiService} - {httpMethod}: {endpointUrl} - {requestContentJson} - {responseStatusCode}", new object[] { nameof(ApiService), httpMethod.Method, endpointUrl, JsonSerializer.Serialize(requestContent), response.StatusCode }, null);
 
                                 return data;
                             }
@@ -72,8 +74,7 @@ namespace PersonalFinanceProject.Infrastructure.Api.Services
             }
             catch (Exception ex)
             {
-                //TODO LOG
-                //Log.Error($"{nameof(ApiService)} - {httpMethod.Method}: {endpointUrl} - {JsonSerializer.Serialize(requestContent)} - {ex.Message}");
+                _loggerService.Error("{apiService} - {httpMethod}: {endpointUrl} - {requestContentJson} - {responseStatusCode}", new object[] { nameof(ApiService), httpMethod.Method, endpointUrl, JsonSerializer.Serialize(requestContent), ex.Message }, ex);
 
                 throw;
             }

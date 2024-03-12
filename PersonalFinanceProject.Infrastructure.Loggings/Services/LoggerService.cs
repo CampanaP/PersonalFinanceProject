@@ -1,13 +1,9 @@
-﻿using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using PersonalFinanceProject.Infrastructure.Logger.Interfaces.Services;
+﻿using PersonalFinanceProject.Infrastructure.Logger.Interfaces.Services;
 using Serilog;
-using Serilog.Core;
 
 namespace PersonalFinanceProject.Infrastructure.Logger.Services
 {
-    public class LoggerService : ILoggerService
+    internal class LoggerService : ILoggerService
     {
         public LoggerService()
         {
