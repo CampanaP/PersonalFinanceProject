@@ -1,4 +1,5 @@
 ﻿using PersonalFinanceProject.Infrastructure.Notification.Enums;
+using System.Net.Mail;
 
 namespace PersonalFinanceProject.Infrastructure.Notification.Entities
 {
@@ -14,7 +15,7 @@ namespace PersonalFinanceProject.Infrastructure.Notification.Entities
 
         public IEnumerable<string>? BlindCarbonCopyRecipients { get; set; }
 
-        public IEnumerable<System.Net.Mail.Attachment>? Attachments { get; set; }
+        public IEnumerable<Attachment>? Attachments { get; set; }
 
         public required string Subject { get; set; }
 

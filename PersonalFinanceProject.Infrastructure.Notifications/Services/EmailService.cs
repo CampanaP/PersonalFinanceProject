@@ -26,16 +26,15 @@ namespace PersonalFinanceProject.Infrastructure.Notification.Services
         {
             MimeMessage? mimeMessage = null;
 
-            EmailSettings? settings = _configuration.Get<EmailSettings>();
-
-            if (settings is null || settings.SenderAddress is null)
+            EmailSetting? setting = _configuration.Get<EmailSetting>();
+            if (setting is null || setting.SenderAddress is null)
             {
                 return mimeMessage;
             }
 
-            if (settings.SenderDisplayName is null && string.IsNullOrWhiteSpace(message.SenderDisplayName))
+            if (setting.SenderDisplayName is null && string.IsNullOrWhiteSpace(message.SenderDisplayName))
             {
-                message.SenderDisplayName = settings.SenderAddress.Split("@")?[0] ?? string.Empty;
+                message.SenderDisplayName = setting.SenderAddress.Split("@")?[0] ?? string.Empty;
 
                 if (!string.IsNullOrWhiteSpace(message.SenderAddress))
                 {
@@ -43,7 +42,7 @@ namespace PersonalFinanceProject.Infrastructure.Notification.Services
                 }
             }
 
-            MailboxAddress sender = new MailboxAddress(settings.SenderDisplayName, settings.SenderAddress);
+            MailboxAddress sender = new MailboxAddress(setting.SenderDisplayName, setting.SenderAddress);
 
             if (!string.IsNullOrWhiteSpace(message.SenderAddress))
             {
@@ -105,7 +104,7 @@ namespace PersonalFinanceProject.Infrastructure.Notification.Services
 
         private async Task send(MimeMessage message, CancellationToken cancellationToken = default)
         {
-            EmailSettings? settings = _configuration.Get<EmailSettings>();
+            EmailSetting? settings = _configuration.Get<EmailSetting>();
 
             if (settings is null || string.IsNullOrWhiteSpace(settings.Host) || string.IsNullOrWhiteSpace(settings.Username) || string.IsNullOrWhiteSpace(settings.Password))
             {

@@ -1,4 +1,6 @@
-﻿namespace PersonalFinanceProject.Web.Api
+﻿using PersonalFinanceProject.Web.Api.ExtensionMethods;
+
+namespace PersonalFinanceProject.Web.Api
 {
     public class Program
     {
@@ -6,14 +8,31 @@
         {
             WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
-            // Add services to the container.
+            builder.Services.AddEndpointsApiExplorer();
+            builder.Services.AddHttpClient();
+            builder.Services.AddSwaggerGen();
 
-            var app = builder.Build();
+            WebApplication app = builder.Build();
 
-            // Configure the HTTP request pipeline.
+            app.UseExceptionHandler(exceptionHandlerApp =>
+            {
+                exceptionHandlerApp.Run(async context =>
+                {
+                    context.Response.StatusCode = StatusCodes.Status500InternalServerError;
+                    await context.Response.WriteAsync("An error was found in the request.");
+                });
+            });
 
-            app.UseHttpsRedirection();
+            if (!builder.Environment.IsDevelopment())
+            {
+                app.UseHttpsRedirection();
+                app.UseHsts();
+            }
 
+            app.UseSwagger();
+            app.UseSwaggerUI();
+
+            app.MapEndpoints();
             app.Run();
         }
     }
