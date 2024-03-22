@@ -9,6 +9,8 @@
 
   <ItemGroup>
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+    <PackageReference Include="WolverineFx" Version="2.1.2" />
+    <PackageReference Include="WolverineFx.Http" Version="2.1.2" />
   </ItemGroup>
 
 </Project>

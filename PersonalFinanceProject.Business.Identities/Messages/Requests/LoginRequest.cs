@@ -2,7 +2,7 @@
 
 namespace PersonalFinanceProject.Infrastructure.Communication.Requests.Identity
 {
-    public record LoginRequest
+    public class LoginRequest
     {
         [Required(ErrorMessage = "Email is required")]
         public required string Email { get; set; }

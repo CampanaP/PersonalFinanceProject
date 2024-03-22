@@ -1,10 +1,11 @@
-﻿using PersonalFinanceProject.Web.Api.Interfaces;
+﻿using Microsoft.Extensions.DependencyInjection;
+using PersonalFinanceProject.Infrastructure.DependencyInjection.Interfaces;
 
-namespace PersonalFinanceProject.Web.Api.ExtensionMethods
+namespace PersonalFinanceProject.Infrastructure.DependencyInjection.ExtensionMethods
 {
-    public static class ApiExtensions
+    public static class EndpointExtensions
     {
-        public static WebApplication MapEndpoints(this WebApplication app)
+        public static IServiceCollection AddEndpoints(this IServiceCollection app)
         {
             System.Reflection.Assembly[] assemblies = AppDomain.CurrentDomain.GetAssemblies();
 
@@ -14,7 +15,7 @@ namespace PersonalFinanceProject.Web.Api.ExtensionMethods
             foreach (Type @class in classes)
             {
                 IEndpoint? instance = Activator.CreateInstance(@class) as IEndpoint;
-                instance?.MapEndpoints(app);
+                instance?.AddEndpoints(app);
             }
 
             return app;
