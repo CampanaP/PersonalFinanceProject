@@ -14,11 +14,11 @@ namespace PersonalFinanceProject.Business.Identities.Services
             _identityRepository = identityRepository;
         }
 
-        public async Task<LoginResponse> Login(LoginRequest request, CancellationToken cancellationToken = default)
-        {
-            LoginResponse response = new LoginResponse("ERROR", false, null);
+        //public async Task<LoginResponse> Login(LoginRequest request, CancellationToken cancellationToken = default)
+        //{
+        //    LoginResponse response = new LoginResponse("ERROR", false, null);
 
-            return response;
-        }
+        //    return response;
+        //}
     }
 }

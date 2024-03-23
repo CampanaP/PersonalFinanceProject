@@ -14,9 +14,9 @@ namespace PersonalFinanceProject.Business.Identities.Handlers
             this.identityService = identityService;
         }
 
-        public async Task<LoginResponse> Handle(LoginRequest request, CancellationToken cancellationToken = default)
-        {
-            return await identityService.Login(request, cancellationToken);
-        }
+        //public async Task<LoginResponse> Handle(LoginRequest request, CancellationToken cancellationToken = default)
+        //{
+        //    //return await identityService.Login(request, cancellationToken);
+        //}
     }
 }

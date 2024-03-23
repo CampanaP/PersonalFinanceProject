@@ -13,4 +13,9 @@
     <PackageReference Include="WolverineFx.Http" Version="2.1.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\PersonalFinanceProject.Infrastructure.DependencyInjection\PersonalFinanceProject.Infrastructure.DependencyInjection.csproj" />
+    <ProjectReference Include="..\PersonalFinanceProject.Infrastructure.EntityFramework\PersonalFinanceProject.Infrastructure.EntityFramework.csproj" />
+  </ItemGroup>
+
 </Project>

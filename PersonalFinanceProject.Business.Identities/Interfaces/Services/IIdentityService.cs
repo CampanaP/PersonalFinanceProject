@@ -5,6 +5,6 @@ namespace PersonalFinanceProject.Business.Identities.Interfaces.Services
 {
     public interface IIdentityService
     {
-        Task<LoginResponse> Login(LoginRequest request, CancellationToken cancellationToken = default);
+        //Task<LoginResponse> Login(LoginRequest request, CancellationToken cancellationToken = default);
     }
 }
