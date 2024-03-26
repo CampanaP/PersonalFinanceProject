@@ -1,8 +1,10 @@
-﻿using PersonalFinanceProject.Infrastructure.EntityFramework.Interfaces.Specifications;
+﻿using PersonalFinanceProject.Infrastructure.DependencyInjection.Attributes;
+using PersonalFinanceProject.Infrastructure.EntityFramework.Interfaces.Specifications;
 using System.Linq.Expressions;
 
 namespace PersonalFinanceProject.Infrastructure.EntityFramework.Specifications
 {
+    [ScopedLifetime]
     internal class GenericSpecification<T> : ISpecification<T> where T : class
     {
         public Expression<Func<T, bool>>? Criteria { get; set; }

@@ -2,15 +2,15 @@
 
 namespace PersonalFinanceProject.Infrastructure.EntityFramework
 {
-    public class CustomDbContext : DbContext
+    public class GenericDbContext : DbContext
     {
-        public CustomDbContext()
+        public GenericDbContext()
         {
             ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
             ChangeTracker.LazyLoadingEnabled = false;
         }
 
-        public CustomDbContext(DbContextOptions<CustomDbContext> options) : base(options)
+        public GenericDbContext(DbContextOptions<GenericDbContext> options) : base(options)
         {
             ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
             ChangeTracker.LazyLoadingEnabled = false;

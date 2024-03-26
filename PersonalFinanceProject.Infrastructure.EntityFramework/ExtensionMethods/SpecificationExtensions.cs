@@ -3,7 +3,7 @@ using PersonalFinanceProject.Infrastructure.EntityFramework.Interfaces.Specifica
 
 namespace PersonalFinanceProject.Infrastructure.EntityFramework.ExtensionMethods
 {
-    public static class SpecificationExtension
+    public static class SpecificationExtensions
     {
         public static IQueryable<T> Search<T>(this IQueryable<T> query, ISpecification<T> specification) where T : class
         {

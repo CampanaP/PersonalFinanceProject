@@ -7,7 +7,7 @@ namespace PersonalFinanceProject.Infrastructure.Logger.ExtensionMethods
 {
     public static class LoggerExtension
     {
-        public static IHostApplicationBuilder ConfigureLogger(this IHostApplicationBuilder builder, IConfiguration configuration)
+        public static IHostApplicationBuilder AddLogger(this IHostApplicationBuilder builder, IConfiguration configuration)
         {
             LoggerSetting? setting = configuration.Get<LoggerSetting>();
             if (setting is null || string.IsNullOrWhiteSpace(setting.FilePath) || string.IsNullOrWhiteSpace(setting.RollingInterval) || string.IsNullOrWhiteSpace(setting.OutputTemplate))

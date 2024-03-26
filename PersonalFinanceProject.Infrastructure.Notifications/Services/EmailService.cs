@@ -7,7 +7,6 @@ using PersonalFinanceProject.Infrastructure.Notification.Entities;
 using PersonalFinanceProject.Infrastructure.Notification.Enums;
 using PersonalFinanceProject.Infrastructure.Notification.Interfaces.Services;
 using PersonalFinanceProject.Infrastructure.Notification.Settings;
-using Wolverine;
 
 namespace PersonalFinanceProject.Infrastructure.Notification.Services
 {

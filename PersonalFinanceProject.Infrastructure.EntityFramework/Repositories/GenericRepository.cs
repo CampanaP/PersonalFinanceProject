@@ -1,16 +1,17 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Storage;
+using PersonalFinanceProject.Infrastructure.DependencyInjection.Attributes;
 using PersonalFinanceProject.Infrastructure.EntityFramework.ExtensionMethods;
 using PersonalFinanceProject.Infrastructure.EntityFramework.Interfaces.Repositories;
 using PersonalFinanceProject.Infrastructure.EntityFramework.Interfaces.Specifications;
 
 namespace PersonalFinanceProject.Infrastructure.EntityFramework.Repositories
 {
+    [ScopedLifetime]
     public class GenericRepository<T> : IGenericRepository<T> where T : class
     {
-        protected readonly CustomDbContext _dbContext;
+        protected readonly GenericDbContext _dbContext;
 
-        public GenericRepository(CustomDbContext dbContext)
+        public GenericRepository(GenericDbContext dbContext)
         {
             _dbContext = dbContext;
         }

@@ -1,5 +1,5 @@
 ﻿using PersonalFinanceProject.Infrastructure.DependencyInjection.ExtensionMethods;
-using PersonalFinanceProject.Infrastructure.EntityFramework;
+using PersonalFinanceProject.Infrastructure.EntityFramework.ExtensionMethods;
 using Wolverine;
 using Wolverine.Http;
 
@@ -20,7 +20,7 @@ namespace PersonalFinanceProject.Web.Api
             builder.Services.AddEndpoints();
 
             // Infrastructure.EntityFramework
-            builder.Services.AddDbContext<CustomDbContext>();
+            builder.Services.AddEntityFramework(builder.Configuration);
 
             builder.Host.UseWolverine();
 

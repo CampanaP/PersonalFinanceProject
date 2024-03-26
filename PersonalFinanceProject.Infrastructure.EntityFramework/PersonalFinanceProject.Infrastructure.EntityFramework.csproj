@@ -8,6 +8,11 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.3" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PersonalFinanceProject.Infrastructure.DependencyInjection\PersonalFinanceProject.Infrastructure.DependencyInjection.csproj" />
   </ItemGroup>
 
 </Project>
