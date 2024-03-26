@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\PersonalFinanceProject.Infrastructure.Logger\PersonalFinanceProject.Infrastructure.Logger.csproj" />
     <ProjectReference Include="..\PersonalFinanceProject.Infrastructure.Loggings\PersonalFinanceProject.Infrastructure.Logger.csproj" />
   </ItemGroup>
 

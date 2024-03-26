@@ -2,24 +2,24 @@
 
 namespace PersonalFinanceProject.Infrastructure.EntityFramework.Interfaces.Repositories
 {
-    public interface IGenericRepository<T>
+    public interface IGenericRepository<TDbContext, TEntity>
     {
-        Task Add(T entity, CancellationToken cancellationToken = default);
+        Task Add(TEntity entity, CancellationToken cancellationToken = default);
 
-        Task AddRange(IEnumerable<T> entities, CancellationToken cancellationToken = default);
+        Task AddRange(IEnumerable<TEntity> entities, CancellationToken cancellationToken = default);
 
-        Task<IEnumerable<T>> GetItems(CancellationToken cancellationToken = default);
+        Task<IEnumerable<TEntity>> GetItems(CancellationToken cancellationToken = default);
 
-        void Remove(T entity);
+        void Remove(TEntity entity);
 
-        void RemoveRange(IEnumerable<T> entities);
+        void RemoveRange(IEnumerable<TEntity> entities);
 
         Task SaveChanges(CancellationToken cancellationToken = default);
 
-        IEnumerable<T> Search(ISpecification<T> specification);
+        IEnumerable<TEntity> Search(ISpecification<TEntity> specification);
 
-        void Update(T entity);
+        void Update(TEntity entity);
 
-        void UpdateRange(IEnumerable<T> entities);
+        void UpdateRange(IEnumerable<TEntity> entities);
     }
 }

@@ -1,20 +1,26 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using PersonalFinanceProject.Business.Transactions.Entities;
 
-namespace PersonalFinanceProject.Infrastructure.EntityFramework
+namespace PersonalFinanceProject.Business.Transactions.DbContexts
 {
-    public class GenericDbContext : DbContext
+    public class TransactionDbContext : DbContext
     {
-        public GenericDbContext()
+        public TransactionDbContext()
         {
             ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
             ChangeTracker.LazyLoadingEnabled = false;
         }
 
-        public GenericDbContext(DbContextOptions<GenericDbContext> options) : base(options)
+        public TransactionDbContext(DbContextOptions<TransactionDbContext> options) : base(options)
         {
             ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
             ChangeTracker.LazyLoadingEnabled = false;
         }
+
+
+        public DbSet<Transaction> Transactions { get; set; }
+        public DbSet<TransactionCategory> TransactionCategories { get; set; }
+        public DbSet<TransactionType> TransactionTypes { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

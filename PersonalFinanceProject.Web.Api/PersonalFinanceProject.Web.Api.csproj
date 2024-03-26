@@ -18,6 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\PersonalFinanceProject.Business.Transactions\PersonalFinanceProject.Business.Transactions.csproj" />
     <ProjectReference Include="..\PersonalFinanceProject.Infrastructure.DependencyInjection\PersonalFinanceProject.Infrastructure.DependencyInjection.csproj" />
     <ProjectReference Include="..\PersonalFinanceProject.Infrastructure.EntityFramework\PersonalFinanceProject.Infrastructure.EntityFramework.csproj" />
   </ItemGroup>

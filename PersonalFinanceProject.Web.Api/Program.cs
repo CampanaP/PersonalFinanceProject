@@ -1,5 +1,6 @@
-﻿using PersonalFinanceProject.Infrastructure.DependencyInjection.ExtensionMethods;
-using PersonalFinanceProject.Infrastructure.EntityFramework.ExtensionMethods;
+﻿using Microsoft.EntityFrameworkCore;
+using PersonalFinanceProject.Business.Transactions.DbContexts;
+using PersonalFinanceProject.Infrastructure.DependencyInjection.ExtensionMethods;
 using Wolverine;
 using Wolverine.Http;
 
@@ -20,7 +21,7 @@ namespace PersonalFinanceProject.Web.Api
             builder.Services.AddEndpoints();
 
             // Infrastructure.EntityFramework
-            builder.Services.AddEntityFramework(builder.Configuration);
+            builder.Services.AddDbContext<TransactionDbContext>(options => options.UseNpgsql(builder.Configuration.GetConnectionString("SupabaseDB")));
 
             builder.Host.UseWolverine();
 
