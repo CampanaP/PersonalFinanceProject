@@ -1,5 +1,6 @@
 ﻿using PersonalFinanceProject.Infrastructure.Api.Entities;
 using PersonalFinanceProject.Infrastructure.Api.Interfaces.Services;
+using PersonalFinanceProject.Infrastructure.DependencyInjection.Attributes;
 using PersonalFinanceProject.Infrastructure.Logger.Interfaces.Services;
 using System.Text;
 using System.Text.Json;
@@ -7,6 +8,7 @@ using System.Xml.Serialization;
 
 namespace PersonalFinanceProject.Infrastructure.Api.Services
 {
+    [ScopedLifetime]
     internal class ApiService : IApiService
     {
         private readonly ILoggerService _loggerService;

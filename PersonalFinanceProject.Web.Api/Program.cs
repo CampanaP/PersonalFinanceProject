@@ -18,14 +18,18 @@ namespace PersonalFinanceProject.Web.Api
 
             // Infrastructure.DependencyInjection
             builder.Services.AddFromAttributes();
-            builder.Services.AddEndpoints();
 
-            // Infrastructure.EntityFramework
+            // Business.Transaction
             builder.Services.AddDbContext<TransactionDbContext>(options => options.UseNpgsql(builder.Configuration.GetConnectionString("SupabaseDB")));
 
             builder.Host.UseWolverine();
 
             WebApplication app = builder.Build();
+
+            // Infrastructure.DependencyInjection
+            app.AddEndpoints();
+
+            app.MapWolverineEndpoints();
 
             app.UseExceptionHandler(exceptionHandlerApp =>
             {

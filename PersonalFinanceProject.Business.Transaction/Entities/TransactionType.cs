@@ -2,7 +2,6 @@
 
 namespace PersonalFinanceProject.Business.Transactions.Entities
 {
-    [Table("transactionTypes")]
     public class TransactionType
     {
         public required int Id { get; set; }

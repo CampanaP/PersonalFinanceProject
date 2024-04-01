@@ -4,7 +4,7 @@ using Scrutor;
 
 namespace PersonalFinanceProject.Infrastructure.DependencyInjection.ExtensionMethods
 {
-    public static class ServiceExtensions
+    public static class ServiceExtension
     {
         public static IServiceCollection AddFromAttributes(this IServiceCollection services)
         {

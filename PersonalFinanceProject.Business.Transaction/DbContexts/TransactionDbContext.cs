@@ -17,7 +17,6 @@ namespace PersonalFinanceProject.Business.Transactions.DbContexts
             ChangeTracker.LazyLoadingEnabled = false;
         }
 
-
         public DbSet<Transaction> Transactions { get; set; }
         public DbSet<TransactionCategory> TransactionCategories { get; set; }
         public DbSet<TransactionType> TransactionTypes { get; set; }

@@ -4,10 +4,12 @@ using PersonalFinanceProject.Business.Transactions.Entities;
 
 namespace PersonalFinanceProject.Business.Transactions.EntityConfigurations
 {
-    internal class TransactionTypeConfiguration : IEntityTypeConfiguration<TransactionType>
+    internal class TransactionCategoryConfiguration : IEntityTypeConfiguration<TransactionCategory>
     {
-        public void Configure(EntityTypeBuilder<TransactionType> builder)
+        public void Configure(EntityTypeBuilder<TransactionCategory> builder)
         {
+            builder.ToTable("transactionCategories");
+
             builder.HasKey(new string[] { "Id" });
             builder.Property(p => p.Id).ValueGeneratedOnAdd();
 

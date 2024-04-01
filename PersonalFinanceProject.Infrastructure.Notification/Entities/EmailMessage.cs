@@ -21,6 +21,6 @@ namespace PersonalFinanceProject.Infrastructure.Notification.Entities
 
         public required string Body { get; set; }
 
-        public EmailBodyFormats BodyFormat { get; set; }
+        public EmailBodyFormat BodyFormat { get; set; }
     }
 }

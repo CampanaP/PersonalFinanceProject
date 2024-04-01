@@ -1,8 +1,10 @@
-﻿using PersonalFinanceProject.Infrastructure.Logger.Interfaces.Services;
+﻿using PersonalFinanceProject.Infrastructure.DependencyInjection.Attributes;
+using PersonalFinanceProject.Infrastructure.Logger.Interfaces.Services;
 using Serilog;
 
 namespace PersonalFinanceProject.Infrastructure.Logger.Services
 {
+    [ScopedLifetime]
     internal class LoggerService : ILoggerService
     {
         public LoggerService()

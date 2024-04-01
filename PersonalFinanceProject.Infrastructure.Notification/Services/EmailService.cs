@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using MimeKit;
+using PersonalFinanceProject.Infrastructure.DependencyInjection.Attributes;
 using PersonalFinanceProject.Infrastructure.Logger.Interfaces.Services;
 using PersonalFinanceProject.Infrastructure.Notification.Entities;
 using PersonalFinanceProject.Infrastructure.Notification.Enums;
@@ -10,6 +11,7 @@ using PersonalFinanceProject.Infrastructure.Notification.Settings;
 
 namespace PersonalFinanceProject.Infrastructure.Notification.Services
 {
+    [ScopedLifetime]
     internal class EmailService : IEmailService
     {
         private readonly IConfiguration _configuration;
@@ -64,8 +66,8 @@ namespace PersonalFinanceProject.Infrastructure.Notification.Services
 
             BodyBuilder bodyBuilder = new BodyBuilder()
             {
-                HtmlBody = message.BodyFormat == EmailBodyFormats.Html ? message.Body : null,
-                TextBody = message.BodyFormat == EmailBodyFormats.Text ? message.Body : null,
+                HtmlBody = message.BodyFormat == EmailBodyFormat.Html ? message.Body : null,
+                TextBody = message.BodyFormat == EmailBodyFormat.Text ? message.Body : null,
             };
 
             if (!message.Attachments.IsNullOrEmpty())

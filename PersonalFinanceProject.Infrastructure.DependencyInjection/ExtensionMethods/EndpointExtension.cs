@@ -1,11 +1,11 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.AspNetCore.Builder;
 using PersonalFinanceProject.Infrastructure.DependencyInjection.Interfaces;
 
 namespace PersonalFinanceProject.Infrastructure.DependencyInjection.ExtensionMethods
 {
-    public static class EndpointExtensions
+    public static class EndpointExtension
     {
-        public static IServiceCollection AddEndpoints(this IServiceCollection app)
+        public static WebApplication AddEndpoints(this WebApplication app)
         {
             System.Reflection.Assembly[] assemblies = AppDomain.CurrentDomain.GetAssemblies();
 
