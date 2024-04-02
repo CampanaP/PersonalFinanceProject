@@ -1,7 +1,7 @@
 ﻿using PersonalFinanceProject.Infrastructure.Communication.Requests.Identity;
 using PersonalFinanceProject.Infrastructure.Communication.Responses.Identity;
 
-namespace PersonalFinanceProject.Business.Identities.Interfaces.Services
+namespace PersonalFinanceProject.Business.Identity.Interfaces.Services
 {
     public interface IIdentityService
     {

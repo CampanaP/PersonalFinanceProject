@@ -1,4 +1,4 @@
-﻿namespace PersonalFinanceProject.Web.Api.Endpoints.Identity
+﻿namespace PersonalFinanceProject.Business.Identity.Endpoints
 {
     public class IdentityEndpoints
     {

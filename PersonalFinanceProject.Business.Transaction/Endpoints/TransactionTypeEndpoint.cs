@@ -1,4 +1,4 @@
-﻿namespace PersonalFinanceProject.Business.Transactions.Endpoints
+﻿namespace PersonalFinanceProject.Business.Transaction.Endpoints
 {
     public class TransactionTypeEndpoint
     {

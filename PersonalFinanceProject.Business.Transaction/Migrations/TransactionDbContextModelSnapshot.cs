@@ -4,7 +4,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
-using PersonalFinanceProject.Business.Transactions.DbContexts;
+using PersonalFinanceProject.Business.Transaction.DbContexts;
+
 
 #nullable disable
 

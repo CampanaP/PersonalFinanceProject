@@ -1,6 +1,6 @@
-﻿using PersonalFinanceProject.Business.Transactions.Entities;
+﻿using PersonalFinanceProject.Business.Transaction.Entities;
 
-namespace PersonalFinanceProject.Business.Transactions.Interfaces.Repositories
+namespace PersonalFinanceProject.Business.Transaction.Interfaces.Repositories
 {
     public interface ITransactionCategoryRepository
     {

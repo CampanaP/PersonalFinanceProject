@@ -1,4 +1,4 @@
-﻿namespace PersonalFinanceProject.Business.Transactions.Messages.Requests
+﻿namespace PersonalFinanceProject.Business.Transaction.Messages.Requests
 {
     public class TransactionCategoryRequestMessage
     {

@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Http;
+using PersonalFinanceProject.Business.Transaction.Messages.Requests;
+using PersonalFinanceProject.Business.Transaction.Messages.Responses;
 using Wolverine;
 using Wolverine.Http;
 
-namespace PersonalFinanceProject.Business.Transactions.Endpoints
+namespace PersonalFinanceProject.Business.Transaction.Endpoints
 {
     public class TransactionCategoryEndpoint
     {
@@ -13,11 +15,11 @@ namespace PersonalFinanceProject.Business.Transactions.Endpoints
             _messageBus = messageBus;
         }
 
-        [WolverineGet("transaction-category/get/:id")]
-        public async Task<IResult> GetById(Messages.Requests.TransactionCategoryRequestMessage.GetByIdRequest request, CancellationToken cancellationToken)
+        [WolverineGet("api/transaction-category/get/{id}")]
+        public async Task<IResult> GetById(TransactionCategoryRequestMessage.GetByIdRequest request, CancellationToken cancellationToken)
         {
-            Messages.Responses.TransactionCategoryResponseMessage.GetByIdResponse response = await _messageBus.InvokeAsync<Messages.Responses.TransactionCategoryResponseMessage.GetByIdResponse>(request, cancellationToken);
-            if (response.transactionCategory is null)
+            TransactionCategoryResponseMessage.GetByIdResponse response = await _messageBus.InvokeAsync<TransactionCategoryResponseMessage.GetByIdResponse>(request, cancellationToken);
+            if (response.TransactionCategory is null)
             {
                 return Results.NotFound();
             }
@@ -25,12 +27,21 @@ namespace PersonalFinanceProject.Business.Transactions.Endpoints
             return Results.Ok(response);
         }
 
-        [WolverineGet("transaction-category/get/list")]
-        public async Task<IResult> GetList(Messages.Requests.TransactionCategoryRequestMessage.GetListRequest request, CancellationToken cancellationToken)
+        [WolverineGet("api/transaction-category/get/list")]
+        public async Task<IResult> GetList(TransactionCategoryRequestMessage.GetListRequest request, CancellationToken cancellationToken)
         {
-            Messages.Responses.TransactionCategoryResponseMessage.GetListResponse response = await _messageBus.InvokeAsync<Messages.Responses.TransactionCategoryResponseMessage.GetListResponse>(request, cancellationToken);
+            try
+            {
+                TransactionCategoryResponseMessage.GetListResponse response = await _messageBus.InvokeAsync<TransactionCategoryResponseMessage.GetListResponse>(request, cancellationToken);
 
-            return Results.Ok(response);
+                return Results.Ok(response);
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using PersonalFinanceProject.Infrastructure.EntityFramework.Interfaces.Repositories;
 
-namespace PersonalFinanceProject.Business.Identities.Repositories
+namespace PersonalFinanceProject.Business.Identity.Repositories
 {
     internal class IdentityRepository
     {

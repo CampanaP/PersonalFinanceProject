@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 
-namespace PersonalFinanceProject.Business.Transactions.Entities
+namespace PersonalFinanceProject.Business.Transaction.Entities
 {
     public class TransactionCategory
     {

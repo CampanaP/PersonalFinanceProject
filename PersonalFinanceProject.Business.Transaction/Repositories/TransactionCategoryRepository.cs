@@ -1,10 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using PersonalFinanceProject.Business.Transactions.DbContexts;
-using PersonalFinanceProject.Business.Transactions.Entities;
-using PersonalFinanceProject.Business.Transactions.Interfaces.Repositories;
+using PersonalFinanceProject.Business.Transaction.DbContexts;
+using PersonalFinanceProject.Business.Transaction.Entities;
+using PersonalFinanceProject.Business.Transaction.Interfaces.Repositories;
 using PersonalFinanceProject.Infrastructure.DependencyInjection.Attributes;
 
-namespace PersonalFinanceProject.Business.Transactions.Repositories
+namespace PersonalFinanceProject.Business.Transaction.Repositories
 {
     [ScopedLifetime]
     internal class TransactionCategoryRepository : ITransactionCategoryRepository

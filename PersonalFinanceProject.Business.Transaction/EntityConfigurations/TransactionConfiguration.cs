@@ -1,12 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using PersonalFinanceProject.Business.Transactions.Entities;
 
-namespace PersonalFinanceProject.Business.Transactions.EntityConfigurations
+namespace PersonalFinanceProject.Business.Transaction.EntityConfigurations
 {
-    internal class TransactionConfiguration : IEntityTypeConfiguration<Transaction>
+    internal class TransactionConfiguration : IEntityTypeConfiguration<Entities.Transaction>
     {
-        public void Configure(EntityTypeBuilder<Transaction> builder)
+        public void Configure(EntityTypeBuilder<Entities.Transaction> builder)
         {
             builder.ToTable("transactions");
 

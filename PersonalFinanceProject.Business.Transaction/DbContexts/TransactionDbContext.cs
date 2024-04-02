@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using PersonalFinanceProject.Business.Transactions.Entities;
+using PersonalFinanceProject.Business.Transaction.Entities;
 
-namespace PersonalFinanceProject.Business.Transactions.DbContexts
+namespace PersonalFinanceProject.Business.Transaction.DbContexts
 {
     public class TransactionDbContext : DbContext
     {
@@ -17,7 +17,7 @@ namespace PersonalFinanceProject.Business.Transactions.DbContexts
             ChangeTracker.LazyLoadingEnabled = false;
         }
 
-        public DbSet<Transaction> Transactions { get; set; }
+        public DbSet<Entities.Transaction> Transactions { get; set; }
         public DbSet<TransactionCategory> TransactionCategories { get; set; }
         public DbSet<TransactionType> TransactionTypes { get; set; }
 

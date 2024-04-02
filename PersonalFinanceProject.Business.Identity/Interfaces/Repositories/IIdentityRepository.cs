@@ -1,4 +1,4 @@
-﻿namespace PersonalFinanceProject.Business.Identities.Interfaces.Repositories
+﻿namespace PersonalFinanceProject.Business.Identity.Interfaces.Repositories
 {
     public interface IIdentityRepository
     {

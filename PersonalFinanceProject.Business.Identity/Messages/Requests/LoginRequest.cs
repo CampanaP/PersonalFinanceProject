@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace PersonalFinanceProject.Infrastructure.Communication.Requests.Identity
+namespace PersonalFinanceProject.Business.Identity.Messages.Requests
 {
     public class LoginRequest
     {

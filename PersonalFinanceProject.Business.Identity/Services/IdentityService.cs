@@ -1,9 +1,9 @@
-﻿using PersonalFinanceProject.Business.Identities.Interfaces.Repositories;
-using PersonalFinanceProject.Business.Identities.Interfaces.Services;
+﻿using PersonalFinanceProject.Business.Identity.Interfaces.Repositories;
+using PersonalFinanceProject.Business.Identity.Interfaces.Services;
 using PersonalFinanceProject.Infrastructure.Communication.Requests.Identity;
 using PersonalFinanceProject.Infrastructure.Communication.Responses.Identity;
 
-namespace PersonalFinanceProject.Business.Identities.Services
+namespace PersonalFinanceProject.Business.Identity.Services
 {
     internal class IdentityService : IIdentityService
     {

@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using PersonalFinanceProject.Business.Transactions.Entities;
+using PersonalFinanceProject.Business.Transaction.Entities;
 
-namespace PersonalFinanceProject.Business.Transactions.EntityConfigurations
+namespace PersonalFinanceProject.Business.Transaction.EntityConfigurations
 {
     internal class TransactionTypeConfiguration : IEntityTypeConfiguration<TransactionType>
     {

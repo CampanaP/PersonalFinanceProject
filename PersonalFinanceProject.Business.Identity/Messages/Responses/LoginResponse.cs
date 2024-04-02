@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 
-namespace PersonalFinanceProject.Infrastructure.Communication.Responses.Identity
+namespace PersonalFinanceProject.Business.Identity.Messages.Responses
 {
     public class LoginResponse
     {

@@ -1,4 +1,4 @@
-﻿namespace PersonalFinanceProject.Business.Identities.Settings
+﻿namespace PersonalFinanceProject.Business.Identity.Settings
 {
     internal class JwtSetting
     {

@@ -1,11 +1,11 @@
-﻿namespace PersonalFinanceProject.Business.Transactions.Messages.Responses
+﻿namespace PersonalFinanceProject.Business.Transaction.Messages.Responses
 {
     public class TransactionCategoryResponseMessage
     {
-        public record TransactionCategoryItem(int id, string name);
+        public record TransactionCategoryItem(int Id, string Name);
 
-        public record GetByIdResponse(TransactionCategoryItem? transactionCategory);
+        public record GetByIdResponse(TransactionCategoryItem? TransactionCategory);
 
-        public record GetListResponse(List<TransactionCategoryItem> transactionCategories);
+        public record GetListResponse(IEnumerable<TransactionCategoryItem> TransactionCategories);
     }
 }

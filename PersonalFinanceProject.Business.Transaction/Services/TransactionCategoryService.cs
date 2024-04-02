@@ -1,9 +1,9 @@
-﻿using PersonalFinanceProject.Business.Transactions.Entities;
-using PersonalFinanceProject.Business.Transactions.Interfaces.Repositories;
-using PersonalFinanceProject.Business.Transactions.Interfaces.Services;
+﻿using PersonalFinanceProject.Business.Transaction.Entities;
+using PersonalFinanceProject.Business.Transaction.Interfaces.Repositories;
+using PersonalFinanceProject.Business.Transaction.Interfaces.Services;
 using PersonalFinanceProject.Infrastructure.DependencyInjection.Attributes;
 
-namespace PersonalFinanceProject.Business.Transactions.Services
+namespace PersonalFinanceProject.Business.Transaction.Services
 {
     [ScopedLifetime]
     internal class TransactionCategoryService : ITransactionCategoryService

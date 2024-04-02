@@ -5,10 +5,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
-using PersonalFinanceProject.Business.Identities.Settings;
+using PersonalFinanceProject.Business.Identity.Settings;
 using System.Text;
 
-namespace PersonalFinanceProject.Business.Identities.ExtensionMethods
+namespace PersonalFinanceProject.Business.Identity.ExtensionMethods
 {
     public static class IdentityExtension
     {
