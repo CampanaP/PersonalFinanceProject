@@ -1,6 +1,6 @@
 ﻿namespace PersonalFinanceProject.Infrastructure.Logger.Settings
 {
-    public class LoggerSetting
+    internal class LoggerSetting
     {
         public string? FilePath { get; set; }
 
