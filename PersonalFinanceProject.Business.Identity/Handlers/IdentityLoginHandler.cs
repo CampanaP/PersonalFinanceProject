@@ -1,6 +1,4 @@
 ﻿using PersonalFinanceProject.Business.Identity.Interfaces.Services;
-using PersonalFinanceProject.Infrastructure.Communication.Requests.Identity;
-using PersonalFinanceProject.Infrastructure.Communication.Responses.Identity;
 
 namespace PersonalFinanceProject.Business.Identity.Handlers
 {

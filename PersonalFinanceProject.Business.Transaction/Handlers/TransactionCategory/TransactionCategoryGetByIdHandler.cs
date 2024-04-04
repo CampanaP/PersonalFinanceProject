@@ -1,6 +1,7 @@
 ﻿using PersonalFinanceProject.Business.Transaction.Interfaces.Services;
-using PersonalFinanceProject.Business.Transaction.Messages.Requests;
-using PersonalFinanceProject.Business.Transaction.Messages.Responses;
+using PersonalFinanceProject.Business.Transaction.Messages.TransactionCategory;
+using PersonalFinanceProject.Business.Transaction.Messages.TransactionCategory.Requests;
+using PersonalFinanceProject.Business.Transaction.Messages.TransactionCategory.Responses;
 using Wolverine.Attributes;
 
 namespace PersonalFinanceProject.Business.Transaction.Handlers.TransactionCategory
@@ -15,17 +16,17 @@ namespace PersonalFinanceProject.Business.Transaction.Handlers.TransactionCatego
             _transactionCategoryService = transactionCategoryService;
         }
 
-        public async Task<TransactionCategoryResponseMessage.GetByIdResponse> Handle(TransactionCategoryRequestMessage.GetByIdRequest request, CancellationToken cancellationToken = default)
+        public async Task<TransactionCategoryGetByIdResponseMessage> Handle(TransactionCategoryGetByIdRequestMessage request, CancellationToken cancellationToken = default)
         {
-            TransactionCategoryResponseMessage.GetByIdResponse response = new TransactionCategoryResponseMessage.GetByIdResponse(null);
+            TransactionCategoryGetByIdResponseMessage response = new TransactionCategoryGetByIdResponseMessage();
 
-            Entities.TransactionCategory? transactionCategory = await _transactionCategoryService.GetById(request.id, cancellationToken);
+            Entities.TransactionCategory? transactionCategory = await _transactionCategoryService.GetById(request.Id, cancellationToken);
             if (transactionCategory is null)
             {
                 return response;
             }
 
-            response = new TransactionCategoryResponseMessage.GetByIdResponse(new TransactionCategoryResponseMessage.TransactionCategoryItem(transactionCategory.Id, transactionCategory.Name));
+            response.TransactionCategory = new TransactionCategoryMessageItem(transactionCategory.Id, transactionCategory.Name);
 
             return response;
         }
