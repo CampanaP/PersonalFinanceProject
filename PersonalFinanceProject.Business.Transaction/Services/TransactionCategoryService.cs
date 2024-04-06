@@ -36,5 +36,12 @@ namespace PersonalFinanceProject.Business.Transaction.Services
         {
             return await _transactionCategoryRepository.GetList(cancellationToken);
         }
+
+        public async Task Update(TransactionCategory transactionCategory, CancellationToken cancellationToken = default)
+        {
+            await _transactionCategoryRepository.Update(transactionCategory, cancellationToken);
+
+            return;
+        }
     }
 }

@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Http.HttpResults;
 using PersonalFinanceProject.Business.Transaction.Messages.TransactionCategory.Requests;
 using PersonalFinanceProject.Business.Transaction.Messages.TransactionCategory.Responses;
 using Wolverine;
@@ -50,6 +49,14 @@ namespace PersonalFinanceProject.Business.Transaction.Endpoints
             TransactionCategoryGetListResponseMessage response = await _messageBus.InvokeAsync<TransactionCategoryGetListResponseMessage>(request, cancellationToken);
 
             return Results.Ok(response);
+        }
+
+        [WolverinePut("api/transaction-category/update")]
+        public async Task<IResult> Update(TransactionCategoryUpdateRequestMessage request)
+        {
+            await _messageBus.SendAsync(request);
+
+            return Results.Ok();
         }
     }
 }

@@ -40,5 +40,16 @@ namespace PersonalFinanceProject.Business.Transaction.Repositories
         {
             return await _transactionDbContext.TransactionCategories.ToListAsync(cancellationToken);
         }
+
+        public async Task Update(TransactionCategory transactionCategory, CancellationToken cancellationToken = default)
+        {
+            await _transactionDbContext.TransactionCategories
+                .Where(tc => tc.Id == transactionCategory.Id)
+                .ExecuteUpdateAsync(tc => tc.SetProperty(i => i.Name, transactionCategory.Name), cancellationToken);
+
+            await _transactionDbContext.SaveChangesAsync(cancellationToken);
+
+            return;
+        }
     }
 }
