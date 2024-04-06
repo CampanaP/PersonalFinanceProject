@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.HttpResults;
 using PersonalFinanceProject.Business.Transaction.Messages.TransactionCategory.Requests;
 using PersonalFinanceProject.Business.Transaction.Messages.TransactionCategory.Responses;
 using Wolverine;
@@ -15,8 +16,24 @@ namespace PersonalFinanceProject.Business.Transaction.Endpoints
             _messageBus = messageBus;
         }
 
+        [WolverinePost("api/transaction-category/add")]
+        public async Task<IResult> Add(TransactionCategoryAddRequestMessage request, CancellationToken cancellationToken = default)
+        {
+            TransactionCategoryAddResponseMessage response = await _messageBus.InvokeAsync<TransactionCategoryAddResponseMessage>(request, cancellationToken);
+
+            return Results.Ok(response);
+        }
+
+        [WolverineDelete("api/transaction-category/delete-by-id")]
+        public async Task<IResult> DeleteById(TransactionCategoryDeleteByIdRequestMessage request)
+        {
+            await _messageBus.SendAsync(request);
+
+            return Results.Ok();
+        }
+
         [WolverineGet("api/transaction-category/get/{id}")]
-        public async Task<IResult> GetById(TransactionCategoryGetByIdRequestMessage request, CancellationToken cancellationToken)
+        public async Task<IResult> GetById(TransactionCategoryGetByIdRequestMessage request, CancellationToken cancellationToken = default)
         {
             TransactionCategoryGetByIdResponseMessage response = await _messageBus.InvokeAsync<TransactionCategoryGetByIdResponseMessage>(request, cancellationToken);
             if (response.TransactionCategory is null)
@@ -28,7 +45,7 @@ namespace PersonalFinanceProject.Business.Transaction.Endpoints
         }
 
         [WolverineGet("api/transaction-category/get/list")]
-        public async Task<IResult> GetList(TransactionCategoryGetListRequestMessage request, CancellationToken cancellationToken)
+        public async Task<IResult> GetList(TransactionCategoryGetListRequestMessage request, CancellationToken cancellationToken = default)
         {
             TransactionCategoryGetListResponseMessage response = await _messageBus.InvokeAsync<TransactionCategoryGetListResponseMessage>(request, cancellationToken);
 

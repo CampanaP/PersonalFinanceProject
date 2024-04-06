@@ -8,8 +8,6 @@ namespace PersonalFinanceProject.Business.Transaction.EntityConfigurations
     {
         public void Configure(EntityTypeBuilder<TransactionType> builder)
         {
-            builder.ToTable("transactionTypes");
-
             builder.HasKey(new string[] { "Id" });
             builder.Property(p => p.Id).ValueGeneratedOnAdd();
 

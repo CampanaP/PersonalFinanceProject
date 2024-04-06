@@ -1,0 +1,24 @@
+﻿using PersonalFinanceProject.Business.Transaction.Interfaces.Services;
+using PersonalFinanceProject.Business.Transaction.Messages.TransactionCategory.Requests;
+using Wolverine.Attributes;
+
+namespace PersonalFinanceProject.Business.Transaction.Handlers.TransactionCategory
+{
+    [WolverineHandler]
+    public class TransactionCategoryDeleteByIdHandler
+    {
+        private readonly ITransactionCategoryService _transactionCategoryService;
+
+        public TransactionCategoryDeleteByIdHandler(ITransactionCategoryService transactionCategoryService)
+        {
+            _transactionCategoryService = transactionCategoryService;
+        }
+
+        public async Task Handle(TransactionCategoryDeleteByIdRequestMessage request, CancellationToken cancellationToken = default)
+        {
+            await _transactionCategoryService.DeleteById(request.Id, cancellationToken);
+
+            return;
+        }
+    }
+}

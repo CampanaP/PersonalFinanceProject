@@ -15,6 +15,18 @@ namespace PersonalFinanceProject.Business.Transaction.Services
             _transactionCategoryRepository = transactionCategoryRepository;
         }
 
+        public async Task<int> Add(TransactionCategory transactionCategory, CancellationToken cancellationToken = default)
+        {
+            return await _transactionCategoryRepository.Add(transactionCategory, cancellationToken);
+        }
+
+        public async Task DeleteById(int id, CancellationToken cancellationToken = default)
+        {
+            await _transactionCategoryRepository.DeleteById(id, cancellationToken);
+
+            return;
+        }
+
         public async Task<TransactionCategory?> GetById(int id, CancellationToken cancellationToken = default)
         {
             return await _transactionCategoryRepository.GetById(id, cancellationToken);

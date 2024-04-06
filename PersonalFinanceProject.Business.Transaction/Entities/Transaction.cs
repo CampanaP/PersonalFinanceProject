@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-
-namespace PersonalFinanceProject.Business.Transaction.Entities
+﻿namespace PersonalFinanceProject.Business.Transaction.Entities
 {
     public class Transaction
     {
@@ -10,9 +8,13 @@ namespace PersonalFinanceProject.Business.Transaction.Entities
 
         public required int CategoryId { get; set; }
 
-        public required int SourceId { get; set; }
+        public TransactionCategory? Category { get; set; }
 
         public required int TypeId { get; set; }
+
+        public TransactionType? Type { get; set; }
+
+        public required int SourceId { get; set; }
 
         public required DateTime CreateDate { get; set; }
 

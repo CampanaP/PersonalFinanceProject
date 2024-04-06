@@ -6,6 +6,7 @@ using PersonalFinanceProject.Infrastructure.Logger.ExtensionMethods;
 using PersonalFinanceProject.Infrastructure.Logger.Interfaces.Services;
 using Wolverine;
 using Wolverine.Http;
+using Wolverine.Http.FluentValidation;
 
 namespace PersonalFinanceProject.Web.Api
 {
@@ -38,7 +39,10 @@ namespace PersonalFinanceProject.Web.Api
             // Infrastructure.DependencyInjection
             app.AddEndpoints();
 
-            app.MapWolverineEndpoints();
+            app.MapWolverineEndpoints(opts =>
+            {
+                opts.UseFluentValidationProblemDetailMiddleware();
+            });
 
             app.UseExceptionHandler(exceptionHandlerApp =>
             {

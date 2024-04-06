@@ -1,4 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.Diagnostics.CodeAnalysis;
 
 namespace PersonalFinanceProject.Business.Transaction.Entities
 {
@@ -7,5 +7,12 @@ namespace PersonalFinanceProject.Business.Transaction.Entities
         public required int Id { get; set; }
 
         public required string Name { get; set; }
+
+        [SetsRequiredMembers]
+        public TransactionCategory(int id, string name)
+        {
+            Id = id;
+            Name = name;
+        }
     }
 }
