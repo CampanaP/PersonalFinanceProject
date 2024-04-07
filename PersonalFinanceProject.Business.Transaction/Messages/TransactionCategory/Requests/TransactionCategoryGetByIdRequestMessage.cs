@@ -1,10 +1,17 @@
-﻿using Wolverine.Attributes;
+﻿using System.Diagnostics.CodeAnalysis;
+using Wolverine.Attributes;
 
 namespace PersonalFinanceProject.Business.Transaction.Messages.TransactionCategory.Requests
 {
     [WolverineMessage]
     public record TransactionCategoryGetByIdRequestMessage
     {
-        public int Id { get; set; }
+        public required int Id { get; set; }
+
+        [SetsRequiredMembers]
+        public TransactionCategoryGetByIdRequestMessage(int id)
+        {
+            Id = id;
+        }
     }
 }

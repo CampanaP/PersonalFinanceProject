@@ -32,8 +32,15 @@ namespace PersonalFinanceProject.Business.Transaction.Endpoints
         }
 
         [WolverineGet("api/transaction-category/get/{id}")]
-        public async Task<IResult> GetById(TransactionCategoryGetByIdRequestMessage request, CancellationToken cancellationToken = default)
+        public async Task<IResult> GetById(string id, CancellationToken cancellationToken = default)
         {
+            if (!int.TryParse(id, out int requestId))
+            {
+                return Results.BadRequest("Id is not an integer value");
+            }
+
+            TransactionCategoryGetByIdRequestMessage request = new TransactionCategoryGetByIdRequestMessage(requestId);
+
             TransactionCategoryGetByIdResponseMessage response = await _messageBus.InvokeAsync<TransactionCategoryGetByIdResponseMessage>(request, cancellationToken);
             if (response.TransactionCategory is null)
             {

@@ -34,9 +34,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalFinanceProject.Infr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalFinanceProject.Test.UnitTest", "PersonalFinanceProject.Test.UnitTest\PersonalFinanceProject.Test.UnitTest.csproj", "{A23E6E16-59F9-4E99-8F4E-86E0C4D96B7C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalFinanceProject.Test.IntegrationTest", "PersonalFinanceProject.Test.IntegrationTest\PersonalFinanceProject.Test.IntegrationTest.csproj", "{CCF164A3-0AAE-4A61-9B83-EDAA965C6BA9}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalFinanceProject.Infrastructure.DependencyInjection", "PersonalFinanceProject.Infrastructure.DependencyInjection\PersonalFinanceProject.Infrastructure.DependencyInjection.csproj", "{DCCD74B8-25FF-43E4-81AC-1F8F46379DAC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersonalFinanceProject.Infrastructure.EntityMapper", "PersonalFinanceProject.Infrastructure.EntityMapper\PersonalFinanceProject.Infrastructure.EntityMapper.csproj", "{D14CD03E-E92D-4552-AC85-00EEBAE05332}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -84,14 +84,14 @@ Global
 		{A23E6E16-59F9-4E99-8F4E-86E0C4D96B7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A23E6E16-59F9-4E99-8F4E-86E0C4D96B7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A23E6E16-59F9-4E99-8F4E-86E0C4D96B7C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CCF164A3-0AAE-4A61-9B83-EDAA965C6BA9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CCF164A3-0AAE-4A61-9B83-EDAA965C6BA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CCF164A3-0AAE-4A61-9B83-EDAA965C6BA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CCF164A3-0AAE-4A61-9B83-EDAA965C6BA9}.Release|Any CPU.Build.0 = Release|Any CPU
 		{DCCD74B8-25FF-43E4-81AC-1F8F46379DAC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{DCCD74B8-25FF-43E4-81AC-1F8F46379DAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DCCD74B8-25FF-43E4-81AC-1F8F46379DAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DCCD74B8-25FF-43E4-81AC-1F8F46379DAC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D14CD03E-E92D-4552-AC85-00EEBAE05332}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D14CD03E-E92D-4552-AC85-00EEBAE05332}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D14CD03E-E92D-4552-AC85-00EEBAE05332}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D14CD03E-E92D-4552-AC85-00EEBAE05332}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -107,8 +107,8 @@ Global
 		{6BD674DF-F0CE-4BC5-8D87-B30434EA18CB} = {9973B0E6-B765-4135-A74C-661A109B9A1C}
 		{548D65A3-69B6-42DB-B85F-220BD5A070BB} = {9973B0E6-B765-4135-A74C-661A109B9A1C}
 		{A23E6E16-59F9-4E99-8F4E-86E0C4D96B7C} = {255AAF7D-3B15-47D3-9DB7-A347EC6A6D53}
-		{CCF164A3-0AAE-4A61-9B83-EDAA965C6BA9} = {255AAF7D-3B15-47D3-9DB7-A347EC6A6D53}
 		{DCCD74B8-25FF-43E4-81AC-1F8F46379DAC} = {9973B0E6-B765-4135-A74C-661A109B9A1C}
+		{D14CD03E-E92D-4552-AC85-00EEBAE05332} = {9973B0E6-B765-4135-A74C-661A109B9A1C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B2E8D5C3-DC0C-4DCB-A44A-4AE732B9A8E0}
