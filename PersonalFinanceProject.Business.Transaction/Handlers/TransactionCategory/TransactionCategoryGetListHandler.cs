@@ -2,6 +2,7 @@
 using PersonalFinanceProject.Business.Transaction.Messages.TransactionCategory;
 using PersonalFinanceProject.Business.Transaction.Messages.TransactionCategory.Requests;
 using PersonalFinanceProject.Business.Transaction.Messages.TransactionCategory.Responses;
+using PersonalFinanceProject.Infrastructure.EntityMapper.Interfaces.Services;
 using Wolverine.Attributes;
 
 namespace PersonalFinanceProject.Business.Transaction.Handlers.TransactionCategory
@@ -9,10 +10,12 @@ namespace PersonalFinanceProject.Business.Transaction.Handlers.TransactionCatego
     [WolverineHandler]
     public class TransactionCategoryGetListHandler
     {
+        private readonly IEntityMapperService _entityMapperService;
         private readonly ITransactionCategoryService _transactionCategoryService;
 
-        public TransactionCategoryGetListHandler(ITransactionCategoryService transactionCategoryService)
+        public TransactionCategoryGetListHandler(IEntityMapperService entityMapperService, ITransactionCategoryService transactionCategoryService)
         {
+            _entityMapperService = entityMapperService;
             _transactionCategoryService = transactionCategoryService;
         }
 
@@ -26,7 +29,7 @@ namespace PersonalFinanceProject.Business.Transaction.Handlers.TransactionCatego
                 return response;
             }
 
-            response.TransactionCategories = transactionCategories.Select(tc => new TransactionCategoryMessageItem(tc.Id, tc.Name));
+            response.TransactionCategories = _entityMapperService.MapList<Entities.TransactionCategory, TransactionCategoryMessageItem>(transactionCategories.ToList(), true);
 
             return response;
         }

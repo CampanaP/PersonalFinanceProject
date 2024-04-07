@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\PersonalFinanceProject.Infrastructure.DependencyInjection\PersonalFinanceProject.Infrastructure.DependencyInjection.csproj" />
+    <ProjectReference Include="..\PersonalFinanceProject.Infrastructure.EntityMapper\PersonalFinanceProject.Infrastructure.EntityMapper.csproj" />
   </ItemGroup>
 
   <ItemGroup>

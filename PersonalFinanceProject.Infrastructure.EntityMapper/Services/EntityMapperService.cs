@@ -1,8 +1,10 @@
-﻿using System.Reflection;
+﻿using PersonalFinanceProject.Infrastructure.DependencyInjection.Attributes;
 using PersonalFinanceProject.Infrastructure.EntityMapper.Interfaces.Services;
+using System.Reflection;
 
 namespace PersonalFinanceProject.Infrastructure.EntityMapper.Services
 {
+    [ScopedLifetime]
     internal class EntityMapperService : IEntityMapperService
     {
         public Destination Map<Origin, Destination>(Origin originEntity, bool mapNullable = false, params object[] arguments)

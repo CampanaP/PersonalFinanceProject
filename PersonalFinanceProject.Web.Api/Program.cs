@@ -36,32 +36,32 @@ namespace PersonalFinanceProject.Web.Api
 
             WebApplication app = builder.Build();
 
-            // Infrastructure.DependencyInjection
-            app.AddEndpoints();
-
             app.MapWolverineEndpoints(opts =>
             {
                 opts.UseFluentValidationProblemDetailMiddleware();
             });
 
-            app.UseExceptionHandler(exceptionHandlerApp =>
+            if (builder.Environment.IsProduction())
             {
-                exceptionHandlerApp.Run(async context =>
+                app.UseExceptionHandler(exceptionHandlerApp =>
                 {
-                    IExceptionHandlerPathFeature? exceptionContext = context.Features.Get<IExceptionHandlerPathFeature>();
-                    if (exceptionContext is not null)
+                    exceptionHandlerApp.Run(async context =>
                     {
-                        ILoggerService? loggerService = context.RequestServices.GetService<ILoggerService>();
-                        if (loggerService is not null)
+                        IExceptionHandlerPathFeature? exceptionContext = context.Features.Get<IExceptionHandlerPathFeature>();
+                        if (exceptionContext is not null)
                         {
-                            loggerService.Fatal("Unhandled exception was thrown", exception: exceptionContext.Error);
+                            ILoggerService? loggerService = context.RequestServices.GetService<ILoggerService>();
+                            if (loggerService is not null)
+                            {
+                                loggerService.Fatal("Unhandled exception was thrown", exception: exceptionContext.Error);
+                            }
                         }
-                    }
 
-                    context.Response.StatusCode = StatusCodes.Status500InternalServerError;
-                    await context.Response.WriteAsync("An error was found in the request.");
+                        context.Response.StatusCode = StatusCodes.Status500InternalServerError;
+                        await context.Response.WriteAsync("An error was found in the request.");
+                    });
                 });
-            });
+            }
 
             if (!builder.Environment.IsDevelopment())
             {
