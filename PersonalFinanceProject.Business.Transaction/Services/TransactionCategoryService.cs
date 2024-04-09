@@ -1,7 +1,7 @@
 ﻿using PersonalFinanceProject.Business.Transaction.Entities;
 using PersonalFinanceProject.Business.Transaction.Interfaces.Repositories;
 using PersonalFinanceProject.Business.Transaction.Interfaces.Services;
-using PersonalFinanceProject.Infrastructure.DependencyInjection.Attributes;
+using PersonalFinanceProject.Library.DependencyInjection.Attributes;
 
 namespace PersonalFinanceProject.Business.Transaction.Services
 {

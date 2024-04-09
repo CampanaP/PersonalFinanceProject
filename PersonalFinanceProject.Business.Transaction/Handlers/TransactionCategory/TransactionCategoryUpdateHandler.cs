@@ -1,6 +1,6 @@
 ﻿using PersonalFinanceProject.Business.Transaction.Interfaces.Services;
-using PersonalFinanceProject.Business.Transaction.Messages.TransactionCategory.Requests;
-using PersonalFinanceProject.Infrastructure.EntityMapper.Interfaces.Services;
+using PersonalFinanceProject.Communication.Message.TransactionCategory.Requests;
+using PersonalFinanceProject.Library.EntityMapper.Interfaces.Services;
 using Wolverine.Attributes;
 
 namespace PersonalFinanceProject.Business.Transaction.Handlers.TransactionCategory
@@ -17,9 +17,9 @@ namespace PersonalFinanceProject.Business.Transaction.Handlers.TransactionCatego
             _transactionCategoryService = transactionCategoryService;
         }
 
-        public async Task Handle(TransactionCategoryUpdateRequestMessage request, CancellationToken cancellationToken = default)
+        public async Task Handle(TransactionCategoryUpdateRequest request, CancellationToken cancellationToken = default)
         {
-            Entities.TransactionCategory transactionCategory = _entityMapperService.Map<TransactionCategoryUpdateRequestMessage, Entities.TransactionCategory>(request, true);
+            Entities.TransactionCategory transactionCategory = _entityMapperService.Map<TransactionCategoryUpdateRequest, Entities.TransactionCategory>(request, true);
 
             await _transactionCategoryService.Update(transactionCategory, cancellationToken);
 

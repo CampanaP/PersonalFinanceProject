@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
-using PersonalFinanceProject.Business.Transaction.Messages.TransactionCategory.Requests;
-using PersonalFinanceProject.Business.Transaction.Messages.TransactionCategory.Responses;
+using PersonalFinanceProject.Communication.Message.TransactionCategory.Requests;
+using PersonalFinanceProject.Communication.Message.TransactionCategory.Responses;
 using Wolverine;
 using Wolverine.Http;
 
@@ -16,15 +16,15 @@ namespace PersonalFinanceProject.Business.Transaction.Endpoints
         }
 
         [WolverinePost("api/transaction-category/add")]
-        public async Task<IResult> Add(TransactionCategoryAddRequestMessage request, CancellationToken cancellationToken = default)
+        public async Task<IResult> Add(TransactionCategoryAddRequest request, CancellationToken cancellationToken = default)
         {
-            TransactionCategoryAddResponseMessage response = await _messageBus.InvokeAsync<TransactionCategoryAddResponseMessage>(request, cancellationToken);
+            TransactionCategoryAddResponse response = await _messageBus.InvokeAsync<TransactionCategoryAddResponse>(request, cancellationToken);
 
             return Results.Ok(response);
         }
 
         [WolverineDelete("api/transaction-category/delete-by-id")]
-        public async Task<IResult> DeleteById(TransactionCategoryDeleteByIdRequestMessage request)
+        public async Task<IResult> DeleteById(TransactionCategoryDeleteByIdRequest request)
         {
             await _messageBus.SendAsync(request);
 
@@ -39,9 +39,9 @@ namespace PersonalFinanceProject.Business.Transaction.Endpoints
                 return Results.BadRequest("Id is not an integer value");
             }
 
-            TransactionCategoryGetByIdRequestMessage request = new TransactionCategoryGetByIdRequestMessage(requestId);
+            TransactionCategoryGetByIdRequest request = new TransactionCategoryGetByIdRequest(requestId);
 
-            TransactionCategoryGetByIdResponseMessage response = await _messageBus.InvokeAsync<TransactionCategoryGetByIdResponseMessage>(request, cancellationToken);
+            TransactionCategoryGetByIdResponse response = await _messageBus.InvokeAsync<TransactionCategoryGetByIdResponse>(request, cancellationToken);
             if (response.TransactionCategory is null)
             {
                 return Results.NotFound();
@@ -51,15 +51,15 @@ namespace PersonalFinanceProject.Business.Transaction.Endpoints
         }
 
         [WolverineGet("api/transaction-category/get/list")]
-        public async Task<IResult> GetList(TransactionCategoryGetListRequestMessage request, CancellationToken cancellationToken = default)
+        public async Task<IResult> GetList(TransactionCategoryGetListRequest request, CancellationToken cancellationToken = default)
         {
-            TransactionCategoryGetListResponseMessage response = await _messageBus.InvokeAsync<TransactionCategoryGetListResponseMessage>(request, cancellationToken);
+            TransactionCategoryGetListResponse response = await _messageBus.InvokeAsync<TransactionCategoryGetListResponse>(request, cancellationToken);
 
             return Results.Ok(response);
         }
 
         [WolverinePut("api/transaction-category/update")]
-        public async Task<IResult> Update(TransactionCategoryUpdateRequestMessage request)
+        public async Task<IResult> Update(TransactionCategoryUpdateRequest request)
         {
             await _messageBus.SendAsync(request);
 

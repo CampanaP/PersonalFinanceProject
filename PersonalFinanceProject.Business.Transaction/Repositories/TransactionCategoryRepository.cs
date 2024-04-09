@@ -2,7 +2,7 @@
 using PersonalFinanceProject.Business.Transaction.DbContexts;
 using PersonalFinanceProject.Business.Transaction.Entities;
 using PersonalFinanceProject.Business.Transaction.Interfaces.Repositories;
-using PersonalFinanceProject.Infrastructure.DependencyInjection.Attributes;
+using PersonalFinanceProject.Library.DependencyInjection.Attributes;
 
 namespace PersonalFinanceProject.Business.Transaction.Repositories
 {

@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PersonalFinanceProject.Library.DependencyInjection\PersonalFinanceProject.Library.DependencyInjection.csproj" />
+    <ProjectReference Include="..\PersonalFinanceProject.Library.Logger\PersonalFinanceProject.Library.Logger.csproj" />
+  </ItemGroup>
+
+</Project>

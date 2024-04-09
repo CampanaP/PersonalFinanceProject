@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.EntityFrameworkCore;
 using PersonalFinanceProject.Business.Transaction.DbContexts;
-using PersonalFinanceProject.Infrastructure.DependencyInjection.ExtensionMethods;
-using PersonalFinanceProject.Infrastructure.Logger.ExtensionMethods;
-using PersonalFinanceProject.Infrastructure.Logger.Interfaces.Services;
+using PersonalFinanceProject.Library.DependencyInjection.ExtensionMethods;
+using PersonalFinanceProject.Library.Logger.ExtensionMethods;
+using PersonalFinanceProject.Library.Logger.Interfaces.Services;
 using Wolverine;
 using Wolverine.Http;
 using Wolverine.Http.FluentValidation;

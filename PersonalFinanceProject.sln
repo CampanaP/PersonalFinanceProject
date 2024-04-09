@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34408.163
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "04 - Test", "04 - Test", "{255AAF7D-3B15-47D3-9DB7-A347EC6A6D53}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "05 - Test", "05 - Test", "{255AAF7D-3B15-47D3-9DB7-A347EC6A6D53}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01 - Infrastructure", "01 - Infrastructure", "{9973B0E6-B765-4135-A74C-661A109B9A1C}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01 - Library", "01 - Library", "{9973B0E6-B765-4135-A74C-661A109B9A1C}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02 - Business", "02 - Business", "{ED3F44E3-C2B4-49C9-ACAE-A0C5656CFCF3}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03 - Business", "03 - Business", "{ED3F44E3-C2B4-49C9-ACAE-A0C5656CFCF3}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03 - Web", "03 - Web", "{EBE69ED9-2B0C-4C21-AA4D-A1160A4266BB}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "04 - Web", "04 - Web", "{EBE69ED9-2B0C-4C21-AA4D-A1160A4266BB}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalFinanceProject.Web.App", "PersonalFinanceProject.Web.App\PersonalFinanceProject.Web.App.csproj", "{B0182596-55C5-4DBD-A670-3C0282972C87}"
 EndProject
@@ -21,22 +21,26 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalFinanceProject.Busi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalFinanceProject.Business.Wallet", "PersonalFinanceProject.Business.Wallet\PersonalFinanceProject.Business.Wallet.csproj", "{84263F35-849E-4F8E-88D5-3384052B2B24}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalFinanceProject.Infrastructure.Api", "PersonalFinanceProject.Infrastructure.Api\PersonalFinanceProject.Infrastructure.Api.csproj", "{C435E9F0-2A37-4DF7-9DE6-B08B594E28CE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalFinanceProject.Library.Api", "PersonalFinanceProject.Library.Api\PersonalFinanceProject.Library.Api.csproj", "{C435E9F0-2A37-4DF7-9DE6-B08B594E28CE}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalFinanceProject.Infrastructure.Logger", "PersonalFinanceProject.Infrastructure.Logger\PersonalFinanceProject.Infrastructure.Logger.csproj", "{0E1C671E-8C92-437C-9631-C90EF7641A2A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalFinanceProject.Library.Logger", "PersonalFinanceProject.Library.Logger\PersonalFinanceProject.Library.Logger.csproj", "{0E1C671E-8C92-437C-9631-C90EF7641A2A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalFinanceProject.Infrastructure.Notification", "PersonalFinanceProject.Infrastructure.Notification\PersonalFinanceProject.Infrastructure.Notification.csproj", "{6BD674DF-F0CE-4BC5-8D87-B30434EA18CB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalFinanceProject.Library.Notification", "PersonalFinanceProject.Library.Notification\PersonalFinanceProject.Library.Notification.csproj", "{6BD674DF-F0CE-4BC5-8D87-B30434EA18CB}"
 	ProjectSection(ProjectDependencies) = postProject
 		{0E1C671E-8C92-437C-9631-C90EF7641A2A} = {0E1C671E-8C92-437C-9631-C90EF7641A2A}
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalFinanceProject.Infrastructure.EntityFramework", "PersonalFinanceProject.Infrastructure.EntityFramework\PersonalFinanceProject.Infrastructure.EntityFramework.csproj", "{548D65A3-69B6-42DB-B85F-220BD5A070BB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalFinanceProject.Library.EntityFramework", "PersonalFinanceProject.Library.EntityFramework\PersonalFinanceProject.Library.EntityFramework.csproj", "{548D65A3-69B6-42DB-B85F-220BD5A070BB}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalFinanceProject.Test.UnitTest", "PersonalFinanceProject.Test.UnitTest\PersonalFinanceProject.Test.UnitTest.csproj", "{A23E6E16-59F9-4E99-8F4E-86E0C4D96B7C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalFinanceProject.Infrastructure.DependencyInjection", "PersonalFinanceProject.Infrastructure.DependencyInjection\PersonalFinanceProject.Infrastructure.DependencyInjection.csproj", "{DCCD74B8-25FF-43E4-81AC-1F8F46379DAC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalFinanceProject.Library.DependencyInjection", "PersonalFinanceProject.Library.DependencyInjection\PersonalFinanceProject.Library.DependencyInjection.csproj", "{DCCD74B8-25FF-43E4-81AC-1F8F46379DAC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersonalFinanceProject.Infrastructure.EntityMapper", "PersonalFinanceProject.Infrastructure.EntityMapper\PersonalFinanceProject.Infrastructure.EntityMapper.csproj", "{D14CD03E-E92D-4552-AC85-00EEBAE05332}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalFinanceProject.Library.EntityMapper", "PersonalFinanceProject.Library.EntityMapper\PersonalFinanceProject.Library.EntityMapper.csproj", "{D14CD03E-E92D-4552-AC85-00EEBAE05332}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalFinanceProject.Communication.Message", "PersonalFinanceProject.Communication.Message\PersonalFinanceProject.Communication.Message.csproj", "{B20903D6-0979-4963-9F6E-3B1B86DE1A8A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02 - Communication", "02 - Communication", "{93462681-B265-42A1-B554-C6F11528E511}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -92,6 +96,10 @@ Global
 		{D14CD03E-E92D-4552-AC85-00EEBAE05332}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D14CD03E-E92D-4552-AC85-00EEBAE05332}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D14CD03E-E92D-4552-AC85-00EEBAE05332}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B20903D6-0979-4963-9F6E-3B1B86DE1A8A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B20903D6-0979-4963-9F6E-3B1B86DE1A8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B20903D6-0979-4963-9F6E-3B1B86DE1A8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B20903D6-0979-4963-9F6E-3B1B86DE1A8A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -109,6 +117,7 @@ Global
 		{A23E6E16-59F9-4E99-8F4E-86E0C4D96B7C} = {255AAF7D-3B15-47D3-9DB7-A347EC6A6D53}
 		{DCCD74B8-25FF-43E4-81AC-1F8F46379DAC} = {9973B0E6-B765-4135-A74C-661A109B9A1C}
 		{D14CD03E-E92D-4552-AC85-00EEBAE05332} = {9973B0E6-B765-4135-A74C-661A109B9A1C}
+		{B20903D6-0979-4963-9F6E-3B1B86DE1A8A} = {93462681-B265-42A1-B554-C6F11528E511}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B2E8D5C3-DC0C-4DCB-A44A-4AE732B9A8E0}

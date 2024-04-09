@@ -1,7 +1,7 @@
 ﻿using PersonalFinanceProject.Business.Transaction.Interfaces.Services;
-using PersonalFinanceProject.Business.Transaction.Messages.TransactionCategory.Requests;
-using PersonalFinanceProject.Business.Transaction.Messages.TransactionCategory.Responses;
-using PersonalFinanceProject.Infrastructure.EntityMapper.Interfaces.Services;
+using PersonalFinanceProject.Communication.Message.TransactionCategory.Requests;
+using PersonalFinanceProject.Communication.Message.TransactionCategory.Responses;
+using PersonalFinanceProject.Library.EntityMapper.Interfaces.Services;
 using Wolverine.Attributes;
 
 namespace PersonalFinanceProject.Business.Transaction.Handlers.TransactionCategory
@@ -18,11 +18,11 @@ namespace PersonalFinanceProject.Business.Transaction.Handlers.TransactionCatego
             _transactionCategoryService = transactionCategoryService;
         }
 
-        public async Task<TransactionCategoryAddResponseMessage> Handle(TransactionCategoryAddRequestMessage request, CancellationToken cancellationToken = default)
+        public async Task<TransactionCategoryAddResponse> Handle(TransactionCategoryAddRequest request, CancellationToken cancellationToken = default)
         {
-            TransactionCategoryAddResponseMessage response = new TransactionCategoryAddResponseMessage(default(int));
+            TransactionCategoryAddResponse response = new TransactionCategoryAddResponse(default(int));
 
-            Entities.TransactionCategory transactionCategoryItem = _entityMapperService.Map<TransactionCategoryAddRequestMessage, Entities.TransactionCategory>(request, true);
+            Entities.TransactionCategory transactionCategoryItem = _entityMapperService.Map<TransactionCategoryAddRequest, Entities.TransactionCategory>(request, true);
 
             response.Id = await _transactionCategoryService.Add(transactionCategoryItem, cancellationToken);
 

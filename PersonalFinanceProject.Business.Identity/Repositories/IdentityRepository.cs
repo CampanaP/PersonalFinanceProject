@@ -1,6 +1,4 @@
-﻿using PersonalFinanceProject.Infrastructure.EntityFramework.Interfaces.Repositories;
-
-namespace PersonalFinanceProject.Business.Identity.Repositories
+﻿namespace PersonalFinanceProject.Business.Identity.Repositories
 {
     internal class IdentityRepository
     {

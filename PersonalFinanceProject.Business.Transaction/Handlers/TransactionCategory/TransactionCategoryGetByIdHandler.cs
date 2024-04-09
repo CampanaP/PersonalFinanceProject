@@ -1,8 +1,7 @@
 ﻿using PersonalFinanceProject.Business.Transaction.Interfaces.Services;
-using PersonalFinanceProject.Business.Transaction.Messages.TransactionCategory;
-using PersonalFinanceProject.Business.Transaction.Messages.TransactionCategory.Requests;
-using PersonalFinanceProject.Business.Transaction.Messages.TransactionCategory.Responses;
-using PersonalFinanceProject.Infrastructure.EntityMapper.Interfaces.Services;
+using PersonalFinanceProject.Communication.Message.TransactionCategory.Requests;
+using PersonalFinanceProject.Communication.Message.TransactionCategory.Responses;
+using PersonalFinanceProject.Library.EntityMapper.Interfaces.Services;
 using Wolverine.Attributes;
 
 namespace PersonalFinanceProject.Business.Transaction.Handlers.TransactionCategory
@@ -19,9 +18,9 @@ namespace PersonalFinanceProject.Business.Transaction.Handlers.TransactionCatego
             _transactionCategoryService = transactionCategoryService;
         }
 
-        public async Task<TransactionCategoryGetByIdResponseMessage> Handle(TransactionCategoryGetByIdRequestMessage request, CancellationToken cancellationToken = default)
+        public async Task<TransactionCategoryGetByIdResponse> Handle(TransactionCategoryGetByIdRequest request, CancellationToken cancellationToken = default)
         {
-            TransactionCategoryGetByIdResponseMessage response = new TransactionCategoryGetByIdResponseMessage();
+            TransactionCategoryGetByIdResponse response = new TransactionCategoryGetByIdResponse();
 
             Entities.TransactionCategory? transactionCategory = await _transactionCategoryService.GetById(request.Id, cancellationToken);
             if (transactionCategory is null)
@@ -29,7 +28,7 @@ namespace PersonalFinanceProject.Business.Transaction.Handlers.TransactionCatego
                 return response;
             }
 
-            response.TransactionCategory = _entityMapperService.Map<Entities.TransactionCategory, TransactionCategoryMessageItem>(transactionCategory, true);
+            response.TransactionCategory = _entityMapperService.Map<Entities.TransactionCategory, TransactionCategoryResponseItem>(transactionCategory, true);
 
             return response;
         }

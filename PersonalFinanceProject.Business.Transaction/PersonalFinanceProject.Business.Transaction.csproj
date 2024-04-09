@@ -7,12 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\PersonalFinanceProject.Infrastructure.DependencyInjection\PersonalFinanceProject.Infrastructure.DependencyInjection.csproj" />
-    <ProjectReference Include="..\PersonalFinanceProject.Infrastructure.EntityMapper\PersonalFinanceProject.Infrastructure.EntityMapper.csproj" />
+    <ProjectReference Include="..\PersonalFinanceProject.Communication.Message\PersonalFinanceProject.Communication.Message.csproj" />
+    <ProjectReference Include="..\PersonalFinanceProject.Library.DependencyInjection\PersonalFinanceProject.Library.DependencyInjection.csproj" />
+    <ProjectReference Include="..\PersonalFinanceProject.Library.EntityMapper\PersonalFinanceProject.Library.EntityMapper.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.3" />
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.2" />
     <PackageReference Include="WolverineFx.Http" Version="2.1.2" />
     <PackageReference Include="WolverineFx.Http.FluentValidation" Version="2.1.2" />

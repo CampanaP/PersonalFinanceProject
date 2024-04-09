@@ -1,9 +1,9 @@
 ﻿using FluentValidation;
-using PersonalFinanceProject.Business.Transaction.Messages.TransactionCategory.Requests;
+using PersonalFinanceProject.Communication.Message.TransactionCategory.Requests;
 
 namespace PersonalFinanceProject.Business.Transaction.Validators.TransactionCategory
 {
-    public class TransactionCategoryAddValidator : AbstractValidator<TransactionCategoryAddRequestMessage>
+    public class TransactionCategoryAddValidator : AbstractValidator<TransactionCategoryAddRequest>
     {
         public TransactionCategoryAddValidator()
         {
