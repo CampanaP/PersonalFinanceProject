@@ -20,8 +20,8 @@
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
 		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
-		<PackageReference Include="WolverineFx" Version="2.1.2" />
-		<PackageReference Include="WolverineFx.Http" Version="2.1.2" />
+		<PackageReference Include="WolverineFx" Version="2.2.1" />
+		<PackageReference Include="WolverineFx.Http" Version="2.2.1" />
 	</ItemGroup>
 
 	<ItemGroup>

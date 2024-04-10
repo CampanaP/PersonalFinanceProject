@@ -7,7 +7,7 @@ using PersonalFinanceProject.Library.DependencyInjection.Attributes;
 namespace PersonalFinanceProject.Business.Transaction.Repositories
 {
     [ScopedLifetime]
-    internal class TransactionCategoryRepository : ITransactionCategoryRepository
+    public class TransactionCategoryRepository : ITransactionCategoryRepository
     {
         public readonly TransactionDbContext _transactionDbContext;
 

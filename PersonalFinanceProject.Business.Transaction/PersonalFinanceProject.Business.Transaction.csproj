@@ -14,8 +14,8 @@
 
   <ItemGroup>
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.2" />
-    <PackageReference Include="WolverineFx.Http" Version="2.1.2" />
-    <PackageReference Include="WolverineFx.Http.FluentValidation" Version="2.1.2" />
+    <PackageReference Include="WolverineFx.Http" Version="2.2.1" />
+    <PackageReference Include="WolverineFx.Http.FluentValidation" Version="2.2.1" />
   </ItemGroup>
 
 </Project>

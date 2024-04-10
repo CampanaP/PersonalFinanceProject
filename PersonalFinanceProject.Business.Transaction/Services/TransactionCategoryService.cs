@@ -6,7 +6,7 @@ using PersonalFinanceProject.Library.DependencyInjection.Attributes;
 namespace PersonalFinanceProject.Business.Transaction.Services
 {
     [ScopedLifetime]
-    internal class TransactionCategoryService : ITransactionCategoryService
+    public class TransactionCategoryService : ITransactionCategoryService
     {
         private readonly ITransactionCategoryRepository _transactionCategoryRepository;
 
