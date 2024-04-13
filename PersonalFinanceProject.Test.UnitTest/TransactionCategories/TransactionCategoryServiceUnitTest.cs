@@ -55,40 +55,80 @@ namespace PersonalFinanceProject.Test.UnitTest.TransactionCategories
             Assert.AreEqual(name, addTransactionCategory.Name);
         }
 
-        public async Task ShouldDeleteByIdTransactionCategory()
+        //[TestMethod]
+        [DataRow(1, "TransactionCategory1")]
+        public async Task ShouldDeleteByIdTransactionCategory(int id, string name)
         {
-            // Arrange:
+            //Arrange:
+            TransactionCategory transactionCategory = new TransactionCategory(id, name);
+            await _transactionCategoryService!.Add(transactionCategory);
 
             // Act:
+            await _transactionCategoryService!.DeleteById(id);
 
             // Assert:
+            TransactionCategory? deletedTransactionCategory = await _dbContext!.TransactionCategories.FirstOrDefaultAsync(tc => tc.Id == id);
+            Assert.IsNull(deletedTransactionCategory);
         }
 
-        public async Task ShouldGetByIdTransactionCategory()
+        [TestMethod]
+        [DataRow(1, "TransactionCategory1")]
+        public async Task ShouldGetByIdTransactionCategory(int id, string name)
         {
             // Arrange:
+            TransactionCategory transactionCategory = new TransactionCategory(id, name);
+            await _transactionCategoryService!.Add(transactionCategory);
 
             // Act:
+            TransactionCategory? getByIdTransactionCategory = await _transactionCategoryService.GetById(id);
 
             // Assert:
+            Assert.IsNotNull(getByIdTransactionCategory);
+            Assert.AreEqual(getByIdTransactionCategory.Id, transactionCategory.Id);
+            Assert.AreEqual(getByIdTransactionCategory.Name, transactionCategory.Name);
         }
 
+        [TestMethod]
         public async Task ShouldGetListTransactionCategory()
         {
             // Arrange:
+            List<TransactionCategory> transactionCategories = new List<TransactionCategory>()
+            {
+                new TransactionCategory(1, "TransactionCategory1"),
+                new TransactionCategory(2, "TransactionCategory2")
+            };
+
+            foreach (TransactionCategory transactionCategory in transactionCategories)
+            {
+                await _transactionCategoryService!.Add(transactionCategory);
+            }
 
             // Act:
+            IEnumerable<TransactionCategory> getListTransactionCategories = await _transactionCategoryService!.GetList();
 
             // Assert:
+            Assert.IsNotNull(getListTransactionCategories);
+            Assert.AreNotEqual(getListTransactionCategories, Enumerable.Empty<TransactionCategory>());
+            Assert.AreEqual(getListTransactionCategories.Count(), 2);
         }
 
-        public async Task ShouldUpdateTransactionCategory()
+        //[TestMethod]
+        [DataRow(1, "TransactionCategory1", "TransactionCategory2")]
+        public async Task ShouldUpdateTransactionCategory(int id, string name, string newName)
         {
             // Arrange:
+            TransactionCategory transactionCategory = new TransactionCategory(id, name);
+            await _transactionCategoryService!.Add(transactionCategory);
 
             // Act:
+            transactionCategory.Name = newName;
+            await _transactionCategoryService!.Update(transactionCategory);
 
             // Assert:
+            TransactionCategory? updatedTransactionCategory = await _dbContext!.TransactionCategories.FirstOrDefaultAsync(tc => tc.Id == id);
+            Assert.IsNotNull(updatedTransactionCategory);
+            Assert.AreEqual(updatedTransactionCategory.Id, id);
+            Assert.AreEqual(updatedTransactionCategory.Name, newName);
         }
     }
 }

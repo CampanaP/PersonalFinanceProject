@@ -26,7 +26,9 @@ namespace PersonalFinanceProject.Business.Transaction.Repositories
 
         public async Task DeleteById(int id, CancellationToken cancellationToken = default)
         {
-            await _transactionDbContext.TransactionCategories.Where(tc => tc.Id == id).ExecuteDeleteAsync(cancellationToken);
+            await _transactionDbContext.TransactionCategories
+                .Where(tc => tc.Id == id)
+                .ExecuteDeleteAsync(cancellationToken);
 
             return;
         }
