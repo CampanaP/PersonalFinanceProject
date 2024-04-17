@@ -7,13 +7,13 @@ namespace PersonalFinanceProject.Business.Transaction.DbContexts
     {
         public TransactionDbContext()
         {
-            ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
+            ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTrackingWithIdentityResolution;
             ChangeTracker.LazyLoadingEnabled = false;
         }
 
         public TransactionDbContext(DbContextOptions<TransactionDbContext> options) : base(options)
         {
-            ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
+            ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTrackingWithIdentityResolution;
             ChangeTracker.LazyLoadingEnabled = false;
         }
 

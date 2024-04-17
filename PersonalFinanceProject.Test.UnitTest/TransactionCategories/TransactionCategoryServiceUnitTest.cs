@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.Data.Sqlite;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using PersonalFinanceProject.Business.Transaction.DbContexts;
 using PersonalFinanceProject.Business.Transaction.Entities;
@@ -14,29 +15,36 @@ namespace PersonalFinanceProject.Test.UnitTest.TransactionCategories
         private TransactionCategoryRepository? _transactionCategoryRepository;
         private TransactionCategoryService? _transactionCategoryService;
         private TransactionDbContext? _dbContext;
+        private SqliteConnection _connection = new SqliteConnection("DataSource=:memory:");
 
         [TestInitialize]
-        public void Setup()
+        public async Task Setup()
         {
-            ServiceCollection services = new ServiceCollection();
-            services.AddDbContext<TransactionDbContext>(options => options.UseInMemoryDatabase("UnitTestDb"));
-            _serviceProvider = services.BuildServiceProvider();
+            await _connection.OpenAsync();
 
-            using (IServiceScope scope = _serviceProvider!.CreateScope())
-            {
-                _dbContext = _serviceProvider.GetRequiredService<TransactionDbContext>();
-            }
+            ServiceCollection services = new ServiceCollection();
+
+            services.AddDbContext<TransactionDbContext>(options => 
+                options.UseSqlite(_connection)
+                .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTrackingWithIdentityResolution));
+            
+            _serviceProvider = services.BuildServiceProvider();
+            _dbContext = _serviceProvider.GetRequiredService<TransactionDbContext>();
+
+            await _dbContext.Database.EnsureCreatedAsync();
 
             _transactionCategoryRepository = new TransactionCategoryRepository(_dbContext);
             _transactionCategoryService = new TransactionCategoryService(_transactionCategoryRepository);
         }
 
         [TestCleanup]
-        public void Cleanup()
+        public async Task Cleanup()
         {
             TransactionDbContext dbContext = _serviceProvider!.GetRequiredService<TransactionDbContext>();
 
-            dbContext.Database.EnsureDeleted();
+            await dbContext.Database.EnsureDeletedAsync();
+
+            await _connection.CloseAsync();
         }
 
         [TestMethod]
@@ -55,7 +63,7 @@ namespace PersonalFinanceProject.Test.UnitTest.TransactionCategories
             Assert.AreEqual(name, addTransactionCategory.Name);
         }
 
-        //[TestMethod]
+        [TestMethod]
         [DataRow(1, "TransactionCategory1")]
         public async Task ShouldDeleteByIdTransactionCategory(int id, string name)
         {
@@ -112,7 +120,7 @@ namespace PersonalFinanceProject.Test.UnitTest.TransactionCategories
             Assert.AreEqual(getListTransactionCategories.Count(), 2);
         }
 
-        //[TestMethod]
+        [TestMethod]
         [DataRow(1, "TransactionCategory1", "TransactionCategory2")]
         public async Task ShouldUpdateTransactionCategory(int id, string name, string newName)
         {
