@@ -24,10 +24,10 @@ namespace PersonalFinanceProject.Test.UnitTest.TransactionCategories
 
             ServiceCollection services = new ServiceCollection();
 
-            services.AddDbContext<TransactionDbContext>(options => 
+            services.AddDbContext<TransactionDbContext>(options =>
                 options.UseSqlite(_connection)
                 .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTrackingWithIdentityResolution));
-            
+
             _serviceProvider = services.BuildServiceProvider();
             _dbContext = _serviceProvider.GetRequiredService<TransactionDbContext>();
 
@@ -92,8 +92,8 @@ namespace PersonalFinanceProject.Test.UnitTest.TransactionCategories
 
             // Assert:
             Assert.IsNotNull(getByIdTransactionCategory);
-            Assert.AreEqual(getByIdTransactionCategory.Id, transactionCategory.Id);
-            Assert.AreEqual(getByIdTransactionCategory.Name, transactionCategory.Name);
+            Assert.AreEqual(transactionCategory.Id, getByIdTransactionCategory.Id);
+            Assert.AreEqual(transactionCategory.Name, getByIdTransactionCategory.Name);
         }
 
         [TestMethod]
@@ -116,8 +116,8 @@ namespace PersonalFinanceProject.Test.UnitTest.TransactionCategories
 
             // Assert:
             Assert.IsNotNull(getListTransactionCategories);
-            Assert.AreNotEqual(getListTransactionCategories, Enumerable.Empty<TransactionCategory>());
-            Assert.AreEqual(getListTransactionCategories.Count(), 2);
+            Assert.AreNotEqual(Enumerable.Empty<TransactionCategory>(), getListTransactionCategories);
+            Assert.AreEqual(transactionCategories.Count, getListTransactionCategories.Count());
         }
 
         [TestMethod]
@@ -135,8 +135,8 @@ namespace PersonalFinanceProject.Test.UnitTest.TransactionCategories
             // Assert:
             TransactionCategory? updatedTransactionCategory = await _dbContext!.TransactionCategories.FirstOrDefaultAsync(tc => tc.Id == id);
             Assert.IsNotNull(updatedTransactionCategory);
-            Assert.AreEqual(updatedTransactionCategory.Id, id);
-            Assert.AreEqual(updatedTransactionCategory.Name, newName);
+            Assert.AreEqual(id, updatedTransactionCategory.Id);
+            Assert.AreEqual(newName, updatedTransactionCategory.Name);
         }
     }
 }

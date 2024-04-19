@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Http;
 using PersonalFinanceProject.Communication.Message.TransactionCategory.Requests;
 using PersonalFinanceProject.Communication.Message.TransactionCategory.Responses;
 using Wolverine;
@@ -23,7 +24,7 @@ namespace PersonalFinanceProject.Business.Transaction.Endpoints
             return Results.Ok(response);
         }
 
-        [WolverineDelete("api/transaction-category/delete-by-id")]
+        [WolverineDelete("api/transaction-category/delete/{id}")]
         public async Task<IResult> DeleteById(TransactionCategoryDeleteByIdRequest request)
         {
             await _messageBus.SendAsync(request);
