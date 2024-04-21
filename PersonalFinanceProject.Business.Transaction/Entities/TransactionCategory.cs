@@ -8,6 +8,10 @@ namespace PersonalFinanceProject.Business.Transaction.Entities
 
         public required string Name { get; set; }
 
+        public TransactionCategory()
+        {
+        }
+
         [SetsRequiredMembers]
         public TransactionCategory(int id, string name)
         {
