@@ -528,3 +528,4 @@ FodyWeavers.xsd
 
 # End of https://www.toptal.com/developers/gitignore/api/visualstudio,aspnetcore
 /PersonalFinanceProject/.vs/PersonalFinanceProject/DesignTimeBuild/.dtbcache.v2
+/.NCrunch_PersonalFinanceProject/StoredText/dbf9a3784ebd4f1e8e00f1810010aa52

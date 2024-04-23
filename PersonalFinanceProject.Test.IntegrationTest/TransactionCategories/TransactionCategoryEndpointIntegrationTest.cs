@@ -1,5 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc.Testing;
-using PersonalFinanceProject.Business.Transaction.Entities;
+﻿using Microsoft.Extensions.DependencyInjection;
+using PersonalFinanceProject.Business.Transaction.DbContexts;
 using PersonalFinanceProject.Communication.Message.TransactionCategory.Requests;
 using PersonalFinanceProject.Communication.Message.TransactionCategory.Responses;
 using PersonalFinanceProject.Web.Api;
@@ -12,13 +12,27 @@ namespace PersonalFinanceProject.Test.IntegrationTest.TransactionCategories
     [TestClass]
     internal class TransactionCategoryEndpointIntegrationTest
     {
+        private CustomWebApplicationFactory<Program>? _applicationFactory;
+        private TransactionDbContext? _dbContext;
         private HttpClient? _httpClient;
 
         [TestInitialize]
-        public void Setup()
+        public async Task Setup()
         {
-            WebApplicationFactory<Program> applicationFactory = new WebApplicationFactory<Program>();
-            _httpClient = applicationFactory.CreateClient();
+            _applicationFactory = new CustomWebApplicationFactory<Program>();
+
+            _dbContext = _applicationFactory.Services.GetRequiredService<TransactionDbContext>();
+            await _dbContext.Database.EnsureCreatedAsync();
+
+            _httpClient = _applicationFactory.CreateClient();
+        }
+
+        [TestCleanup]
+        public async Task Cleanup()
+        {
+            await _dbContext!.Database.EnsureDeletedAsync();
+
+            _httpClient!.Dispose();
         }
 
         [TestMethod]
@@ -43,9 +57,19 @@ namespace PersonalFinanceProject.Test.IntegrationTest.TransactionCategories
         {
             // Arrange
             string url = $"{TransactionCategoryIntegrationTestConstant.DeleteEndpointUrl}/{id}";
+            TransactionCategoryDeleteByIdRequest request = new TransactionCategoryDeleteByIdRequest(id);
+
+            StringContent content = new StringContent(JsonSerializer.Serialize(request), Encoding.UTF8, "application/json");
+
+            HttpRequestMessage httpRequest = new HttpRequestMessage()
+            {
+                Method = HttpMethod.Delete,
+                RequestUri = new Uri(url, UriKind.Relative),
+                Content = content
+            };
 
             // Act
-            HttpResponseMessage? response = await _httpClient!.DeleteAsync(url);
+            HttpResponseMessage? response = await _httpClient!.SendAsync(httpRequest);
 
             // Assert
             Assert.IsNotNull(response);
@@ -58,10 +82,10 @@ namespace PersonalFinanceProject.Test.IntegrationTest.TransactionCategories
         {
             // Arrange
             string url = $"{TransactionCategoryIntegrationTestConstant.GetEndpointUrl}/{id}";
+            await ShouldAdd("TransactionCategory1");
 
             // Act
             HttpResponseMessage? response = await _httpClient!.GetAsync(url);
-            string responseContent = await response.Content.ReadAsStringAsync();
 
             // Assert
             Assert.IsNotNull(response);
