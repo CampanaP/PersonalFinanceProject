@@ -1,6 +1,4 @@
-﻿using PersonalFinanceProject.Library.DependencyInjection.Attributes;
-using PersonalFinanceProject.Library.EntityFramework.Interfaces.Specifications;
-using System.Linq.Expressions;
+﻿using System.Linq.Expressions;
 
 namespace PersonalFinanceProject.Library.EntityFramework.Specifications
 {
