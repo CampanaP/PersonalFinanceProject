@@ -6,7 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using PersonalFinanceProject.Business.Transaction.DbContexts;
 using PersonalFinanceProject.Web.Api;
 
-namespace PersonalFinanceProject.Test.IntegrationTest
+namespace PersonalFinanceProject.Test.IntegrationTest.Factories
 {
     internal class CustomWebApplicationFactory<TProgram> : WebApplicationFactory<TProgram> where TProgram : Program
     {

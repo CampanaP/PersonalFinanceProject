@@ -22,9 +22,9 @@ namespace PersonalFinanceProject.Business.Transaction.Handlers.TransactionCatego
         {
             TransactionCategoryAddResponse response = new TransactionCategoryAddResponse(default(int));
 
-            Entities.TransactionCategory transactionCategoryItem = _entityMapperService.Map<TransactionCategoryAddRequest, Entities.TransactionCategory>(request, true);
+            Entities.TransactionCategory transactionCategory = _entityMapperService.Map<TransactionCategoryAddRequest, Entities.TransactionCategory>(request, true);
 
-            response.Id = await _transactionCategoryService.Add(transactionCategoryItem, cancellationToken);
+            response.Id = await _transactionCategoryService.Add(transactionCategory, cancellationToken);
 
             return response;
         }

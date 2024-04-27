@@ -6,4 +6,15 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="WolverineFx.Http" Version="2.5.1" />
+    <PackageReference Include="WolverineFx.Http.FluentValidation" Version="2.5.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PersonalFinanceProject.Communication.Message\PersonalFinanceProject.Communication.Message.csproj" />
+    <ProjectReference Include="..\PersonalFinanceProject.Library.EntityFramework\PersonalFinanceProject.Library.EntityFramework.csproj" />
+    <ProjectReference Include="..\PersonalFinanceProject.Library.EntityMapper\PersonalFinanceProject.Library.EntityMapper.csproj" />
+  </ItemGroup>
+
 </Project>

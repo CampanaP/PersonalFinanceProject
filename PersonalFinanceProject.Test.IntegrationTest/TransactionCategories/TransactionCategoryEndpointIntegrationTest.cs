@@ -2,6 +2,7 @@
 using PersonalFinanceProject.Business.Transaction.DbContexts;
 using PersonalFinanceProject.Communication.Message.TransactionCategory.Requests;
 using PersonalFinanceProject.Communication.Message.TransactionCategory.Responses;
+using PersonalFinanceProject.Test.IntegrationTest.Factories;
 using PersonalFinanceProject.Web.Api;
 using System.Net.Http.Json;
 using System.Text;
@@ -77,12 +78,15 @@ namespace PersonalFinanceProject.Test.IntegrationTest.TransactionCategories
         }
 
         [TestMethod]
-        [DataRow(1)]
-        public async Task ShouldGetById(int id)
+        [DataRow(1, "TestCategory1")]
+        public async Task ShouldGetById(int id, string name)
         {
             // Arrange
             string url = $"{TransactionCategoryIntegrationTestConstant.GetEndpointUrl}/{id}";
-            await ShouldAdd("TransactionCategory1");
+
+            TransactionCategoryAddRequest request = new TransactionCategoryAddRequest(name);
+            HttpContent content = new StringContent(JsonSerializer.Serialize(request), Encoding.UTF8, "application/json");
+            await _httpClient!.PostAsync(TransactionCategoryIntegrationTestConstant.AddEndpointUrl, content);
 
             // Act
             HttpResponseMessage? response = await _httpClient!.GetAsync(url);

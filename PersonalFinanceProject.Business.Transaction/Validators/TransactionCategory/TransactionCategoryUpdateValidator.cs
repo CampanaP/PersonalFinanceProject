@@ -7,12 +7,13 @@ namespace PersonalFinanceProject.Business.Transaction.Validators.TransactionCate
     {
         public TransactionCategoryUpdateValidator()
         {
-            RuleFor(tc => tc.Id).NotNull();
-            RuleFor(tc => tc.Id).NotEqual(default(int));
+            RuleFor(tc => tc.Id)
+                .NotNull()
+                .NotEmpty();
 
-            RuleFor(tc => tc.Name).NotNull();
-            RuleFor(tc => tc.Name).NotEmpty();
-            RuleFor(tc => tc.Name).NotEqual(" ");
+            RuleFor(tc => tc.Name)
+                .NotNull()
+                .NotEmpty();
         }
     }
 }

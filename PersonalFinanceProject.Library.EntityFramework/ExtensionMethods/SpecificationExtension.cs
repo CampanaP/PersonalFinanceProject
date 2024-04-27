@@ -1,15 +1,20 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using PersonalFinanceProject.Library.EntityFramework.Interfaces.Specifications;
+using PersonalFinanceProject.Library.EntityFramework.Specifications;
 
 namespace PersonalFinanceProject.Library.EntityFramework.ExtensionMethods
 {
     public static class SpecificationExtension
     {
-        public static IQueryable<T> Search<T>(this IQueryable<T> query, ISpecification<T> specification) where T : class
+        public static IQueryable<TEntity> Search<TEntity>(this IQueryable<TEntity> query, GenericSpecification<TEntity> specification) where TEntity : class
         {
             if (specification.Criteria is not null)
             {
                 query = query.Where(specification.Criteria);
+            }
+
+            if (specification.Includes?.Any() ?? false)
+            {
+                query = specification.Includes.Aggregate(query, (current, include) => current.Include(include));
             }
 
             if (specification.Skip is not null)
@@ -30,11 +35,6 @@ namespace PersonalFinanceProject.Library.EntityFramework.ExtensionMethods
             if (specification.OrderByDescending is not null)
             {
                 query = query.OrderByDescending(specification.OrderByDescending);
-            }
-
-            if (specification.Includes?.Any() ?? false)
-            {
-                query = specification.Includes.Aggregate(query, (current, include) => current.Include(include));
             }
 
             return query;
