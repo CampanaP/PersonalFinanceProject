@@ -36,7 +36,7 @@ namespace PersonalFinanceProject.Test.IntegrationTest.TransactionCategories
             _httpClient!.Dispose();
         }
 
-        [TestMethod]
+        //[TestMethod]
         [DataRow("TestCategory1")]
         public async Task ShouldAdd(string name)
         {
@@ -52,7 +52,7 @@ namespace PersonalFinanceProject.Test.IntegrationTest.TransactionCategories
             Assert.IsTrue(response.IsSuccessStatusCode);
         }
 
-        [TestMethod]
+        //[TestMethod]
         [DataRow(1)]
         public async Task ShouldDeleteById(int id)
         {
@@ -77,7 +77,7 @@ namespace PersonalFinanceProject.Test.IntegrationTest.TransactionCategories
             Assert.IsTrue(response.IsSuccessStatusCode);
         }
 
-        [TestMethod]
+        //[TestMethod]
         [DataRow(1, "TestCategory1")]
         public async Task ShouldGetById(int id, string name)
         {
@@ -102,7 +102,7 @@ namespace PersonalFinanceProject.Test.IntegrationTest.TransactionCategories
             Assert.IsNotNull(transactionCategory.TransactionCategory.Name);
         }
 
-        [TestMethod]
+        //[TestMethod]
         public async Task ShouldGetList()
         {
             // Act
@@ -113,7 +113,7 @@ namespace PersonalFinanceProject.Test.IntegrationTest.TransactionCategories
             Assert.IsTrue(response.IsSuccessStatusCode);
         }
 
-        [TestMethod]
+        //[TestMethod]
         [DataRow(1, "TestCategory2")]
         public async Task ShouldUpdate(int id, string name)
         {

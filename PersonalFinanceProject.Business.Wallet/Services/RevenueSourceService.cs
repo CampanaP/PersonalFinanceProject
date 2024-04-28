@@ -5,7 +5,7 @@ using PersonalFinanceProject.Library.EntityFramework.Interfaces.Repositories;
 
 namespace PersonalFinanceProject.Business.Wallet.Services
 {
-    internal class RevenueSourceService : IRevenueSourceService
+    public class RevenueSourceService : IRevenueSourceService
     {
         private readonly IGenericRepository<RevenueSource> _genericRepository;
 
@@ -24,9 +24,6 @@ namespace PersonalFinanceProject.Business.Wallet.Services
 
         public async Task DeleteById(Guid id, CancellationToken cancellationToken = default)
         {
-            //_specification.Where(x => x.)
-
-            //RevenueSource revenueSource = await _genericRepository.Search()
             return;
         }
 

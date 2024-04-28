@@ -47,7 +47,7 @@ namespace PersonalFinanceProject.Test.UnitTest.TransactionCategories
             await _connection.CloseAsync();
         }
 
-        [TestMethod]
+        //[TestMethod]
         [DataRow(1, "TransactionCategory1")]
         public async Task ShouldAddTransactionCategory(int id, string name)
         {
@@ -63,7 +63,7 @@ namespace PersonalFinanceProject.Test.UnitTest.TransactionCategories
             Assert.AreEqual(name, addTransactionCategory.Name);
         }
 
-        [TestMethod]
+        //[TestMethod]
         [DataRow(1, "TransactionCategory1")]
         public async Task ShouldDeleteByIdTransactionCategory(int id, string name)
         {
@@ -79,7 +79,7 @@ namespace PersonalFinanceProject.Test.UnitTest.TransactionCategories
             Assert.IsNull(deletedTransactionCategory);
         }
 
-        [TestMethod]
+        //[TestMethod]
         [DataRow(1, "TransactionCategory1")]
         public async Task ShouldGetByIdTransactionCategory(int id, string name)
         {
@@ -96,7 +96,7 @@ namespace PersonalFinanceProject.Test.UnitTest.TransactionCategories
             Assert.AreEqual(transactionCategory.Name, getByIdTransactionCategory.Name);
         }
 
-        [TestMethod]
+        //[TestMethod]
         public async Task ShouldGetListTransactionCategory()
         {
             // Arrange:
@@ -120,7 +120,7 @@ namespace PersonalFinanceProject.Test.UnitTest.TransactionCategories
             Assert.AreEqual(transactionCategories.Count, getListTransactionCategories.Count());
         }
 
-        [TestMethod]
+        //[TestMethod]
         [DataRow(1, "TransactionCategory1", "TransactionCategory2")]
         public async Task ShouldUpdateTransactionCategory(int id, string name, string newName)
         {

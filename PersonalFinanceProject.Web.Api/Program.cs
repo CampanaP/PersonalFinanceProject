@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using PersonalFinanceProject.Business.Transaction.DbContexts;
 using PersonalFinanceProject.Library.DependencyInjection.ExtensionMethods;
+using PersonalFinanceProject.Library.EntityFramework.ExtensionMethods;
 using PersonalFinanceProject.Library.Logger.ExtensionMethods;
 using PersonalFinanceProject.Library.Logger.Interfaces.Services;
 using Wolverine;
@@ -28,7 +29,7 @@ namespace PersonalFinanceProject.Web.Api
             builder.Services.AddFromAttributes();
 
             // Business.Transaction
-            builder.Services.AddDbContext<TransactionDbContext>(options => options.UseNpgsql(builder.Configuration.GetConnectionString("SupabaseDB")));
+            builder.Services.AddEntityFramework(builder.Configuration);
 
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddHttpClient();
