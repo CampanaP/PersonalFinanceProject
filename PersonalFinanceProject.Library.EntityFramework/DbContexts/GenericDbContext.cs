@@ -2,7 +2,7 @@
 
 namespace PersonalFinanceProject.Library.EntityFramework.DbContexts
 {
-    public class GenericDbContext : DbContext
+    public class GenericDbContext<T> : DbContext where T : DbContext
     {
         public GenericDbContext()
         {
@@ -10,7 +10,7 @@ namespace PersonalFinanceProject.Library.EntityFramework.DbContexts
             ChangeTracker.LazyLoadingEnabled = false;
         }
 
-        public GenericDbContext(DbContextOptions<GenericDbContext> options) : base(options)
+        public GenericDbContext(DbContextOptions<T> options) : base(options)
         {
             ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTrackingWithIdentityResolution;
             ChangeTracker.LazyLoadingEnabled = false;

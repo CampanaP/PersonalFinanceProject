@@ -1,4 +1,5 @@
-﻿using PersonalFinanceProject.Business.Wallet.Entities;
+﻿using PersonalFinanceProject.Business.Wallet.DbContexts;
+using PersonalFinanceProject.Business.Wallet.Entities;
 using PersonalFinanceProject.Business.Wallet.Interfaces.Services;
 using PersonalFinanceProject.Business.Wallet.Specifications;
 using PersonalFinanceProject.Library.EntityFramework.Interfaces.Repositories;
@@ -7,9 +8,9 @@ namespace PersonalFinanceProject.Business.Wallet.Services
 {
     public class RevenueSourceService : IRevenueSourceService
     {
-        private readonly IGenericRepository<RevenueSource> _genericRepository;
+        private readonly IGenericRepository<RevenueSource, WalletDbContext> _genericRepository;
 
-        public RevenueSourceService(IGenericRepository<RevenueSource> genericRepository)
+        public RevenueSourceService(IGenericRepository<RevenueSource, WalletDbContext> genericRepository)
         {
             _genericRepository = genericRepository;
         }
@@ -24,6 +25,17 @@ namespace PersonalFinanceProject.Business.Wallet.Services
 
         public async Task DeleteById(Guid id, CancellationToken cancellationToken = default)
         {
+            RevenueSource? revenueSource = null;
+
+            revenueSource = await _genericRepository.GetItem(new RevenueSourceGetByIdSpecification(id), cancellationToken);
+            if (revenueSource == null)
+            {
+                throw new Exception($"{nameof(RevenueSourceService)} - {nameof(DeleteById)} - Revenue source to delete not exists");
+            }
+
+            _genericRepository.Remove(revenueSource);
+            await _genericRepository.SaveChanges(cancellationToken);
+
             return;
         }
 
@@ -43,6 +55,9 @@ namespace PersonalFinanceProject.Business.Wallet.Services
 
         public async Task Update(RevenueSource revenueSource, CancellationToken cancellationToken)
         {
+            _genericRepository.Update(revenueSource);
+            await _genericRepository.SaveChanges(cancellationToken);
+
             return;
         }
     }

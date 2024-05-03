@@ -1,8 +1,9 @@
-﻿using PersonalFinanceProject.Library.EntityFramework.Specifications;
+﻿using Microsoft.EntityFrameworkCore;
+using PersonalFinanceProject.Library.EntityFramework.Specifications;
 
 namespace PersonalFinanceProject.Library.EntityFramework.Interfaces.Repositories
 {
-    public interface IGenericRepository<TEntity> where TEntity : class
+    public interface IGenericRepository<TEntity, TDbContext> where TEntity : class where TDbContext : DbContext
     {
         Task Add(TEntity entity, CancellationToken cancellationToken = default);
 

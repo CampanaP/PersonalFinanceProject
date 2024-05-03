@@ -1,12 +1,10 @@
 ﻿using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using PersonalFinanceProject.Business.Transaction.DbContexts;
-using PersonalFinanceProject.Business.Transaction.Entities;
+using PersonalFinanceProject.Business.Wallet.DbContexts;
 using PersonalFinanceProject.Business.Wallet.Entities;
 using PersonalFinanceProject.Business.Wallet.Interfaces.Services;
 using PersonalFinanceProject.Business.Wallet.Services;
-using PersonalFinanceProject.Library.EntityFramework.DbContexts;
 using PersonalFinanceProject.Library.EntityFramework.Interfaces.Repositories;
 using PersonalFinanceProject.Library.EntityFramework.Repositories;
 
@@ -16,8 +14,8 @@ namespace PersonalFinanceProject.Test.UnitTest.RevenueSources
     internal class RevenueSourceServiceUnitTest
     {
         private SqliteConnection _connection = new SqliteConnection("DataSource=:memory:");
-        private GenericDbContext? _dbContext;
-        private IGenericRepository<RevenueSource>? _genericRepository;
+        private WalletDbContext? _dbContext;
+        private IGenericRepository<RevenueSource, WalletDbContext>? _genericRepository;
         private ServiceProvider? _serviceProvider;
         private IRevenueSourceService? _revenueSourceService;
 
@@ -28,16 +26,17 @@ namespace PersonalFinanceProject.Test.UnitTest.RevenueSources
 
             ServiceCollection services = new ServiceCollection();
 
-            services.AddDbContext<GenericDbContext>(options =>
-                options.UseSqlite(_connection)
-                .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTrackingWithIdentityResolution));
+            services.AddDbContext<WalletDbContext>(options =>
+                options
+                    .UseSqlite(_connection)
+                    .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking));
 
             _serviceProvider = services.BuildServiceProvider();
 
-            _dbContext = _serviceProvider.GetRequiredService<GenericDbContext>();
+            _dbContext = _serviceProvider.GetRequiredService<WalletDbContext>();
             await _dbContext.Database.EnsureCreatedAsync();
 
-            _genericRepository = new GenericRepository<RevenueSource>(_dbContext);
+            _genericRepository = new GenericRepository<RevenueSource, WalletDbContext>(_dbContext);
 
             _revenueSourceService = new RevenueSourceService(_genericRepository);
         }
@@ -45,7 +44,7 @@ namespace PersonalFinanceProject.Test.UnitTest.RevenueSources
         [TestCleanup]
         public async Task Cleanup()
         {
-            TransactionDbContext dbContext = _serviceProvider!.GetRequiredService<TransactionDbContext>();
+            WalletDbContext dbContext = _serviceProvider!.GetRequiredService<WalletDbContext>();
 
             await dbContext.Database.EnsureDeletedAsync();
 
@@ -54,7 +53,7 @@ namespace PersonalFinanceProject.Test.UnitTest.RevenueSources
 
         [TestMethod]
         [DataRow("RevenueSource1")]
-        public async Task ShouldAddRevenueSource(string name)
+        public async Task ShouldAdd(string name)
         {
             // Arrange:
             DateTime dateTimeNow = DateTime.Now;
@@ -73,80 +72,103 @@ namespace PersonalFinanceProject.Test.UnitTest.RevenueSources
             Assert.AreEqual(dateTimeNow, addedRevenueSource.UpdateDate);
         }
 
-        //[TestMethod]
-        [DataRow(1, "TransactionCategory1")]
-        public async Task ShouldDeleteByIdTransactionCategory(int id, string name)
-        {
-            //Arrange:
-            //TransactionCategory transactionCategory = new TransactionCategory(id, name);
-            //await _transactionCategoryService!.Add(transactionCategory);
-
-            // Act:
-            //await _transactionCategoryService!.DeleteById(id);
-
-            // Assert:
-            //TransactionCategory? deletedTransactionCategory = await _dbContext!.TransactionCategories.FirstOrDefaultAsync(tc => tc.Id == id);
-            //Assert.IsNull(deletedTransactionCategory);
-        }
-
-        //[TestMethod]
-        [DataRow(1, "TransactionCategory1")]
-        public async Task ShouldGetByIdTransactionCategory(int id, string name)
+        [TestMethod]
+        [DataRow("RevenueSource1")]
+        public async Task ShouldDeleteById(string name)
         {
             // Arrange:
-            //TransactionCategory transactionCategory = new TransactionCategory(id, name);
-            //await _transactionCategoryService!.Add(transactionCategory);
+            DateTime dateTimeNow = DateTime.Now;
+            Guid userId = Guid.NewGuid();
+            RevenueSource revenueSource = new RevenueSource(Guid.Empty, name, userId, dateTimeNow, dateTimeNow);
+            Guid id = await _revenueSourceService!.Add(revenueSource);
+            _dbContext!.Entry(revenueSource).State = EntityState.Detached;
+
 
             // Act:
-            //TransactionCategory? getByIdTransactionCategory = await _transactionCategoryService.GetById(id);
+            await _revenueSourceService.DeleteById(id);
 
             // Assert:
-            //Assert.IsNotNull(getByIdTransactionCategory);
-            //Assert.AreEqual(transactionCategory.Id, getByIdTransactionCategory.Id);
-            //Assert.AreEqual(transactionCategory.Name, getByIdTransactionCategory.Name);
+            RevenueSource? deletedRevenueSource = await _revenueSourceService.GetById(id);
+            Assert.IsNull(deletedRevenueSource);
         }
 
-        //[TestMethod]
-        public async Task ShouldGetListTransactionCategory()
+        [TestMethod]
+        [DataRow("RevenueSource1")]
+        public async Task ShouldGetById(string name)
         {
             // Arrange:
-            //List<TransactionCategory> transactionCategories = new List<TransactionCategory>()
-            //{
-            //    new TransactionCategory(1, "TransactionCategory1"),
-            //    new TransactionCategory(2, "TransactionCategory2")
-            //};
-
-            //foreach (TransactionCategory transactionCategory in transactionCategories)
-            //{
-            //    await _transactionCategoryService!.Add(transactionCategory);
-            //}
+            DateTime dateTimeNow = DateTime.Now;
+            Guid userId = Guid.NewGuid();
+            RevenueSource revenueSource = new RevenueSource(Guid.Empty, name, userId, dateTimeNow, dateTimeNow);
+            Guid id = await _revenueSourceService!.Add(revenueSource);
+            _dbContext!.Entry(revenueSource).State = EntityState.Detached;
 
             // Act:
-            //IEnumerable<TransactionCategory> getListTransactionCategories = await _transactionCategoryService!.GetList();
+            RevenueSource? getByIdRevenueSource = await _revenueSourceService.GetById(id);
 
             // Assert:
-            //Assert.IsNotNull(getListTransactionCategories);
-            //Assert.AreNotEqual(Enumerable.Empty<TransactionCategory>(), getListTransactionCategories);
-            //Assert.AreEqual(transactionCategories.Count, getListTransactionCategories.Count());
+            Assert.IsNotNull(getByIdRevenueSource);
+            Assert.AreEqual(id, getByIdRevenueSource.Id);
+            Assert.AreEqual(name, getByIdRevenueSource.Name);
+            Assert.AreEqual(userId, getByIdRevenueSource.UserId);
+            Assert.AreEqual(dateTimeNow, getByIdRevenueSource.CreateDate);
+            Assert.AreEqual(dateTimeNow, getByIdRevenueSource.UpdateDate);
         }
 
-        //[TestMethod]
-        [DataRow(1, "TransactionCategory1", "TransactionCategory2")]
-        public async Task ShouldUpdateTransactionCategory(int id, string name, string newName)
+        [TestMethod]
+        [DataRow("RevenueSource1", "RevenueSource2")]
+        public async Task ShouldGetList(string firstName, string secondName)
         {
             // Arrange:
-            //TransactionCategory transactionCategory = new TransactionCategory(id, name);
-            //await _transactionCategoryService!.Add(transactionCategory);
+            DateTime dateTimeNow = DateTime.Now;
+            Guid firstUserId = Guid.NewGuid();
+            Guid secondUserId = Guid.NewGuid();
+
+            List<RevenueSource> revenueSources = new List<RevenueSource>()
+            {
+                new RevenueSource(Guid.Empty, firstName, firstUserId, dateTimeNow, dateTimeNow),
+                new RevenueSource(Guid.Empty, secondName, secondUserId, dateTimeNow, dateTimeNow)
+            };
+
+            foreach (RevenueSource revenueSource in revenueSources)
+            {
+                await _revenueSourceService!.Add(revenueSource);
+                _dbContext!.Entry(revenueSource).State = EntityState.Detached;
+            }
 
             // Act:
-            //transactionCategory.Name = newName;
-            //await _transactionCategoryService!.Update(transactionCategory);
+            IEnumerable<RevenueSource> getListRevenueSources = await _revenueSourceService!.GetList();
 
             // Assert:
-            //TransactionCategory? updatedTransactionCategory = await _dbContext!.TransactionCategories.FirstOrDefaultAsync(tc => tc.Id == id);
-            //Assert.IsNotNull(updatedTransactionCategory);
-            //Assert.AreEqual(id, updatedTransactionCategory.Id);
-            //Assert.AreEqual(newName, updatedTransactionCategory.Name);
+            Assert.IsNotNull(getListRevenueSources);
+            Assert.AreNotEqual(Enumerable.Empty<RevenueSource>(), getListRevenueSources);
+            Assert.AreEqual(revenueSources.Count, getListRevenueSources.Count());
+        }
+
+        [TestMethod]
+        [DataRow("RevenueSource1", "RevenueSource2")]
+        public async Task ShouldUpdate(string name, string newName)
+        {
+            // Arrange:
+            DateTime dateTimeNow = DateTime.Now;
+            Guid userId = Guid.NewGuid();
+            RevenueSource revenueSource = new RevenueSource(Guid.Empty, name, userId, dateTimeNow, dateTimeNow);
+            Guid id = await _revenueSourceService!.Add(revenueSource);
+            _dbContext!.Entry(revenueSource).State = EntityState.Detached;
+
+            // Act:
+            revenueSource.Name = newName;
+            await _revenueSourceService!.Update(revenueSource);
+
+            // Assert:
+            RevenueSource? updatedRevenueSource = await _revenueSourceService.GetById(id);
+            Assert.IsNotNull(updatedRevenueSource);
+            Assert.AreEqual(revenueSource.Id, updatedRevenueSource.Id);
+            Assert.AreNotEqual(name, updatedRevenueSource.Name);
+            Assert.AreEqual(newName, updatedRevenueSource.Name);
+            Assert.AreEqual(revenueSource.UserId, updatedRevenueSource.UserId);
+            Assert.AreEqual(revenueSource.CreateDate, updatedRevenueSource.CreateDate);
+            Assert.AreEqual(revenueSource.UpdateDate, updatedRevenueSource.UpdateDate);
         }
     }
 }

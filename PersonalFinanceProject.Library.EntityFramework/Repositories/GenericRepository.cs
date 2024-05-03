@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PersonalFinanceProject.Library.DependencyInjection.Attributes;
-using PersonalFinanceProject.Library.EntityFramework.DbContexts;
 using PersonalFinanceProject.Library.EntityFramework.ExtensionMethods;
 using PersonalFinanceProject.Library.EntityFramework.Interfaces.Repositories;
 using PersonalFinanceProject.Library.EntityFramework.Specifications;
@@ -8,11 +7,11 @@ using PersonalFinanceProject.Library.EntityFramework.Specifications;
 namespace PersonalFinanceProject.Library.EntityFramework.Repositories
 {
     [ScopedLifetime]
-    public class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEntity : class
+    public class GenericRepository<TEntity, TDbContext> : IGenericRepository<TEntity, TDbContext> where TEntity : class where TDbContext : DbContext
     {
-        protected readonly GenericDbContext _dbContext;
+        protected readonly TDbContext _dbContext;
 
-        public GenericRepository(GenericDbContext dbContext)
+        public GenericRepository(TDbContext dbContext)
         {
             _dbContext = dbContext;
         }
