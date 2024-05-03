@@ -25,15 +25,7 @@ namespace PersonalFinanceProject.Business.Wallet.Services
 
         public async Task DeleteById(Guid id, CancellationToken cancellationToken = default)
         {
-            RevenueSource? revenueSource = null;
-
-            revenueSource = await _genericRepository.GetItem(new RevenueSourceGetByIdSpecification(id), cancellationToken);
-            if (revenueSource == null)
-            {
-                throw new Exception($"{nameof(RevenueSourceService)} - {nameof(DeleteById)} - Revenue source to delete not exists");
-            }
-
-            _genericRepository.Remove(revenueSource);
+            await _genericRepository.Delete(new RevenueSourceGetByIdSpecification(id), cancellationToken);
             await _genericRepository.SaveChanges(cancellationToken);
 
             return;
@@ -53,12 +45,15 @@ namespace PersonalFinanceProject.Business.Wallet.Services
             return revenueSources;
         }
 
-        public async Task Update(RevenueSource revenueSource, CancellationToken cancellationToken)
+        public async Task Update(RevenueSource revenueSource, CancellationToken cancellationToken = default)
         {
-            _genericRepository.Update(revenueSource);
-            await _genericRepository.SaveChanges(cancellationToken);
-
-            return;
+            await _genericRepository.Update(
+                new RevenueSourceGetByIdSpecification(revenueSource.Id),
+                u => u.SetProperty(rs => rs.Name, revenueSource.Name)
+                    .SetProperty(rs => rs.UserId, revenueSource.UserId)
+                    .SetProperty(rs => rs.CreateDate, revenueSource.CreateDate)
+                    .SetProperty(rs => rs.UpdateDate, revenueSource.UpdateDate),
+                cancellationToken);
         }
     }
 }
