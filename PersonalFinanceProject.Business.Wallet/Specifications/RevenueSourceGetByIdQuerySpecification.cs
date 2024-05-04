@@ -3,9 +3,9 @@ using PersonalFinanceProject.Library.EntityFramework.Specifications;
 
 namespace PersonalFinanceProject.Business.Wallet.Specifications
 {
-    internal class RevenueSourceGetByIdSpecification : GenericSpecification<RevenueSource>
+    internal class RevenueSourceGetByIdQuerySpecification : QuerySpecification<RevenueSource>
     {
-        public RevenueSourceGetByIdSpecification(Guid id) : base(rs => rs.Id == id)
+        public RevenueSourceGetByIdQuerySpecification(Guid id) : base(rs => rs.Id == id)
         {
         }
     }

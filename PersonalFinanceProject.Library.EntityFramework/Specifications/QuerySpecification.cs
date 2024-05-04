@@ -2,9 +2,9 @@
 
 namespace PersonalFinanceProject.Library.EntityFramework.Specifications
 {
-    public abstract class GenericSpecification<TEntity> where TEntity : class
+    public abstract class QuerySpecification<TEntity> where TEntity : class
     {
-        protected GenericSpecification(Expression<Func<TEntity, bool>>? criteria)
+        protected QuerySpecification(Expression<Func<TEntity, bool>>? criteria)
         {
             Criteria = criteria;
         }

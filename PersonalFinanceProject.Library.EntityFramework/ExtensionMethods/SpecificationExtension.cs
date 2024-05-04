@@ -5,36 +5,36 @@ namespace PersonalFinanceProject.Library.EntityFramework.ExtensionMethods
 {
     public static class SpecificationExtension
     {
-        public static IQueryable<TEntity> Search<TEntity>(this IQueryable<TEntity> query, GenericSpecification<TEntity> specification) where TEntity : class
+        public static IQueryable<TEntity> Search<TEntity>(this IQueryable<TEntity> query, QuerySpecification<TEntity> querySpecification) where TEntity : class
         {
-            if (specification.Criteria is not null)
+            if (querySpecification.Criteria is not null)
             {
-                query = query.Where(specification.Criteria);
+                query = query.Where(querySpecification.Criteria);
             }
 
-            if (specification.Includes?.Any() ?? false)
+            if (querySpecification.Includes?.Any() ?? false)
             {
-                query = specification.Includes.Aggregate(query, (current, include) => current.Include(include));
+                query = querySpecification.Includes.Aggregate(query, (current, include) => current.Include(include));
             }
 
-            if (specification.Skip is not null)
+            if (querySpecification.Skip is not null)
             {
-                query = query.Skip(specification.Skip.Value);
+                query = query.Skip(querySpecification.Skip.Value);
             }
 
-            if (specification.Take is not null)
+            if (querySpecification.Take is not null)
             {
-                query = query.Take(specification.Take.Value);
+                query = query.Take(querySpecification.Take.Value);
             }
 
-            if (specification.OrderBy is not null)
+            if (querySpecification.OrderBy is not null)
             {
-                query = query.OrderBy(specification.OrderBy);
+                query = query.OrderBy(querySpecification.OrderBy);
             }
 
-            if (specification.OrderByDescending is not null)
+            if (querySpecification.OrderByDescending is not null)
             {
-                query = query.OrderByDescending(specification.OrderByDescending);
+                query = query.OrderByDescending(querySpecification.OrderByDescending);
             }
 
             return query;

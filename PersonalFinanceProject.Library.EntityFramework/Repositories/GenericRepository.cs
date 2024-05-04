@@ -1,10 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Query;
 using PersonalFinanceProject.Library.DependencyInjection.Attributes;
 using PersonalFinanceProject.Library.EntityFramework.ExtensionMethods;
 using PersonalFinanceProject.Library.EntityFramework.Interfaces.Repositories;
 using PersonalFinanceProject.Library.EntityFramework.Specifications;
-using System.Linq.Expressions;
 
 namespace PersonalFinanceProject.Library.EntityFramework.Repositories
 {
@@ -18,7 +16,7 @@ namespace PersonalFinanceProject.Library.EntityFramework.Repositories
             _dbContext = dbContext;
         }
 
-        private IQueryable<TEntity> search(GenericSpecification<TEntity> specification)
+        private IQueryable<TEntity> search(QuerySpecification<TEntity> specification)
         {
             return _dbContext.Set<TEntity>().Search(specification);
         }
@@ -38,7 +36,7 @@ namespace PersonalFinanceProject.Library.EntityFramework.Repositories
             _dbContext.Set<TEntity>().Remove(entity);
         }
 
-        public async Task Delete(GenericSpecification<TEntity> specification, CancellationToken cancellationToken)
+        public async Task Delete(QuerySpecification<TEntity> specification, CancellationToken cancellationToken)
         {
             await search(specification).ExecuteDeleteAsync(cancellationToken);
         }
@@ -57,7 +55,7 @@ namespace PersonalFinanceProject.Library.EntityFramework.Repositories
             return item;
         }
 
-        public async Task<TEntity?> GetItem(GenericSpecification<TEntity> specification, CancellationToken cancellationToken = default)
+        public async Task<TEntity?> GetItem(QuerySpecification<TEntity> specification, CancellationToken cancellationToken = default)
         {
             TEntity? item = null;
 
@@ -75,7 +73,7 @@ namespace PersonalFinanceProject.Library.EntityFramework.Repositories
             return items;
         }
 
-        public async Task<IEnumerable<TEntity>> GetItems(GenericSpecification<TEntity> specification, CancellationToken cancellationToken = default)
+        public async Task<IEnumerable<TEntity>> GetItems(QuerySpecification<TEntity> specification, CancellationToken cancellationToken = default)
         {
             IEnumerable<TEntity> items = Enumerable.Empty<TEntity>();
 
@@ -94,9 +92,9 @@ namespace PersonalFinanceProject.Library.EntityFramework.Repositories
             _dbContext.Set<TEntity>().Update(entity);
         }
 
-        public async Task Update(GenericSpecification<TEntity> specification, Expression<Func<SetPropertyCalls<TEntity>, SetPropertyCalls<TEntity>>> properties, CancellationToken cancellationToken = default)
+        public async Task Update(QuerySpecification<TEntity> querySpecification, UpdateSpecification<TEntity> updateSpecification, CancellationToken cancellationToken = default)
         {
-            await search(specification).ExecuteUpdateAsync(properties, cancellationToken);
+            await search(querySpecification).ExecuteUpdateAsync(updateSpecification.Properties!, cancellationToken);
         }
 
         public void UpdateRange(IEnumerable<TEntity> entities)
