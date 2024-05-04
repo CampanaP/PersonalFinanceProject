@@ -20,12 +20,13 @@
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
 		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
-		<PackageReference Include="WolverineFx" Version="2.5.0" />
-		<PackageReference Include="WolverineFx.Http" Version="2.5.0" />
+		<PackageReference Include="WolverineFx" Version="2.6.1" />
+		<PackageReference Include="WolverineFx.Http" Version="2.6.1" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<ProjectReference Include="..\PersonalFinanceProject.Business.Transaction\PersonalFinanceProject.Business.Transaction.csproj" />
+		<ProjectReference Include="..\PersonalFinanceProject.Business.Wallet\PersonalFinanceProject.Business.Wallet.csproj" />
 		<ProjectReference Include="..\PersonalFinanceProject.Library.EntityFramework\PersonalFinanceProject.Library.EntityFramework.csproj" />
 		<ProjectReference Include="..\PersonalFinanceProject.Library.Logger\PersonalFinanceProject.Library.Logger.csproj" />
 		<ProjectReference Include="..\PersonalFinanceProject.Library.DependencyInjection\PersonalFinanceProject.Library.DependencyInjection.csproj" />

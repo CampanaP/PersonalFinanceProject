@@ -2,14 +2,14 @@
 {
     internal class TransactionCategoryIntegrationTestConstant
     {
-        public static readonly string AddEndpointUrl = "/api/transaction-category/add";
-        
-        public static readonly string DeleteEndpointUrl = "/api/transaction-category/delete";
-        
-        public static readonly string GetEndpointUrl = "/api/transaction-category/get";
-        
-        public static readonly string GetListEndpointUrl = "/api/transaction-category/get/list";
-        
-        public static readonly string UpdateEndpointUrl = "/api/transaction-category/update";
+        public const string AddEndpointUrl = "/api/transaction-category/add";
+
+        public const string DeleteEndpointUrl = "/api/transaction-category/delete";
+
+        public const string GetEndpointUrl = "/api/transaction-category/get";
+
+        public const string GetListEndpointUrl = "/api/transaction-category/get/list";
+
+        public const string UpdateEndpointUrl = "/api/transaction-category/update";
     }
 }

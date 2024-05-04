@@ -2,10 +2,12 @@
 using PersonalFinanceProject.Business.Wallet.Entities;
 using PersonalFinanceProject.Business.Wallet.Interfaces.Services;
 using PersonalFinanceProject.Business.Wallet.Specifications;
+using PersonalFinanceProject.Library.DependencyInjection.Attributes;
 using PersonalFinanceProject.Library.EntityFramework.Interfaces.Repositories;
 
 namespace PersonalFinanceProject.Business.Wallet.Services
 {
+    [ScopedLifetime]
     public class RevenueSourceService : IRevenueSourceService
     {
         private readonly IGenericRepository<RevenueSource, WalletDbContext> _genericRepository;

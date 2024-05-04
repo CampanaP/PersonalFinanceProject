@@ -14,6 +14,10 @@ namespace PersonalFinanceProject.Business.Wallet.Entities
 
         public required DateTime UpdateDate { get; set; }
 
+        public RevenueSource()
+        {
+        }
+
         [SetsRequiredMembers]
         public RevenueSource(Guid id, string name, Guid userId, DateTime createDate, DateTime updateDate)
         {

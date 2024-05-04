@@ -1,8 +1,5 @@
 ﻿using Microsoft.AspNetCore.Diagnostics;
-using Microsoft.EntityFrameworkCore;
-using PersonalFinanceProject.Business.Transaction.DbContexts;
 using PersonalFinanceProject.Library.DependencyInjection.ExtensionMethods;
-using PersonalFinanceProject.Library.EntityFramework.ExtensionMethods;
 using PersonalFinanceProject.Library.Logger.ExtensionMethods;
 using PersonalFinanceProject.Library.Logger.Interfaces.Services;
 using Wolverine;
@@ -19,7 +16,9 @@ namespace PersonalFinanceProject.Web.Api
 
             builder.Host.UseWolverine(opts =>
             {
+                // Map Endpoints
                 opts.Discovery.IncludeAssembly(typeof(Business.Transaction.Endpoints.TransactionCategoryEndpoint).Assembly);
+                opts.Discovery.IncludeAssembly(typeof(Business.Wallet.Endpoints.RevenueSourceEndpoint).Assembly);
             });
 
             // Infrastructure.Logger
@@ -27,9 +26,6 @@ namespace PersonalFinanceProject.Web.Api
 
             // Infrastructure.DependencyInjection
             builder.Services.AddFromAttributes();
-
-            // Business.Transaction
-            builder.Services.AddEntityFramework(builder.Configuration);
 
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddHttpClient();

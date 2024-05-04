@@ -4,6 +4,7 @@ using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using PersonalFinanceProject.Business.Transaction.DbContexts;
+using PersonalFinanceProject.Business.Wallet.DbContexts;
 using PersonalFinanceProject.Web.Api;
 
 namespace PersonalFinanceProject.Test.IntegrationTest.Factories
@@ -29,7 +30,13 @@ namespace PersonalFinanceProject.Test.IntegrationTest.Factories
                     services.AddDbContext<TransactionDbContext>(options =>
                     {
                         options.UseSqlite(connection)
-                            .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTrackingWithIdentityResolution);
+                            .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
+                    });
+
+                    services.AddDbContext<WalletDbContext>(options =>
+                    {
+                        options.UseSqlite(connection)
+                            .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
                     });
                 });
         }

@@ -19,6 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\PersonalFinanceProject.Business.Wallet\PersonalFinanceProject.Business.Wallet.csproj" />
     <ProjectReference Include="..\PersonalFinanceProject.Web.Api\PersonalFinanceProject.Web.Api.csproj" />
   </ItemGroup>
 
