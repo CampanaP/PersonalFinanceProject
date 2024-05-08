@@ -1,17 +1,18 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using PersonalFinanceProject.Business.Transaction.DbContexts;
-using PersonalFinanceProject.Communication.Message.TransactionCategory.Requests;
-using PersonalFinanceProject.Communication.Message.TransactionCategory.Responses;
+using PersonalFinanceProject.Communication.Message.TransactionType.Requests;
+using PersonalFinanceProject.Communication.Message.TransactionType.Responses;
 using PersonalFinanceProject.Test.IntegrationTest.Factories;
+using PersonalFinanceProject.Test.IntegrationTest.TransactionCategories;
 using PersonalFinanceProject.Web.Api;
 using System.Net.Http.Json;
 using System.Text;
 using System.Text.Json;
 
-namespace PersonalFinanceProject.Test.IntegrationTest.TransactionCategories
+namespace PersonalFinanceProject.Test.IntegrationTest.TransactionTypes
 {
     [TestClass]
-    internal class TransactionCategoryEndpointIntegrationTest
+    internal class TransactionTypeEndpointIntegrationTest
     {
         private CustomWebApplicationFactory<Program>? _applicationFactory;
         private TransactionDbContext? _dbContext;
@@ -37,15 +38,15 @@ namespace PersonalFinanceProject.Test.IntegrationTest.TransactionCategories
         }
 
         [TestMethod]
-        [DataRow("TransactionCategory1")]
+        [DataRow("TransactionType1")]
         public async Task ShouldAdd(string name)
         {
             // Arrange
-            TransactionCategoryAddRequest request = new TransactionCategoryAddRequest(name);
+            TransactionTypeAddRequest request = new TransactionTypeAddRequest(name);
             HttpContent content = new StringContent(JsonSerializer.Serialize(request), Encoding.UTF8, "application/json");
 
             // Act
-            HttpResponseMessage? response = await _httpClient!.PostAsync(TransactionCategoryIntegrationTestConstant.AddEndpointUrl, content);
+            HttpResponseMessage? response = await _httpClient!.PostAsync(TransactionTypeIntegrationTestConstant.AddEndpointUrl, content);
 
             // Assert
             Assert.IsNotNull(response);
@@ -57,8 +58,8 @@ namespace PersonalFinanceProject.Test.IntegrationTest.TransactionCategories
         public async Task ShouldDeleteById(int id)
         {
             // Arrange
-            string url = $"{TransactionCategoryIntegrationTestConstant.DeleteEndpointUrl}/{id}";
-            TransactionCategoryDeleteByIdRequest request = new TransactionCategoryDeleteByIdRequest(id);
+            string url = $"{TransactionTypeIntegrationTestConstant.DeleteEndpointUrl}/{id}";
+            TransactionTypeDeleteByIdRequest request = new TransactionTypeDeleteByIdRequest(id);
 
             StringContent content = new StringContent(JsonSerializer.Serialize(request), Encoding.UTF8, "application/json");
 
@@ -78,15 +79,15 @@ namespace PersonalFinanceProject.Test.IntegrationTest.TransactionCategories
         }
 
         [TestMethod]
-        [DataRow(1, "TransactionCategory1")]
+        [DataRow(1, "TransactionType1")]
         public async Task ShouldGetById(int id, string name)
         {
             // Arrange
-            string url = $"{TransactionCategoryIntegrationTestConstant.GetEndpointUrl}/{id}";
+            string url = $"{TransactionTypeIntegrationTestConstant.GetEndpointUrl}/{id}";
 
-            TransactionCategoryAddRequest request = new TransactionCategoryAddRequest(name);
+            TransactionTypeAddRequest request = new TransactionTypeAddRequest(name);
             HttpContent content = new StringContent(JsonSerializer.Serialize(request), Encoding.UTF8, "application/json");
-            await _httpClient!.PostAsync(TransactionCategoryIntegrationTestConstant.AddEndpointUrl, content);
+            await _httpClient!.PostAsync(TransactionTypeIntegrationTestConstant.AddEndpointUrl, content);
 
             // Act
             HttpResponseMessage? response = await _httpClient!.GetAsync(url);
@@ -95,18 +96,18 @@ namespace PersonalFinanceProject.Test.IntegrationTest.TransactionCategories
             Assert.IsNotNull(response);
             Assert.IsTrue(response.IsSuccessStatusCode);
 
-            TransactionCategoryGetByIdResponse? transactionCategory = await response.Content.ReadFromJsonAsync<TransactionCategoryGetByIdResponse>();
+            TransactionTypeGetByIdResponse? transactionCategory = await response.Content.ReadFromJsonAsync<TransactionTypeGetByIdResponse>();
             Assert.IsNotNull(transactionCategory);
-            Assert.IsNotNull(transactionCategory.TransactionCategory);
-            Assert.AreEqual(id, transactionCategory.TransactionCategory.Id);
-            Assert.IsNotNull(transactionCategory.TransactionCategory.Name);
+            Assert.IsNotNull(transactionCategory.TransactionType);
+            Assert.AreEqual(id, transactionCategory.TransactionType.Id);
+            Assert.IsNotNull(transactionCategory.TransactionType.Name);
         }
 
         [TestMethod]
         public async Task ShouldGetList()
         {
             // Act
-            HttpResponseMessage? response = await _httpClient!.GetAsync(TransactionCategoryIntegrationTestConstant.GetListEndpointUrl);
+            HttpResponseMessage? response = await _httpClient!.GetAsync(TransactionTypeIntegrationTestConstant.GetListEndpointUrl);
 
             // Assert
             Assert.IsNotNull(response);
@@ -114,15 +115,15 @@ namespace PersonalFinanceProject.Test.IntegrationTest.TransactionCategories
         }
 
         [TestMethod]
-        [DataRow(1, "TransactionCategory2")]
+        [DataRow(1, "TransactionType2")]
         public async Task ShouldUpdate(int id, string name)
         {
             // Arrange
-            TransactionCategoryUpdateRequest request = new TransactionCategoryUpdateRequest(id, name);
+            TransactionTypeUpdateRequest request = new TransactionTypeUpdateRequest(id, name);
             HttpContent content = new StringContent(JsonSerializer.Serialize(request), Encoding.UTF8, "application/json");
 
             // Act
-            HttpResponseMessage? response = await _httpClient!.PutAsync(TransactionCategoryIntegrationTestConstant.UpdateEndpointUrl, content);
+            HttpResponseMessage? response = await _httpClient!.PutAsync(TransactionTypeIntegrationTestConstant.UpdateEndpointUrl, content);
 
             // Assert
             Assert.IsNotNull(response);
