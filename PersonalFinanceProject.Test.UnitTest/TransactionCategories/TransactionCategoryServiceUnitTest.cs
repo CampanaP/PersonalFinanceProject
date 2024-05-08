@@ -3,19 +3,20 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using PersonalFinanceProject.Business.Transaction.DbContexts;
 using PersonalFinanceProject.Business.Transaction.Entities;
-using PersonalFinanceProject.Business.Transaction.Repositories;
 using PersonalFinanceProject.Business.Transaction.Services;
+using PersonalFinanceProject.Library.EntityFramework.Interfaces.Repositories;
+using PersonalFinanceProject.Library.EntityFramework.Repositories;
 
 namespace PersonalFinanceProject.Test.UnitTest.TransactionCategories
 {
     [TestClass]
     internal class TransactionCategoryServiceUnitTest
     {
-        private ServiceProvider? _serviceProvider;
-        private TransactionCategoryRepository? _transactionCategoryRepository;
-        private TransactionCategoryService? _transactionCategoryService;
-        private TransactionDbContext? _dbContext;
         private SqliteConnection _connection = new SqliteConnection("DataSource=:memory:");
+        private TransactionDbContext? _dbContext;
+        private IGenericRepository<TransactionCategory, TransactionDbContext>? _genericRepository;
+        private ServiceProvider? _serviceProvider;
+        private TransactionCategoryService? _transactionCategoryService;
 
         [TestInitialize]
         public async Task Setup()
@@ -25,16 +26,17 @@ namespace PersonalFinanceProject.Test.UnitTest.TransactionCategories
             ServiceCollection services = new ServiceCollection();
 
             services.AddDbContext<TransactionDbContext>(options =>
-                options.UseSqlite(_connection)
-                .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTrackingWithIdentityResolution));
+                options
+                    .UseSqlite(_connection)
+                    .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking));
 
             _serviceProvider = services.BuildServiceProvider();
-            _dbContext = _serviceProvider.GetRequiredService<TransactionDbContext>();
 
+            _dbContext = _serviceProvider.GetRequiredService<TransactionDbContext>();
             await _dbContext.Database.EnsureCreatedAsync();
 
-            _transactionCategoryRepository = new TransactionCategoryRepository(_dbContext);
-            _transactionCategoryService = new TransactionCategoryService(_transactionCategoryRepository);
+            _genericRepository = new GenericRepository<TransactionCategory, TransactionDbContext>(_dbContext);
+            _transactionCategoryService = new TransactionCategoryService(_genericRepository);
         }
 
         [TestCleanup]
@@ -47,7 +49,7 @@ namespace PersonalFinanceProject.Test.UnitTest.TransactionCategories
             await _connection.CloseAsync();
         }
 
-        //[TestMethod]
+        [TestMethod]
         [DataRow(1, "TransactionCategory1")]
         public async Task ShouldAddTransactionCategory(int id, string name)
         {
@@ -63,7 +65,7 @@ namespace PersonalFinanceProject.Test.UnitTest.TransactionCategories
             Assert.AreEqual(name, addTransactionCategory.Name);
         }
 
-        //[TestMethod]
+        [TestMethod]
         [DataRow(1, "TransactionCategory1")]
         public async Task ShouldDeleteByIdTransactionCategory(int id, string name)
         {
@@ -79,7 +81,7 @@ namespace PersonalFinanceProject.Test.UnitTest.TransactionCategories
             Assert.IsNull(deletedTransactionCategory);
         }
 
-        //[TestMethod]
+        [TestMethod]
         [DataRow(1, "TransactionCategory1")]
         public async Task ShouldGetByIdTransactionCategory(int id, string name)
         {
@@ -96,7 +98,7 @@ namespace PersonalFinanceProject.Test.UnitTest.TransactionCategories
             Assert.AreEqual(transactionCategory.Name, getByIdTransactionCategory.Name);
         }
 
-        //[TestMethod]
+        [TestMethod]
         public async Task ShouldGetListTransactionCategory()
         {
             // Arrange:
@@ -120,7 +122,7 @@ namespace PersonalFinanceProject.Test.UnitTest.TransactionCategories
             Assert.AreEqual(transactionCategories.Count, getListTransactionCategories.Count());
         }
 
-        //[TestMethod]
+        [TestMethod]
         [DataRow(1, "TransactionCategory1", "TransactionCategory2")]
         public async Task ShouldUpdateTransactionCategory(int id, string name, string newName)
         {

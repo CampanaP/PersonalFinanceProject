@@ -1,9 +1,8 @@
-﻿using PersonalFinanceProject.Business.Wallet.Entities;
-using PersonalFinanceProject.Library.EntityFramework.Specifications;
+﻿using PersonalFinanceProject.Library.EntityFramework.Specifications;
 
-namespace PersonalFinanceProject.Business.Wallet.Specifications
+namespace PersonalFinanceProject.Business.Wallet.Specifications.RevenueSource
 {
-    internal class RevenueSourceUpdateSpecification : UpdateSpecification<RevenueSource>
+    internal class RevenueSourceUpdateSpecification : UpdateSpecification<Entities.RevenueSource>
     {
         public RevenueSourceUpdateSpecification(string name, Guid userId, DateTime createDate, DateTime updateDate)
             : base(u =>

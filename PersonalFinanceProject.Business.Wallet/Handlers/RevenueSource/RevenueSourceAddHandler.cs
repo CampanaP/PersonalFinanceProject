@@ -9,6 +9,7 @@ namespace PersonalFinanceProject.Business.Wallet.Handlers.RevenueSource
     [WolverineHandler]
     public class RevenueSourceAddHandler
     {
+        //private readonly ILoggerService _loggerService;
         private readonly IEntityMapperService _entityMapperService;
         private readonly IRevenueSourceService _revenueSourceService;
 

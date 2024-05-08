@@ -1,7 +1,7 @@
 ﻿using PersonalFinanceProject.Business.Wallet.DbContexts;
 using PersonalFinanceProject.Business.Wallet.Entities;
 using PersonalFinanceProject.Business.Wallet.Interfaces.Services;
-using PersonalFinanceProject.Business.Wallet.Specifications;
+using PersonalFinanceProject.Business.Wallet.Specifications.RevenueSource;
 using PersonalFinanceProject.Library.DependencyInjection.Attributes;
 using PersonalFinanceProject.Library.EntityFramework.Interfaces.Repositories;
 

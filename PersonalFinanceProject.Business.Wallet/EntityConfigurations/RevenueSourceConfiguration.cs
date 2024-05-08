@@ -16,9 +16,15 @@ namespace PersonalFinanceProject.Business.Wallet.EntityConfigurations
 
             builder.Property(p => p.UserId).IsRequired();
 
-            builder.Property(p => p.CreateDate).HasDefaultValue(DateTime.Now).ValueGeneratedOnAdd().IsRequired();
+            builder.Property(p => p.CreateDate)
+                .HasDefaultValue(DateTime.Now)
+                .ValueGeneratedOnAdd()
+                .IsRequired();
 
-            builder.Property(p => p.UpdateDate).HasDefaultValue(DateTime.Now).ValueGeneratedOnAdd().IsRequired();
+            builder.Property(p => p.UpdateDate)
+                .HasDefaultValue(DateTime.Now)
+                .ValueGeneratedOnAdd()
+                .IsRequired();
 
             builder.HasIndex(new string[] { "Id" });
             builder.HasIndex(new string[] { "UserId" });

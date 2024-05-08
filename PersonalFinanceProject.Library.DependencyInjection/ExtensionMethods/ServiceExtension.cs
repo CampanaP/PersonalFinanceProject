@@ -15,19 +15,19 @@ namespace PersonalFinanceProject.Library.DependencyInjection.ExtensionMethods
                     //Transient classes
                     .AddClasses(@class => @class.WithAttribute<TransientLifetimeAttribute>())
                     .UsingRegistrationStrategy(RegistrationStrategy.Append)
-                    .AsSelfWithInterfaces()
+                    .AsImplementedInterfaces()
                     .WithTransientLifetime()
 
                     //Scoped classes
                     .AddClasses(@class => @class.WithAttribute<ScopedLifetimeAttribute>())
                     .UsingRegistrationStrategy(RegistrationStrategy.Append)
-                    .AsSelfWithInterfaces()
+                    .AsImplementedInterfaces()
                     .WithScopedLifetime()
 
                     //Singleton classes
                     .AddClasses(@class => @class.WithAttribute<SingletonLifetimeAttribute>())
                     .UsingRegistrationStrategy(RegistrationStrategy.Append)
-                    .AsSelfWithInterfaces()
+                    .AsImplementedInterfaces()
                     .WithSingletonLifetime());
         }
     }

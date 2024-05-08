@@ -28,7 +28,7 @@ namespace PersonalFinanceProject.Business.Wallet.Handlers.RevenueSource
                 return response;
             }
 
-            response = _entityMapperService.Map<Entities.RevenueSource, RevenueSourceGetByIdResponse>(revenueSource, true);
+            response.RevenueSource = _entityMapperService.Map<Entities.RevenueSource, RevenueSourceResponseItem>(revenueSource, true);
 
             return response;
         }

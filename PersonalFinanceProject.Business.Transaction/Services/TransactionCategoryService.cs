@@ -1,45 +1,53 @@
-﻿using PersonalFinanceProject.Business.Transaction.Entities;
-using PersonalFinanceProject.Business.Transaction.Interfaces.Repositories;
+﻿using PersonalFinanceProject.Business.Transaction.DbContexts;
+using PersonalFinanceProject.Business.Transaction.Entities;
 using PersonalFinanceProject.Business.Transaction.Interfaces.Services;
+using PersonalFinanceProject.Business.Transaction.Specifications.TransactionCategory;
 using PersonalFinanceProject.Library.DependencyInjection.Attributes;
+using PersonalFinanceProject.Library.EntityFramework.Interfaces.Repositories;
 
 namespace PersonalFinanceProject.Business.Transaction.Services
 {
     [ScopedLifetime]
     public class TransactionCategoryService : ITransactionCategoryService
     {
-        private readonly ITransactionCategoryRepository _transactionCategoryRepository;
+        private readonly IGenericRepository<TransactionCategory, TransactionDbContext> _genericRepository;
 
-        public TransactionCategoryService(ITransactionCategoryRepository transactionCategoryRepository)
+        public TransactionCategoryService(IGenericRepository<TransactionCategory, TransactionDbContext> genericRepository)
         {
-            _transactionCategoryRepository = transactionCategoryRepository;
+            _genericRepository = genericRepository;
         }
 
         public async Task<int> Add(TransactionCategory transactionCategory, CancellationToken cancellationToken = default)
         {
-            return await _transactionCategoryRepository.Add(transactionCategory, cancellationToken);
+            await _genericRepository.Add(transactionCategory, cancellationToken);
+            await _genericRepository.SaveChanges(cancellationToken);
+
+            return transactionCategory.Id;
         }
 
         public async Task DeleteById(int id, CancellationToken cancellationToken = default)
         {
-            await _transactionCategoryRepository.DeleteById(id, cancellationToken);
+            await _genericRepository.Delete(new TransactionCategoryGetByIdQuerySpecification(id), cancellationToken);
 
             return;
         }
 
         public async Task<TransactionCategory?> GetById(int id, CancellationToken cancellationToken = default)
         {
-            return await _transactionCategoryRepository.GetById(id, cancellationToken);
+            return await _genericRepository.GetItem(new TransactionCategoryGetByIdQuerySpecification(id), cancellationToken);
         }
 
         public async Task<IEnumerable<TransactionCategory>> GetList(CancellationToken cancellationToken = default)
         {
-            return await _transactionCategoryRepository.GetList(cancellationToken);
+            return await _genericRepository.GetItems(cancellationToken);
         }
 
         public async Task Update(TransactionCategory transactionCategory, CancellationToken cancellationToken = default)
         {
-            await _transactionCategoryRepository.Update(transactionCategory, cancellationToken);
+            await _genericRepository.Update(
+                new TransactionCategoryGetByIdQuerySpecification(transactionCategory.Id),
+                new TransactionCategoryUpdateSpecification(transactionCategory.Name),
+                cancellationToken);
 
             return;
         }

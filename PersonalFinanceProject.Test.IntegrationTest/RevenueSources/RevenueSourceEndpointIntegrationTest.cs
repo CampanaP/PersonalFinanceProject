@@ -1,8 +1,8 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using PersonalFinanceProject.Business.Wallet.DbContexts;
 using PersonalFinanceProject.Communication.Message.RevenueSource.Requests;
+using PersonalFinanceProject.Communication.Message.RevenueSource.Responses;
 using PersonalFinanceProject.Communication.Message.TransactionCategory.Requests;
-using PersonalFinanceProject.Communication.Message.TransactionCategory.Responses;
 using PersonalFinanceProject.Test.IntegrationTest.Factories;
 using PersonalFinanceProject.Web.Api;
 using System.Net.Http.Json;
@@ -54,13 +54,13 @@ namespace PersonalFinanceProject.Test.IntegrationTest.RevenueSources
             Assert.IsTrue(response.IsSuccessStatusCode);
         }
 
-        //[TestMethod]
-        [DataRow(1)]
-        public async Task ShouldDeleteById(int id)
+        [TestMethod]
+        public async Task ShouldDeleteById()
         {
             // Arrange
+            Guid id = Guid.NewGuid();
             string url = $"{RevenueSourceIntegrationTestConstant.DeleteEndpointUrl}/{id}";
-            TransactionCategoryDeleteByIdRequest request = new TransactionCategoryDeleteByIdRequest(id);
+            RevenueSourceDeleteByIdRequest request = new RevenueSourceDeleteByIdRequest(id);
 
             StringContent content = new StringContent(JsonSerializer.Serialize(request), Encoding.UTF8, "application/json");
 
@@ -79,16 +79,25 @@ namespace PersonalFinanceProject.Test.IntegrationTest.RevenueSources
             Assert.IsTrue(response.IsSuccessStatusCode);
         }
 
-        //[TestMethod]
-        [DataRow(1, "TestCategory1")]
-        public async Task ShouldGetById(int id, string name)
+        [TestMethod]
+        [DataRow("RevenueSource1")]
+        public async Task ShouldGetById(string name)
         {
             // Arrange
-            string url = $"{RevenueSourceIntegrationTestConstant.GetEndpointUrl}/{id}";
+            Guid id = Guid.Empty;
+            Guid userId = Guid.NewGuid();
 
-            TransactionCategoryAddRequest request = new TransactionCategoryAddRequest(name);
+            RevenueSourceAddRequest request = new RevenueSourceAddRequest(name, userId);
             HttpContent content = new StringContent(JsonSerializer.Serialize(request), Encoding.UTF8, "application/json");
             await _httpClient!.PostAsync(RevenueSourceIntegrationTestConstant.AddEndpointUrl, content);
+            HttpResponseMessage? getListResponse = await _httpClient!.GetAsync(RevenueSourceIntegrationTestConstant.GetListEndpointUrl);
+            RevenueSourceGetListResponse? revenueSources = await getListResponse.Content.ReadFromJsonAsync<RevenueSourceGetListResponse>();
+            if (revenueSources is not null && revenueSources.RevenueSources is not null && revenueSources.RevenueSources.Any())
+            {
+                id = revenueSources.RevenueSources.First().Id;
+            }
+
+            string url = $"{RevenueSourceIntegrationTestConstant.GetEndpointUrl}/{id}";
 
             // Act
             HttpResponseMessage? response = await _httpClient!.GetAsync(url);
@@ -97,14 +106,15 @@ namespace PersonalFinanceProject.Test.IntegrationTest.RevenueSources
             Assert.IsNotNull(response);
             Assert.IsTrue(response.IsSuccessStatusCode);
 
-            TransactionCategoryGetByIdResponse? transactionCategory = await response.Content.ReadFromJsonAsync<TransactionCategoryGetByIdResponse>();
-            Assert.IsNotNull(transactionCategory);
-            Assert.IsNotNull(transactionCategory.TransactionCategory);
-            Assert.AreEqual(id, transactionCategory.TransactionCategory.Id);
-            Assert.IsNotNull(transactionCategory.TransactionCategory.Name);
+            RevenueSourceGetByIdResponse? revenueSource = await response.Content.ReadFromJsonAsync<RevenueSourceGetByIdResponse>();
+            Assert.IsNotNull(revenueSource);
+            Assert.IsNotNull(revenueSource.RevenueSource);
+            Assert.AreEqual(id, revenueSource.RevenueSource.Id);
+            Assert.AreEqual(name, revenueSource.RevenueSource.Name);
+            Assert.AreEqual(userId, revenueSource.RevenueSource.UserId);
         }
 
-        //[TestMethod]
+        [TestMethod]
         public async Task ShouldGetList()
         {
             // Act
@@ -115,12 +125,27 @@ namespace PersonalFinanceProject.Test.IntegrationTest.RevenueSources
             Assert.IsTrue(response.IsSuccessStatusCode);
         }
 
-        //[TestMethod]
-        [DataRow(1, "TestCategory2")]
-        public async Task ShouldUpdate(int id, string name)
+        [TestMethod]
+        [DataRow("RevenueSource", "RevenueSource2")]
+        public async Task ShouldUpdate(string name, string newName)
         {
             // Arrange
-            TransactionCategoryUpdateRequest request = new TransactionCategoryUpdateRequest(id, name);
+            Guid id = Guid.Empty;
+            Guid userId = Guid.NewGuid();
+
+            RevenueSourceAddRequest addRequest = new RevenueSourceAddRequest(name, userId);
+            HttpContent addContent = new StringContent(JsonSerializer.Serialize(addRequest), Encoding.UTF8, "application/json");
+            await _httpClient!.PostAsync(RevenueSourceIntegrationTestConstant.AddEndpointUrl, addContent);
+            HttpResponseMessage? getListResponse = await _httpClient!.GetAsync(RevenueSourceIntegrationTestConstant.GetListEndpointUrl);
+            RevenueSourceGetListResponse? revenueSources = await getListResponse.Content.ReadFromJsonAsync<RevenueSourceGetListResponse>();
+            if (revenueSources is not null && revenueSources.RevenueSources is not null && revenueSources.RevenueSources.Any())
+            {
+                id = revenueSources.RevenueSources.First().Id;
+            }
+
+            Guid newUserId = Guid.NewGuid();
+
+            RevenueSourceUpdateRequest request = new RevenueSourceUpdateRequest(id, newName, newUserId);
             HttpContent content = new StringContent(JsonSerializer.Serialize(request), Encoding.UTF8, "application/json");
 
             // Act

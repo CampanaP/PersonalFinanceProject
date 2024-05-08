@@ -16,6 +16,7 @@
     <ProjectReference Include="..\PersonalFinanceProject.Library.DependencyInjection\PersonalFinanceProject.Library.DependencyInjection.csproj" />
     <ProjectReference Include="..\PersonalFinanceProject.Library.EntityFramework\PersonalFinanceProject.Library.EntityFramework.csproj" />
     <ProjectReference Include="..\PersonalFinanceProject.Library.EntityMapper\PersonalFinanceProject.Library.EntityMapper.csproj" />
+    <ProjectReference Include="..\PersonalFinanceProject.Library.Logger\PersonalFinanceProject.Library.Logger.csproj" />
   </ItemGroup>
 
 </Project>

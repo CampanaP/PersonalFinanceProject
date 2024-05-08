@@ -1,11 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using PersonalFinanceProject.Library.EntityFramework.Attributes;
 
 namespace PersonalFinanceProject.Business.Transaction.EntityConfigurations
 {
-    internal class TransactionConfiguration : IEntityTypeConfiguration<Entities.Transaction>
+    internal class TransactionConfiguration : EntityConfigurationAttribute<Entities.Transaction>
     {
-        public void Configure(EntityTypeBuilder<Entities.Transaction> builder)
+        public override void Configure(EntityTypeBuilder<Entities.Transaction> builder)
         {
             builder.HasKey(new string[] { "Id" });
             builder.Property(p => p.Id).ValueGeneratedOnAdd();

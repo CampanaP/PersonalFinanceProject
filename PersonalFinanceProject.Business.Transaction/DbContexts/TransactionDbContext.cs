@@ -1,20 +1,17 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PersonalFinanceProject.Business.Transaction.Entities;
+using PersonalFinanceProject.Library.EntityFramework.DbContexts;
 
 namespace PersonalFinanceProject.Business.Transaction.DbContexts
 {
-    public class TransactionDbContext : DbContext
+    public class TransactionDbContext : GenericDbContext<TransactionDbContext>
     {
         public TransactionDbContext()
         {
-            ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTrackingWithIdentityResolution;
-            ChangeTracker.LazyLoadingEnabled = false;
         }
 
         public TransactionDbContext(DbContextOptions<TransactionDbContext> options) : base(options)
         {
-            ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTrackingWithIdentityResolution;
-            ChangeTracker.LazyLoadingEnabled = false;
         }
 
         public DbSet<Entities.Transaction> Transactions { get; set; }
@@ -23,10 +20,12 @@ namespace PersonalFinanceProject.Business.Transaction.DbContexts
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+            base.OnConfiguring(optionsBuilder);
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
         }
     }
 }
