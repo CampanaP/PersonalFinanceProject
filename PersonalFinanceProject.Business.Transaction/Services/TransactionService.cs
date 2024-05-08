@@ -1,14 +1,13 @@
 ﻿using PersonalFinanceProject.Business.Transaction.DbContexts;
-using PersonalFinanceProject.Business.Transaction.Entities;
 using PersonalFinanceProject.Business.Transaction.Interfaces.Services;
-using PersonalFinanceProject.Business.Transaction.Specifications.TransactionType;
+using PersonalFinanceProject.Business.Transaction.Specifications.Transaction;
 using PersonalFinanceProject.Library.DependencyInjection.Attributes;
 using PersonalFinanceProject.Library.EntityFramework.Interfaces.Repositories;
 
 namespace PersonalFinanceProject.Business.Transaction.Services
 {
     [ScopedLifetime]
-    public class TransactionService
+    public class TransactionService : ITransactionService
     {
         private readonly IGenericRepository<Entities.Transaction, TransactionDbContext> _genericRepository;
 
@@ -27,26 +26,26 @@ namespace PersonalFinanceProject.Business.Transaction.Services
 
         public async Task DeleteById(Guid id, CancellationToken cancellationToken = default)
         {
-            await _genericRepository.Delete(new TransactionTypeGetByIdQuerySpecification(id), cancellationToken);
+            await _genericRepository.Delete(new TransactionGetByIdQuerySpecification(id), cancellationToken);
 
             return;
         }
 
-        public async Task<TransactionType?> GetById(int id, CancellationToken cancellationToken = default)
+        public async Task<Entities.Transaction?> GetById(Guid id, CancellationToken cancellationToken = default)
         {
-            return await _genericRepository.GetItem(new TransactionTypeGetByIdQuerySpecification(id), cancellationToken);
+            return await _genericRepository.GetItem(new TransactionGetByIdQuerySpecification(id), cancellationToken);
         }
 
-        public async Task<IEnumerable<TransactionType>> GetList(CancellationToken cancellationToken = default)
+        public async Task<IEnumerable<Entities.Transaction>> GetList(CancellationToken cancellationToken = default)
         {
             return await _genericRepository.GetItems(cancellationToken);
         }
 
-        public async Task Update(TransactionType transactionType, CancellationToken cancellationToken = default)
+        public async Task Update(Entities.Transaction transaction, CancellationToken cancellationToken = default)
         {
             await _genericRepository.Update(
-                new TransactionTypeGetByIdQuerySpecification(transactionType.Id),
-                new TransactionTypeUpdateSpecification(transactionType.Name),
+                new TransactionGetByIdQuerySpecification(transaction.Id),
+                new TransactionUpdateSpecification(transaction.Name, transaction.Amount, transaction.CategoryId, transaction.TypeId, transaction.SourceId, transaction.CreateDate, transaction.UpdateDate),
                 cancellationToken);
 
             return;

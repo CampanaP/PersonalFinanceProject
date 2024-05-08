@@ -1,11 +1,9 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 
-namespace PersonalFinanceProject.Business.Transaction.Entities
+namespace PersonalFinanceProject.Communication.Message.Transaction.Requests
 {
-    public class Transaction
+    public record TransactionAddRequest
     {
-        public required Guid Id { get; set; }
-
         public required string Name { get; set; }
 
         public required double Amount { get; set; }
@@ -21,9 +19,8 @@ namespace PersonalFinanceProject.Business.Transaction.Entities
         public required DateTime UpdateDate { get; set; }
 
         [SetsRequiredMembers]
-        public Transaction(Guid id, string name, double amount, int categoryId, int typeId, Guid sourceId, DateTime createDate, DateTime updateDate)
+        public TransactionAddRequest(string name, double amount, int categoryId, int typeId, Guid sourceId, DateTime createDate, DateTime updateDate)
         {
-            Id = id;
             Name = name;
             Amount = amount;
             CategoryId = categoryId;
