@@ -3,7 +3,7 @@ using PersonalFinanceProject.Communication.Message.TransactionType.Requests;
 
 namespace PersonalFinanceProject.Business.Transaction.Validators.TransactionType
 {
-    public class TransactionTypeUpdateValidator : AbstractValidator<TransactionTypeUpdateRequest>
+    public class TransactionTypeUpdateValidator : AbstractValidator<TransactionTypeUpdateByIdRequest>
     {
         public TransactionTypeUpdateValidator()
         {

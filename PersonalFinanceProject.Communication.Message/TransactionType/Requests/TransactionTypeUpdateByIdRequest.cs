@@ -2,14 +2,14 @@
 
 namespace PersonalFinanceProject.Communication.Message.TransactionType.Requests
 {
-    public record TransactionTypeUpdateRequest
+    public record TransactionTypeUpdateByIdRequest
     {
         public required int Id { get; set; }
 
         public required string Name { get; set; }
 
         [SetsRequiredMembers]
-        public TransactionTypeUpdateRequest(int id, string name)
+        public TransactionTypeUpdateByIdRequest(int id, string name)
         {
             Id = id;
             Name = name;

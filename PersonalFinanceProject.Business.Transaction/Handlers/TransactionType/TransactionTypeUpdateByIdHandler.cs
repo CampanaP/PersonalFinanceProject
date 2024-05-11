@@ -6,22 +6,22 @@ using Wolverine.Attributes;
 namespace PersonalFinanceProject.Business.Transaction.Handlers.TransactionType
 {
     [WolverineHandler]
-    public class TransactionTypeUpdateHandler
+    public class TransactionTypeUpdateByIdHandler
     {
         private readonly IEntityMapperService _entityMapperService;
         private readonly ITransactionTypeService _transactionTypeService;
 
-        public TransactionTypeUpdateHandler(IEntityMapperService entityMapperService, ITransactionTypeService transactionTypeService)
+        public TransactionTypeUpdateByIdHandler(IEntityMapperService entityMapperService, ITransactionTypeService transactionTypeService)
         {
             _entityMapperService = entityMapperService;
             _transactionTypeService = transactionTypeService;
         }
 
-        public async Task Handle(TransactionTypeUpdateRequest request, CancellationToken cancellationToken = default)
+        public async Task Handle(TransactionTypeUpdateByIdRequest request, CancellationToken cancellationToken = default)
         {
-            Entities.TransactionType transactionType = _entityMapperService.Map<TransactionTypeUpdateRequest, Entities.TransactionType>(request, true);
+            Entities.TransactionType transactionType = _entityMapperService.Map<TransactionTypeUpdateByIdRequest, Entities.TransactionType>(request, true);
 
-            await _transactionTypeService.Update(transactionType, cancellationToken);
+            await _transactionTypeService.UpdateById(transactionType, cancellationToken);
 
             return;
         }

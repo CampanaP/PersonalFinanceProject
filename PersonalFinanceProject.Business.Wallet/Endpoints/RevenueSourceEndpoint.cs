@@ -58,8 +58,8 @@ namespace PersonalFinanceProject.Business.Wallet.Endpoints
             return Results.Ok(response);
         }
 
-        [WolverinePut("api/revenue-source/update")]
-        public async Task<IResult> Update(RevenueSourceUpdateRequest request)
+        [WolverinePut("api/revenue-source/update/{id}")]
+        public async Task<IResult> UpdateById(RevenueSourceUpdateByIdRequest request)
         {
             await _messageBus.SendAsync(request);
 

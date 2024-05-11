@@ -20,6 +20,10 @@ namespace PersonalFinanceProject.Business.Transaction.Entities
 
         public required DateTime UpdateDate { get; set; }
 
+        public Transaction()
+        {
+        }
+
         [SetsRequiredMembers]
         public Transaction(Guid id, string name, double amount, int categoryId, int typeId, Guid sourceId, DateTime createDate, DateTime updateDate)
         {

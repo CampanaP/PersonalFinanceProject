@@ -47,7 +47,7 @@ namespace PersonalFinanceProject.Business.Wallet.Services
             return revenueSources;
         }
 
-        public async Task Update(RevenueSource revenueSource, CancellationToken cancellationToken = default)
+        public async Task UpdateById(RevenueSource revenueSource, CancellationToken cancellationToken = default)
         {
             await _genericRepository.Update(
                 new RevenueSourceGetByIdQuerySpecification(revenueSource.Id),

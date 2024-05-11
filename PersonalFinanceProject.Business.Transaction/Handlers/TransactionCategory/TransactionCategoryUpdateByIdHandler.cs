@@ -6,22 +6,22 @@ using Wolverine.Attributes;
 namespace PersonalFinanceProject.Business.Transaction.Handlers.TransactionCategory
 {
     [WolverineHandler]
-    public class TransactionCategoryUpdateHandler
+    public class TransactionCategoryUpdateByIdHandler
     {
         private readonly IEntityMapperService _entityMapperService;
         private readonly ITransactionCategoryService _transactionCategoryService;
 
-        public TransactionCategoryUpdateHandler(IEntityMapperService entityMapperService, ITransactionCategoryService transactionCategoryService)
+        public TransactionCategoryUpdateByIdHandler(IEntityMapperService entityMapperService, ITransactionCategoryService transactionCategoryService)
         {
             _entityMapperService = entityMapperService;
             _transactionCategoryService = transactionCategoryService;
         }
 
-        public async Task Handle(TransactionCategoryUpdateRequest request, CancellationToken cancellationToken = default)
+        public async Task Handle(TransactionCategoryUpdateByIdRequest request, CancellationToken cancellationToken = default)
         {
-            Entities.TransactionCategory transactionCategory = _entityMapperService.Map<TransactionCategoryUpdateRequest, Entities.TransactionCategory>(request, true);
+            Entities.TransactionCategory transactionCategory = _entityMapperService.Map<TransactionCategoryUpdateByIdRequest, Entities.TransactionCategory>(request, true);
 
-            await _transactionCategoryService.Update(transactionCategory, cancellationToken);
+            await _transactionCategoryService.UpdateById(transactionCategory, cancellationToken);
 
             return;
         }

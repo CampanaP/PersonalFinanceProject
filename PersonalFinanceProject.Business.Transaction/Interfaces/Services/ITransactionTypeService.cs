@@ -8,6 +8,6 @@ namespace PersonalFinanceProject.Business.Transaction.Interfaces.Services
         Task DeleteById(int id, CancellationToken cancellationToken = default);
         Task<TransactionType?> GetById(int id, CancellationToken cancellationToken = default);
         Task<IEnumerable<TransactionType>> GetList(CancellationToken cancellationToken = default);
-        Task Update(TransactionType transactionType, CancellationToken cancellationToken = default);
+        Task UpdateById(TransactionType transactionType, CancellationToken cancellationToken = default);
     }
 }

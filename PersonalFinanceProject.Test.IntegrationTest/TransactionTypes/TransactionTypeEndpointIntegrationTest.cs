@@ -116,14 +116,16 @@ namespace PersonalFinanceProject.Test.IntegrationTest.TransactionTypes
 
         [TestMethod]
         [DataRow(1, "TransactionType2")]
-        public async Task ShouldUpdate(int id, string name)
+        public async Task ShouldUpdateById(int id, string name)
         {
             // Arrange
-            TransactionTypeUpdateRequest request = new TransactionTypeUpdateRequest(id, name);
+            TransactionTypeUpdateByIdRequest request = new TransactionTypeUpdateByIdRequest(id, name);
             HttpContent content = new StringContent(JsonSerializer.Serialize(request), Encoding.UTF8, "application/json");
 
+            string url = $"{TransactionTypeIntegrationTestConstant.UpdateEndpointUrl}/{id}";
+
             // Act
-            HttpResponseMessage? response = await _httpClient!.PutAsync(TransactionTypeIntegrationTestConstant.UpdateEndpointUrl, content);
+            HttpResponseMessage? response = await _httpClient!.PutAsync(url, content);
 
             // Assert
             Assert.IsNotNull(response);

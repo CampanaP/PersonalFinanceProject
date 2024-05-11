@@ -12,6 +12,6 @@ namespace PersonalFinanceProject.Business.Wallet.Interfaces.Services
 
         Task<IEnumerable<RevenueSource>> GetList(CancellationToken cancellationToken = default);
 
-        Task Update(RevenueSource revenueSource, CancellationToken cancellationToken = default);
+        Task UpdateById(RevenueSource revenueSource, CancellationToken cancellationToken = default);
     }
 }

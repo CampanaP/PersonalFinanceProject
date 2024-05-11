@@ -3,7 +3,7 @@ using PersonalFinanceProject.Communication.Message.RevenueSource.Requests;
 
 namespace PersonalFinanceProject.Business.Wallet.Validators.RevenueSource
 {
-    public class RevenueSourceUpdateValidator : AbstractValidator<RevenueSourceUpdateRequest>
+    public class RevenueSourceUpdateValidator : AbstractValidator<RevenueSourceUpdateByIdRequest>
     {
         public RevenueSourceUpdateValidator()
         {

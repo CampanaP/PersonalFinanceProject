@@ -142,7 +142,7 @@ namespace PersonalFinanceProject.Test.UnitTest.Transactions
 
         [TestMethod]
         [DataRow("Transaction1", 1, 1, 1, "Transaction2", 2, 2, 2)]
-        public async Task ShouldUpdateTransactionType(string name, double amount, int categoryId, int typeId, string newName, double newAmount, int newCategoryId, int newTypeId)
+        public async Task ShouldUpdateByIdTransactionType(string name, double amount, int categoryId, int typeId, string newName, double newAmount, int newCategoryId, int newTypeId)
         {
             // Arrange:
             Guid id = Guid.Empty;
@@ -162,7 +162,7 @@ namespace PersonalFinanceProject.Test.UnitTest.Transactions
             transaction.SourceId = newSourceId;
             transaction.UpdateDate = DateTime.Now;
 
-            await _transactionService!.Update(transaction);
+            await _transactionService!.UpdateById(transaction);
 
             // Assert:
             Transaction? updatedTransaction = await _dbContext!.Transactions.FirstOrDefaultAsync(t => t.Id == id);

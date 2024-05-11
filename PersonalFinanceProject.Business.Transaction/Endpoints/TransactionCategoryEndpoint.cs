@@ -59,8 +59,8 @@ namespace PersonalFinanceProject.Business.Transaction.Endpoints
             return Results.Ok(response);
         }
 
-        [WolverinePut("api/transaction-category/update")]
-        public async Task<IResult> Update(TransactionCategoryUpdateRequest request)
+        [WolverinePut("api/transaction-category/update/{id}")]
+        public async Task<IResult> UpdateById(TransactionCategoryUpdateByIdRequest request)
         {
             await _messageBus.SendAsync(request);
 

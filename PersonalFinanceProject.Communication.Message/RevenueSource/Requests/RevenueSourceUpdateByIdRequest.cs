@@ -2,7 +2,7 @@
 
 namespace PersonalFinanceProject.Communication.Message.RevenueSource.Requests
 {
-    public record RevenueSourceUpdateRequest
+    public record RevenueSourceUpdateByIdRequest
     {
         public required Guid Id { get; set; }
 
@@ -11,7 +11,7 @@ namespace PersonalFinanceProject.Communication.Message.RevenueSource.Requests
         public required Guid UserId { get; set; }
 
         [SetsRequiredMembers]
-        public RevenueSourceUpdateRequest(Guid id, string name, Guid userId)
+        public RevenueSourceUpdateByIdRequest(Guid id, string name, Guid userId)
         {
             Id = id;
             Name = name;

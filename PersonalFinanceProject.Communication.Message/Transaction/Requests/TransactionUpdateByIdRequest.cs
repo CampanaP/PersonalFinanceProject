@@ -2,7 +2,7 @@
 
 namespace PersonalFinanceProject.Communication.Message.Transaction.Requests
 {
-    public record TransactionUpdateRequest
+    public record TransactionUpdateByIdRequest
     {
         public required Guid Id { get; set; }
 
@@ -21,7 +21,7 @@ namespace PersonalFinanceProject.Communication.Message.Transaction.Requests
         public required DateTime UpdateDate { get; set; }
 
         [SetsRequiredMembers]
-        public TransactionUpdateRequest(Guid id, string name, double amount, int categoryId, int typeId, Guid sourceId, DateTime createDate, DateTime updateDate)
+        public TransactionUpdateByIdRequest(Guid id, string name, double amount, int categoryId, int typeId, Guid sourceId, DateTime createDate, DateTime updateDate)
         {
             Id = id;
             Name = name;

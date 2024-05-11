@@ -12,6 +12,6 @@ namespace PersonalFinanceProject.Business.Transaction.Interfaces.Services
 
         Task<IEnumerable<TransactionCategory>> GetList(CancellationToken cancellationToken = default);
 
-        Task Update(TransactionCategory transactionCategory, CancellationToken cancellationToken = default);
+        Task UpdateById(TransactionCategory transactionCategory, CancellationToken cancellationToken = default);
     }
 }

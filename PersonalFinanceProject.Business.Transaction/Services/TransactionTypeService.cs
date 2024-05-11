@@ -42,7 +42,7 @@ namespace PersonalFinanceProject.Business.Transaction.Services
             return await _genericRepository.GetItems(cancellationToken);
         }
 
-        public async Task Update(TransactionType transactionType, CancellationToken cancellationToken = default)
+        public async Task UpdateById(TransactionType transactionType, CancellationToken cancellationToken = default)
         {
             await _genericRepository.Update(
                 new TransactionTypeGetByIdQuerySpecification(transactionType.Id),

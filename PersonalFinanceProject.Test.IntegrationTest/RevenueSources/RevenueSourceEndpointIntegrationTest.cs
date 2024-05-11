@@ -127,7 +127,7 @@ namespace PersonalFinanceProject.Test.IntegrationTest.RevenueSources
 
         [TestMethod]
         [DataRow("RevenueSource", "RevenueSource2")]
-        public async Task ShouldUpdate(string name, string newName)
+        public async Task ShouldUpdateById(string name, string newName)
         {
             // Arrange
             Guid id = Guid.Empty;
@@ -145,11 +145,13 @@ namespace PersonalFinanceProject.Test.IntegrationTest.RevenueSources
 
             Guid newUserId = Guid.NewGuid();
 
-            RevenueSourceUpdateRequest request = new RevenueSourceUpdateRequest(id, newName, newUserId);
+            RevenueSourceUpdateByIdRequest request = new RevenueSourceUpdateByIdRequest(id, newName, newUserId);
             HttpContent content = new StringContent(JsonSerializer.Serialize(request), Encoding.UTF8, "application/json");
 
+            string url = $"{RevenueSourceIntegrationTestConstant.UpdateEndpointUrl}/{id}";
+
             // Act
-            HttpResponseMessage? response = await _httpClient!.PutAsync(RevenueSourceIntegrationTestConstant.UpdateEndpointUrl, content);
+            HttpResponseMessage? response = await _httpClient!.PutAsync(url, content);
 
             // Assert
             Assert.IsNotNull(response);

@@ -124,7 +124,7 @@ namespace PersonalFinanceProject.Test.UnitTest.TransactionTypes
 
         [TestMethod]
         [DataRow(1, "TransactionType1", "TransactionType2")]
-        public async Task ShouldUpdateTransactionType(int id, string name, string newName)
+        public async Task ShouldUpdateByIdTransactionType(int id, string name, string newName)
         {
             // Arrange:
             TransactionType transactionType = new TransactionType(id, name);
@@ -132,7 +132,7 @@ namespace PersonalFinanceProject.Test.UnitTest.TransactionTypes
 
             // Act:
             transactionType.Name = newName;
-            await _transactionTypeService!.Update(transactionType);
+            await _transactionTypeService!.UpdateById(transactionType);
 
             // Assert:
             TransactionType? updatedTransactionType = await _dbContext!.TransactionTypes.FirstOrDefaultAsync(tc => tc.Id == id);

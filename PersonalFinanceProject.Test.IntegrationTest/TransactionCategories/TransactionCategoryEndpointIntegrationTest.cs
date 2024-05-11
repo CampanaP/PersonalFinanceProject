@@ -118,11 +118,13 @@ namespace PersonalFinanceProject.Test.IntegrationTest.TransactionCategories
         public async Task ShouldUpdate(int id, string name)
         {
             // Arrange
-            TransactionCategoryUpdateRequest request = new TransactionCategoryUpdateRequest(id, name);
+            TransactionCategoryUpdateByIdRequest request = new TransactionCategoryUpdateByIdRequest(id, name);
             HttpContent content = new StringContent(JsonSerializer.Serialize(request), Encoding.UTF8, "application/json");
 
+            string url = $"{TransactionCategoryIntegrationTestConstant.UpdateEndpointUrl}/{id}";
+
             // Act
-            HttpResponseMessage? response = await _httpClient!.PutAsync(TransactionCategoryIntegrationTestConstant.UpdateEndpointUrl, content);
+            HttpResponseMessage? response = await _httpClient!.PutAsync(url, content);
 
             // Assert
             Assert.IsNotNull(response);

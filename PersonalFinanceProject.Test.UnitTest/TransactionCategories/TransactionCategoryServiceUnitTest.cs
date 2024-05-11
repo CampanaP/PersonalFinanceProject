@@ -124,7 +124,7 @@ namespace PersonalFinanceProject.Test.UnitTest.TransactionCategories
 
         [TestMethod]
         [DataRow(1, "TransactionCategory1", "TransactionCategory2")]
-        public async Task ShouldUpdateTransactionCategory(int id, string name, string newName)
+        public async Task ShouldUpdateByIdTransactionCategory(int id, string name, string newName)
         {
             // Arrange:
             TransactionCategory transactionCategory = new TransactionCategory(id, name);
@@ -132,7 +132,7 @@ namespace PersonalFinanceProject.Test.UnitTest.TransactionCategories
 
             // Act:
             transactionCategory.Name = newName;
-            await _transactionCategoryService!.Update(transactionCategory);
+            await _transactionCategoryService!.UpdateById(transactionCategory);
 
             // Assert:
             TransactionCategory? updatedTransactionCategory = await _dbContext!.TransactionCategories.FirstOrDefaultAsync(tc => tc.Id == id);

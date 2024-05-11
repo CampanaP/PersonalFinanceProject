@@ -147,7 +147,7 @@ namespace PersonalFinanceProject.Test.UnitTest.RevenueSources
 
         [TestMethod]
         [DataRow("RevenueSource1", "RevenueSource2")]
-        public async Task ShouldUpdate(string name, string newName)
+        public async Task ShouldUpdateById(string name, string newName)
         {
             // Arrange:
             DateTime dateTimeNow = DateTime.Now;
@@ -158,7 +158,7 @@ namespace PersonalFinanceProject.Test.UnitTest.RevenueSources
 
             // Act:
             revenueSource.Name = newName;
-            await _revenueSourceService!.Update(revenueSource);
+            await _revenueSourceService!.UpdateById(revenueSource);
 
             // Assert:
             RevenueSource? updatedRevenueSource = await _revenueSourceService.GetById(id);
