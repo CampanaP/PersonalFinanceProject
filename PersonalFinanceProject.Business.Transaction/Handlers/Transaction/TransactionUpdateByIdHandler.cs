@@ -3,7 +3,7 @@ using PersonalFinanceProject.Communication.Message.Transaction.Requests;
 using PersonalFinanceProject.Library.EntityMapper.Interfaces.Services;
 using Wolverine.Attributes;
 
-namespace PersonalFinanceProject.Business.Transaction.Handlers.TransactionType
+namespace PersonalFinanceProject.Business.Transaction.Handlers.Transaction
 {
     [WolverineHandler]
     public class TransactionUpdateByIdHandler

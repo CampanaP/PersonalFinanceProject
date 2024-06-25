@@ -8,11 +8,9 @@ namespace PersonalFinanceProject.Business.Transaction.Validators.TransactionType
         public TransactionTypeUpdateValidator()
         {
             RuleFor(tt => tt.Id)
-                .NotNull()
                 .NotEmpty();
 
             RuleFor(tt => tt.Name)
-                .NotNull()
                 .NotEmpty();
         }
     }

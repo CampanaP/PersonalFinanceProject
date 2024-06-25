@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Diagnostics;
-using PersonalFinanceProject.Library.EntityFramework.ExtensionMethods;
-using PersonalFinanceProject.Library.DependencyInjection.ExtensionMethods;
-using PersonalFinanceProject.Library.Logger.ExtensionMethods;
+using PersonalFinanceProject.Library.DependencyInjection.Extensions;
+using PersonalFinanceProject.Library.Logger.Extensions;
 using PersonalFinanceProject.Library.Logger.Interfaces.Services;
 using Wolverine;
 using Wolverine.Http;

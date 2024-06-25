@@ -4,7 +4,7 @@ using PersonalFinanceProject.Communication.Message.TransactionType.Responses;
 using PersonalFinanceProject.Library.EntityMapper.Interfaces.Services;
 using Wolverine.Attributes;
 
-namespace PersonalFinanceProject.Business.Transaction.Handlers.TransactionCategory
+namespace PersonalFinanceProject.Business.Transaction.Handlers.TransactionType
 {
     [WolverineHandler]
     public class TransactionTypeAddHandler
@@ -20,7 +20,7 @@ namespace PersonalFinanceProject.Business.Transaction.Handlers.TransactionCatego
 
         public async Task<TransactionTypeAddResponse> Handle(TransactionTypeAddRequest request, CancellationToken cancellationToken = default)
         {
-            TransactionTypeAddResponse response = new TransactionTypeAddResponse(default(int));
+            TransactionTypeAddResponse response = new TransactionTypeAddResponse(default);
 
             Entities.TransactionType transactionType = _entityMapperService.Map<TransactionTypeAddRequest, Entities.TransactionType>(request, true);
 

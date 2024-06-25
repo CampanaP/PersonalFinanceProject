@@ -8,7 +8,6 @@ namespace PersonalFinanceProject.Business.Wallet.Validators.RevenueSource
         public RevenueSourceDeleteByIdValidator()
         {
             RuleFor(rs => rs.Id)
-                .NotNull()
                 .NotEmpty();
         }
     }

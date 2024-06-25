@@ -1,4 +1,4 @@
-﻿namespace PersonalFinanceProject.Test.IntegrationTest.TransactionCategories
+﻿namespace PersonalFinanceProject.Test.IntegrationTest.TransactionTypes
 {
     internal class TransactionTypeIntegrationTestConstant
     {

@@ -1,13 +1,13 @@
-﻿using PersonalFinanceProject.Business.Identity.Interfaces.Services;
+﻿using PersonalFinanceProject.Business.Account.Interfaces.Services;
 
-namespace PersonalFinanceProject.Business.Identity.Handlers
+namespace PersonalFinanceProject.Business.Account.Handlers
 {
     //[WolverineHandler]
-    public class IdentityLoginHandler
+    public class AccountLoginHandler
     {
-        private readonly IIdentityService identityService;
+        private readonly IAccountService identityService;
 
-        public IdentityLoginHandler(IIdentityService identityService)
+        public AccountLoginHandler(IAccountService identityService)
         {
             this.identityService = identityService;
         }

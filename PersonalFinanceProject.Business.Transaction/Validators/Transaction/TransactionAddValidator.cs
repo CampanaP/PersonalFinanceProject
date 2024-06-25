@@ -8,31 +8,24 @@ namespace PersonalFinanceProject.Business.Transaction.Validators.Transaction
         public TransactionAddValidator()
         {
             RuleFor(t => t.Name)
-                .NotNull()
                 .NotEmpty();
 
             RuleFor(t => t.Amount)
-                .NotNull()
                 .NotEmpty();
 
             RuleFor(t => t.CategoryId)
-                .NotNull()
                 .NotEmpty();
 
             RuleFor(t => t.TypeId)
-                .NotNull()
                 .NotEmpty();
 
             RuleFor(t => t.SourceId)
-                .NotNull()
                 .NotEmpty();
 
             RuleFor(t => t.CreateDate)
-                .NotNull()
                 .NotEmpty();
 
             RuleFor(t => t.UpdateDate)
-                .NotNull()
                 .NotEmpty();
         }
     }

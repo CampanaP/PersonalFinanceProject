@@ -3,7 +3,6 @@ using PersonalFinanceProject.Business.Transaction.DbContexts;
 using PersonalFinanceProject.Communication.Message.TransactionType.Requests;
 using PersonalFinanceProject.Communication.Message.TransactionType.Responses;
 using PersonalFinanceProject.Test.IntegrationTest.Factories;
-using PersonalFinanceProject.Test.IntegrationTest.TransactionCategories;
 using PersonalFinanceProject.Web.Api;
 using System.Net.Http.Json;
 using System.Text;

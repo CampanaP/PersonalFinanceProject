@@ -8,7 +8,6 @@ namespace PersonalFinanceProject.Business.Transaction.Validators.TransactionCate
         public TransactionCategoryDeleteByIdValidator()
         {
             RuleFor(tc => tc.Id)
-                .NotNull()
                 .NotEmpty();
         }
     }

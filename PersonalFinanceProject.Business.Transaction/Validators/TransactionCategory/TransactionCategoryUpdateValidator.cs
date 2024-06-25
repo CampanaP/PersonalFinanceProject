@@ -8,11 +8,9 @@ namespace PersonalFinanceProject.Business.Transaction.Validators.TransactionCate
         public TransactionCategoryUpdateValidator()
         {
             RuleFor(tc => tc.Id)
-                .NotNull()
                 .NotEmpty();
 
             RuleFor(tc => tc.Name)
-                .NotNull()
                 .NotEmpty();
         }
     }

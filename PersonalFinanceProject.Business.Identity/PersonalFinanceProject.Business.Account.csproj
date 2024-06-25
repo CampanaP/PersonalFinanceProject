@@ -7,16 +7,16 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="WolverineFx.Http" Version="2.13.0" />
-    <PackageReference Include="WolverineFx.Http.FluentValidation" Version="2.13.0" />
+    <PackageReference Include="WolverineFx" Version="2.14.1" />
+    <PackageReference Include="WolverineFx.Http" Version="2.14.1" />
+    <PackageReference Include="WolverineFx.Http.FluentValidation" Version="2.14.1" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\PersonalFinanceProject.Communication.Message\PersonalFinanceProject.Communication.Message.csproj" />
     <ProjectReference Include="..\PersonalFinanceProject.Library.DependencyInjection\PersonalFinanceProject.Library.DependencyInjection.csproj" />
-    <ProjectReference Include="..\PersonalFinanceProject.Library.EntityFramework\PersonalFinanceProject.Library.EntityFramework.csproj" />
     <ProjectReference Include="..\PersonalFinanceProject.Library.EntityMapper\PersonalFinanceProject.Library.EntityMapper.csproj" />
-    <ProjectReference Include="..\PersonalFinanceProject.Library.Logger\PersonalFinanceProject.Library.Logger.csproj" />
+    <ProjectReference Include="..\PersonalFinanceProject.Library.Identity\PersonalFinanceProject.Library.Identity.csproj" />
   </ItemGroup>
 
 </Project>

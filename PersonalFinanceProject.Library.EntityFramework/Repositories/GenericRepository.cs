@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PersonalFinanceProject.Library.DependencyInjection.Attributes;
-using PersonalFinanceProject.Library.EntityFramework.ExtensionMethods;
+using PersonalFinanceProject.Library.EntityFramework.Extensions;
 using PersonalFinanceProject.Library.EntityFramework.Interfaces.Repositories;
 using PersonalFinanceProject.Library.EntityFramework.Specifications;
 

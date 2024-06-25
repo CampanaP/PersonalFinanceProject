@@ -8,15 +8,12 @@ namespace PersonalFinanceProject.Business.Wallet.Validators.RevenueSource
         public RevenueSourceUpdateValidator()
         {
             RuleFor(rs => rs.Id)
-                .NotNull()
                 .NotEmpty();
 
             RuleFor(rs => rs.Name)
-                .NotNull()
                 .NotEmpty();
 
             RuleFor(rs => rs.UserId)
-                .NotNull()
                 .NotEmpty();
         }
     }

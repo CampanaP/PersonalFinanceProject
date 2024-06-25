@@ -2,7 +2,7 @@
 using PersonalFinanceProject.Library.DependencyInjection.Attributes;
 using Scrutor;
 
-namespace PersonalFinanceProject.Library.DependencyInjection.ExtensionMethods
+namespace PersonalFinanceProject.Library.DependencyInjection.Extensions
 {
     public static class ServiceExtension
     {

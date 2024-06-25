@@ -3,7 +3,7 @@ using Microsoft.Extensions.Hosting;
 using PersonalFinanceProject.Library.Logger.Settings;
 using Serilog;
 
-namespace PersonalFinanceProject.Library.Logger.ExtensionMethods
+namespace PersonalFinanceProject.Library.Logger.Extensions
 {
     public static class LoggerExtension
     {

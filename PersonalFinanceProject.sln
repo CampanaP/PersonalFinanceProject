@@ -15,7 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalFinanceProject.Web.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalFinanceProject.Web.Api", "PersonalFinanceProject.Web.Api\PersonalFinanceProject.Web.Api.csproj", "{14BE8973-8702-4D4F-AC3C-F63FCD79C5CC}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalFinanceProject.Business.Identity", "PersonalFinanceProject.Business.Identity\PersonalFinanceProject.Business.Identity.csproj", "{B69A21CD-0E2E-4D8C-8335-DB863D542374}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalFinanceProject.Business.Account", "PersonalFinanceProject.Business.Identity\PersonalFinanceProject.Business.Account.csproj", "{B69A21CD-0E2E-4D8C-8335-DB863D542374}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalFinanceProject.Business.Transaction", "PersonalFinanceProject.Business.Transaction\PersonalFinanceProject.Business.Transaction.csproj", "{DC738127-8CB2-462E-9192-51B7838CEE1A}"
 EndProject
@@ -42,7 +42,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalFinanceProject.Comm
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02 - Communication", "02 - Communication", "{93462681-B265-42A1-B554-C6F11528E511}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersonalFinanceProject.Test.IntegrationTest", "PersonalFinanceProject.Test.IntegrationTest\PersonalFinanceProject.Test.IntegrationTest.csproj", "{AAB38BE3-5B10-4E77-A060-84704E2A3196}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalFinanceProject.Test.IntegrationTest", "PersonalFinanceProject.Test.IntegrationTest\PersonalFinanceProject.Test.IntegrationTest.csproj", "{AAB38BE3-5B10-4E77-A060-84704E2A3196}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalFinanceProject.Library.Identity", "PersonalFinanceProject.Library.Identity\PersonalFinanceProject.Library.Identity.csproj", "{4E06718F-E277-4A1E-AA52-9B8B1FE04671}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -106,6 +108,10 @@ Global
 		{AAB38BE3-5B10-4E77-A060-84704E2A3196}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AAB38BE3-5B10-4E77-A060-84704E2A3196}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AAB38BE3-5B10-4E77-A060-84704E2A3196}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E06718F-E277-4A1E-AA52-9B8B1FE04671}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E06718F-E277-4A1E-AA52-9B8B1FE04671}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E06718F-E277-4A1E-AA52-9B8B1FE04671}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E06718F-E277-4A1E-AA52-9B8B1FE04671}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -125,6 +131,7 @@ Global
 		{D14CD03E-E92D-4552-AC85-00EEBAE05332} = {9973B0E6-B765-4135-A74C-661A109B9A1C}
 		{B20903D6-0979-4963-9F6E-3B1B86DE1A8A} = {93462681-B265-42A1-B554-C6F11528E511}
 		{AAB38BE3-5B10-4E77-A060-84704E2A3196} = {255AAF7D-3B15-47D3-9DB7-A347EC6A6D53}
+		{4E06718F-E277-4A1E-AA52-9B8B1FE04671} = {9973B0E6-B765-4135-A74C-661A109B9A1C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B2E8D5C3-DC0C-4DCB-A44A-4AE732B9A8E0}

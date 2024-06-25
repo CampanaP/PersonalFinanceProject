@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PersonalFinanceProject.Library.EntityFramework.Specifications;
 
-namespace PersonalFinanceProject.Library.EntityFramework.ExtensionMethods
+namespace PersonalFinanceProject.Library.EntityFramework.Extensions
 {
     public static class SpecificationExtension
     {
