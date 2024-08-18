@@ -21,10 +21,10 @@ namespace PersonalFinanceProject.Web.Api
                 opts.Discovery.IncludeAssembly(typeof(Business.Wallet.Endpoints.RevenueSourceEndpoint).Assembly);
             });
 
-            // Infrastructure.Logger
+            // Library.Logger
             builder.AddLogger(builder.Configuration);
 
-            // Infrastructure.DependencyInjection
+            // Library.DependencyInjection
             builder.Services.AddFromAttributes();
 
             builder.Services.AddEndpointsApiExplorer();
@@ -34,6 +34,7 @@ namespace PersonalFinanceProject.Web.Api
             WebApplication app = builder.Build();
 
             app.MapWolverineEndpoints(opts =>
+
             {
                 opts.UseFluentValidationProblemDetailMiddleware();
             });

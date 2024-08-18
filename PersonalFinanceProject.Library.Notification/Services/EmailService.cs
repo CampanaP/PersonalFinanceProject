@@ -1,6 +1,5 @@
 ﻿using MailKit.Net.Smtp;
 using Microsoft.Extensions.Configuration;
-using Microsoft.IdentityModel.Tokens;
 using MimeKit;
 using PersonalFinanceProject.Library.DependencyInjection.Attributes;
 using PersonalFinanceProject.Library.Logger.Interfaces.Services;
@@ -56,7 +55,7 @@ namespace PersonalFinanceProject.Library.Notification.Services
             }
 
             List<MailboxAddress> recipientMailboxAddresses = new List<MailboxAddress>();
-            if (!message.Recipients.IsNullOrEmpty())
+            if (!message.Recipients?.Any() ?? true)
             {
                 foreach (string recipientEmail in message.Recipients!)
                 {
@@ -70,7 +69,7 @@ namespace PersonalFinanceProject.Library.Notification.Services
                 TextBody = message.BodyFormat == EmailBodyFormat.Text ? message.Body : null,
             };
 
-            if (!message.Attachments.IsNullOrEmpty())
+            if (!message.Attachments?.Any() ?? true)
             {
                 foreach (System.Net.Mail.Attachment attachment in message.Attachments!)
                 {
@@ -84,7 +83,7 @@ namespace PersonalFinanceProject.Library.Notification.Services
 
             mimeMessage = new MimeMessage(sender, recipientMailboxAddresses, message.Subject, bodyBuilder.ToMessageBody());
 
-            if (!message.CarbonCopyRecipients.IsNullOrEmpty())
+            if (!message.CarbonCopyRecipients?.Any() ?? true)
             {
                 foreach (string carbonCopyRecipient in message.CarbonCopyRecipients!)
                 {
@@ -92,7 +91,7 @@ namespace PersonalFinanceProject.Library.Notification.Services
                 }
             }
 
-            if (!message.BlindCarbonCopyRecipients.IsNullOrEmpty())
+            if (!message.BlindCarbonCopyRecipients?.Any() ?? true)
             {
                 foreach (string blindCarbonCopyRecipient in message.BlindCarbonCopyRecipients!)
                 {

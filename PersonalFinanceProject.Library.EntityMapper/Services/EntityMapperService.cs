@@ -1,5 +1,6 @@
 ﻿using PersonalFinanceProject.Library.DependencyInjection.Attributes;
 using PersonalFinanceProject.Library.EntityMapper.Interfaces.Services;
+using System.Linq.Expressions;
 using System.Reflection;
 
 namespace PersonalFinanceProject.Library.EntityMapper.Services
@@ -7,6 +8,11 @@ namespace PersonalFinanceProject.Library.EntityMapper.Services
     [ScopedLifetime]
     internal class EntityMapperService : IEntityMapperService
     {
+        public T Clone<T>(T objectToClone)
+        {
+            return Map<T, T>(objectToClone);
+        }
+
         public Destination Map<Origin, Destination>(Origin originEntity, bool mapNullable = false, params object[] arguments)
         {
             Destination? destinationEntity = (Destination?)Activator.CreateInstance(typeof(Destination), arguments);
@@ -80,9 +86,36 @@ namespace PersonalFinanceProject.Library.EntityMapper.Services
             return destinationEntity;
         }
 
-        public T Clone<T>(T objectToClone)
+        public Entity Set<Entity>(Expression<Func<Entity, object>> entityExpression)
         {
-            return Map<T, T>(objectToClone);
+            Entity? entity = default(Entity);
+
+            PropertyInfo? entityProperty = null;
+            if (entityExpression.Body is MemberExpression memberExpression)
+            {
+                entityProperty = (PropertyInfo)memberExpression.Member;
+            }
+            else if (entityExpression.Body is UnaryExpression unaryExpression && unaryExpression.Operand is MemberExpression memberExpressionTest)
+            {
+                entityProperty = (PropertyInfo)memberExpressionTest.Member;
+            }
+
+            if (entityProperty is null)
+            {
+                throw new Exception($"{nameof(EntityMapperService)} - {nameof(Set)} - EntityExpression is not valid");
+            }
+
+            if (entityProperty is Entity)
+            {
+                entity = (Entity?)entityProperty.GetValue(entityExpression);
+            }
+
+            if (entity is null)
+            {
+                throw new Exception($"{nameof(EntityMapperService)} - {nameof(Set)} - EntityExpression is not valid");
+            }
+
+            return entity;
         }
     }
 }

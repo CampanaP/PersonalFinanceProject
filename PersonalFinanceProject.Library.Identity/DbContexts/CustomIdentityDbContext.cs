@@ -10,9 +10,9 @@ namespace PersonalFinanceProject.Library.Identity.DbContexts
         {
         }
 
-        public CustomIdentityDbContext(DbContextOptions<CustomIdentityDbContext> options) : base(options)
-        {
-        }
+        //public CustomIdentityDbContext(DbContextOptions<CustomIdentityDbContext> options) : base(options)
+        //{
+        //}
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

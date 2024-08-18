@@ -1,11 +1,11 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using PersonalFinanceProject.Library.Identity.Entities;
 
 namespace PersonalFinanceProject.Library.Identity.Interfaces.Repositories
 {
     public interface IIdentityUserRepository
     {
-        Task AddToRole(IdentityUser user, string role);
+        Task<bool> AddToRole(User user, string role);
 
-        Task<bool> Create(IdentityUser user, string password);
+        Task<bool> Create(User user, string password);
     }
 }

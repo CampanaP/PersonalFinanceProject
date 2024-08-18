@@ -1,7 +1,7 @@
-﻿using Microsoft.AspNetCore.Identity;
-using PersonalFinanceProject.Business.Account.Interfaces.Services;
+﻿using PersonalFinanceProject.Business.Account.Interfaces.Services;
 using PersonalFinanceProject.Communication.Message.Account.Requests;
 using PersonalFinanceProject.Library.EntityMapper.Interfaces.Services;
+using PersonalFinanceProject.Library.Identity.Entities;
 using Wolverine.Attributes;
 
 namespace PersonalFinanceProject.Business.Account.Handlers
@@ -20,7 +20,9 @@ namespace PersonalFinanceProject.Business.Account.Handlers
 
         public async Task Handle(AccountRegistrationRequest request, CancellationToken cancellationToken = default)
         {
-            IdentityUser user = _entityMapperService.Map<AccountRegistrationRequest, IdentityUser>(request);
+            User user = _entityMapperService.Map<AccountRegistrationRequest, User>(request);
+
+            user = _entityMapperService.Set<User>(u => u.UserName == u.Email);
 
             await _accountService.Registration(user, request.Password, cancellationToken);
 

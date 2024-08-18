@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -13,14 +14,14 @@ namespace PersonalFinanceProject.Library.Identity.Extensions
     {
         public static IHostApplicationBuilder ConfigureIdentity(this IHostApplicationBuilder builder, IConfiguration configuration)
         {
-            JwtSetting? setting = configuration.Get<JwtSetting>();
-            if (setting is null || string.IsNullOrWhiteSpace(setting.SecurityKey))
-            {
-                throw new Exception("Authentication is not correct configurated");
-            }
+            //JwtSetting? setting = configuration.Get<JwtSetting>();
+            //if (setting is null || string.IsNullOrWhiteSpace(setting.SecurityKey))
+            //{
+            //    throw new Exception("Authentication is not correct configurated");
+            //}
 
-            builder.Services.AddIdentity<IdentityUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<CustomIdentityDbContext>();
+            //builder.Services.AddIdentity<IdentityUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true)
+            //    .AddEntityFrameworkStores<CustomIdentityDbContext>();
 
             builder.Services.Configure<IdentityOptions>(options =>
             {
@@ -68,9 +69,9 @@ namespace PersonalFinanceProject.Library.Identity.Extensions
                 options.AddPolicy("ReadUser", policy => policy.RequireRole("Administrator", "Guest"));
                 options.AddPolicy("WriteUser", policy => policy.RequireRole("Administrator", "Guest"));
                 options.AddPolicy("DeleteUser", policy => policy.RequireRole("Administrator", "Guest"));
-
-                options.AddPolicy("ReadRole", policy => policy.RequireRole("Administrator", "Guest"));
             });
+
+            builder.Services.AddIdentityApiEndpoints<IdentityUser>().AddEntityFrameworkStores<CustomIdentityDbContext>();
 
             return builder;
         }
@@ -79,6 +80,8 @@ namespace PersonalFinanceProject.Library.Identity.Extensions
         {
             webApplication.UseAuthentication();
             webApplication.UseAuthorization();
+
+            webApplication.MapIdentityApi<IdentityUser>();
 
             return webApplication;
         }
