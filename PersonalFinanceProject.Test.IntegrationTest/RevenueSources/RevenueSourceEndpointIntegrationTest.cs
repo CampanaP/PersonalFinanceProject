@@ -2,7 +2,6 @@
 using PersonalFinanceProject.Business.Wallet.DbContexts;
 using PersonalFinanceProject.Communication.Message.RevenueSource.Requests;
 using PersonalFinanceProject.Communication.Message.RevenueSource.Responses;
-using PersonalFinanceProject.Communication.Message.TransactionCategory.Requests;
 using PersonalFinanceProject.Test.IntegrationTest.Factories;
 using PersonalFinanceProject.Web.Api;
 using System.Net.Http.Json;

@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using PersonalFinanceProject.Communication.Message.TransactionCategory.Requests;
 using PersonalFinanceProject.Communication.Message.TransactionCategory.Responses;
 using Wolverine;

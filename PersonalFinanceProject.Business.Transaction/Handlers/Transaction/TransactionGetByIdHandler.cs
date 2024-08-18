@@ -1,8 +1,6 @@
 ﻿using PersonalFinanceProject.Business.Transaction.Interfaces.Services;
 using PersonalFinanceProject.Communication.Message.Transaction.Requests;
 using PersonalFinanceProject.Communication.Message.Transaction.Responses;
-using PersonalFinanceProject.Communication.Message.TransactionType.Requests;
-using PersonalFinanceProject.Communication.Message.TransactionType.Responses;
 using PersonalFinanceProject.Library.EntityMapper.Interfaces.Services;
 using Wolverine.Attributes;
 

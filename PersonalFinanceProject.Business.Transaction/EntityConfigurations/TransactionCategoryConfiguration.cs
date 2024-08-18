@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
+﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using PersonalFinanceProject.Business.Transaction.Entities;
 using PersonalFinanceProject.Library.EntityFramework.Attributes;
 

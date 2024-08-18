@@ -5,7 +5,6 @@ using PersonalFinanceProject.Communication.Message.Transaction.Responses;
 using PersonalFinanceProject.Test.IntegrationTest.Factories;
 using PersonalFinanceProject.Web.Api;
 using System.Net.Http.Json;
-using System.Resources;
 using System.Text;
 using System.Text.Json;
 
