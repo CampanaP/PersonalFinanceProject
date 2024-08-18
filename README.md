@@ -1,5 +1,6 @@
 # PersonalFinanceProject
 Project created as an exercise to understand how a scalable project works using Modular Architecture.
+
 The solution is organised in this way:
  - Library projects: projects used to interface with external libraries, in an ideal situation they should be Nuget packages
  - Communication projects: projects shared between all modules to know which messages can be sent and received.
